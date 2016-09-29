@@ -14,13 +14,13 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/7.
  */
 public class Remind {
-    public static void getUnread(String uid, JsonCallback<UnreadModel> callback) throws InvalidAccessTokenException {
+    public static void getUnread(String uid, JsonCallback<UnreadModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("uid", String.valueOf(uid));
         param.put("unread_message", "0");
         HttpHelper.getAsync(Constants.REMIND_UNREAD_COUNT, param, callback);
     }
-    public static void clearUnread(RemindType type) throws InvalidAccessTokenException {
+    public static void clearUnread(RemindType type) {
         Map<String, String> param = new HashMap<>();
         param.put("type", type.toString());
         HttpHelper.postAsync(Constants.REMIND_UNREAD_SET_COUNT, param, null);

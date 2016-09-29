@@ -14,7 +14,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/9.
  */
 public class Repost {
-    public static void getRepost(long id, long since_id, long max_id, int count, int page, AuthorType filter_by_author, JsonCallback<RepostListModel> callback) throws InvalidAccessTokenException {
+    public static void getRepost(long id, long since_id, long max_id, int count, int page, AuthorType filter_by_author, JsonCallback<RepostListModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
         param.put("since_id", String.valueOf(since_id));
@@ -24,7 +24,7 @@ public class Repost {
         param.put("filter_by_author", String.valueOf(filter_by_author.getValue()));
         HttpHelper.getAsync(Constants.REPOST_TIMELINE, param, callback);
     }
-    public static void getRepost(long id, int count, int page, JsonCallback<RepostListModel> callback) throws InvalidAccessTokenException {
+    public static void getRepost(long id, int count, int page, JsonCallback<RepostListModel> callback) {
         getRepost(id, 0, 0, count, page, AuthorType.All, callback);
     }
 }

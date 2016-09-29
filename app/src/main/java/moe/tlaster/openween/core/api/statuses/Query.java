@@ -13,7 +13,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/8.
  */
 public class Query {
-    public static void getStatus(long id, boolean isGetLongText, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void getStatus(long id, boolean isGetLongText, JsonCallback<MessageModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
         param.put("isGetLongText", isGetLongText ? "1" : "0");

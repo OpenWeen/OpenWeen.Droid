@@ -27,7 +27,7 @@ public class WeiboTextBlock extends TextView {
         void call(String data);
     }
     
-    private static final String AT = "@[^,，：:\\s@]+";
+    private static final String AT = "@[^,\uff0c\uff1a:\\s@]+";
     private static final String TOPIC = "#[\\w]+#";
     private static final String EMOJI = "\\[[\\w]+\\]";
     private static final String URL = "http://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";

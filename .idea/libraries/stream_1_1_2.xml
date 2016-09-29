@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="stream-1.1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.annimon/stream/1.1.2/fad6fa362ae0e3672b69be5d74aa039d1d1f3d9/stream-1.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.annimon/stream/1.1.2/5a7593fcc855a96844eda80c3d9a58250877123b/stream-1.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

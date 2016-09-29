@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="peekview-1.2.2">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.klinkerapps/peekview/1.2.2/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.klinkerapps/peekview/1.2.2/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.klinkerapps/peekview/1.2.2/c93dee8ed9b049578f151a2bbcabf36b5777f996/peekview-1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

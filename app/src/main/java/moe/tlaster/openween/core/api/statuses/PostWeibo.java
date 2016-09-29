@@ -20,7 +20,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/8.
  */
 public class PostWeibo {
-    public static void post(String status, WeiboVisibility visible, String list_id, float plat, float plong, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void post(String status, WeiboVisibility visible, String list_id, float plat, float plong, JsonCallback<MessageModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("status", status);
         param.put("visible", String.valueOf(visible.getValue()));
@@ -29,10 +29,10 @@ public class PostWeibo {
         param = checkForVisibility(visible, list_id, param);
         HttpHelper.postAsync(Constants.UPDATE, param, callback);
     }
-    public static void post(String status, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void post(String status, JsonCallback<MessageModel> callback) {
         post(status, WeiboVisibility.All, "", 0, 0, callback);
     }
-    public static void postWithPic(String status, File pic, WeiboVisibility visible, String list_id, float plat, float plong, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void postWithPic(String status, File pic, WeiboVisibility visible, String list_id, float plat, float plong, JsonCallback<MessageModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("status", status);
         param.put("visible", String.valueOf(visible.getValue()));
@@ -41,22 +41,22 @@ public class PostWeibo {
         param = checkForVisibility(visible, list_id, param);
         HttpHelper.uploadFileWithParamAsync(Constants.UPLOAD, pic, param, callback);
     }
-    public static void repost(long id, String status, RepostType is_comment, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void repost(long id, String status, RepostType is_comment, JsonCallback<MessageModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("status", status);
         param.put("id", String.valueOf(id));
         param.put("is_comment", String.valueOf(is_comment.getValue()));
         HttpHelper.postAsync(Constants.REPOST, param, callback);
     }
-    public static void deletePost(long id, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void deletePost(long id, JsonCallback<MessageModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
         HttpHelper.postAsync(Constants.DESTROY, param, callback);
     }
-    public static void uploadPicture(File file, JsonCallback<PictureModel> callback) throws InvalidAccessTokenException {
+    public static void uploadPicture(File file, JsonCallback<PictureModel> callback) {
         HttpHelper.uploadFileAsync(Constants.UPLOAD_PIC, file, callback);
     }
-    public static void postWithMultiPics(String status, String pics, WeiboVisibility visible, String list_id, float plat, float plong, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void postWithMultiPics(String status, String pics, WeiboVisibility visible, String list_id, float plat, float plong, JsonCallback<MessageModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("status", status);
         param.put("pic_id", pics);
@@ -66,7 +66,7 @@ public class PostWeibo {
         param = checkForVisibility(visible, list_id, param);
         HttpHelper.postAsync(Constants.UPLOAD_URL_TEXT, param, callback);
     }
-    public static void postWithMultiPics(String status, String pics, JsonCallback<MessageModel> callback) throws InvalidAccessTokenException {
+    public static void postWithMultiPics(String status, String pics, JsonCallback<MessageModel> callback) {
         postWithMultiPics(status, pics, WeiboVisibility.All, "", 0 ,0, callback);
     }
     @Nullable

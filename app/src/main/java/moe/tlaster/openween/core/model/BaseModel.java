@@ -7,6 +7,7 @@ import org.ocpsoft.prettytime.PrettyTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import moe.tlaster.openween.core.model.user.UserModel;
@@ -71,6 +72,14 @@ public abstract class BaseModel implements MultiItemEntity {
             e.printStackTrace();
         }
         return mCreatedAt;
+    }
+
+    public Date getCreatedDate(){
+        try {
+            return mSimpleDateFormat.parse(mCreatedAt);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     public void setCreatedAt(String createdAt) {

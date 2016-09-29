@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <de.hdodenhof.circleimageview.CircleImageView
+                android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"

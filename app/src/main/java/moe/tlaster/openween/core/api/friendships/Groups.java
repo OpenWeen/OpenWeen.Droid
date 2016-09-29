@@ -10,7 +10,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/7.
  */
 public class Groups {
-    public static void getGroups(JsonCallback<GroupListModel> callback) throws InvalidAccessTokenException {
+    public static void getGroups(JsonCallback<GroupListModel> callback) {
         HttpHelper.getAsync(Constants.FRIENDSHIPS_GROUPS, null, callback);
     }
 }

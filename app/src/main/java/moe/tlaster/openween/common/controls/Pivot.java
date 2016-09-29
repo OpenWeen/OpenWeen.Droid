@@ -35,6 +35,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import moe.tlaster.openween.R;
+import moe.tlaster.openween.fragment.WeiboListBase;
 import okhttp3.Call;
 import okhttp3.Request;
 
@@ -63,6 +64,10 @@ public class Pivot extends CoordinatorLayout {
         LayoutInflater.from(context).inflate(R.layout.pivot_template, this);
     }
 
+    public int getCurrentIndex() {
+        return ((ViewPager) findViewById(R.id.pivot_container)).getCurrentItem();
+    }
+
     public FragmentPageAdapter getAdapter() {
         return mAdapter;
     }
@@ -85,7 +90,6 @@ public class Pivot extends CoordinatorLayout {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 tab.getCustomView().setAlpha(1.f);
-
             }
 
             @Override
@@ -95,7 +99,7 @@ public class Pivot extends CoordinatorLayout {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                getAdapter().toTop(getCurrentIndex());
             }
         });
         setProfileImage(new IconicsDrawable(getContext())
@@ -109,27 +113,25 @@ public class Pivot extends CoordinatorLayout {
     }
 
     public void setProfileImageOnClickListener(View.OnClickListener listener){
-        CircleImageView circleImageView = (CircleImageView) findViewById(R.id.profile_image);
-        circleImageView.setOnClickListener(listener);
+        findViewById(R.id.profile_image).setOnClickListener(listener);
     }
 
     public void setProfileImage(Drawable drawable){
-        CircleImageView circleImageView = (CircleImageView) findViewById(R.id.profile_image);
-        circleImageView.setImageDrawable(drawable);
+        ((CircleImageView) findViewById(R.id.profile_image)).setImageDrawable(drawable);
     }
 
     public void setProfileImage(String url){
         CircleImageView circleImageView = (CircleImageView) findViewById(R.id.profile_image);
         OkHttpUtils.get().url(url).build().execute(new BitmapCallback()
-                {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                    }
-                    @Override
-                    public void onResponse(Bitmap response, int id) {
-                        circleImageView.setImageBitmap(response);
-                    }
-                });
+        {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+            }
+            @Override
+            public void onResponse(Bitmap response, int id) {
+                circleImageView.setImageBitmap(response);
+            }
+        });
     }
 
     public static abstract class PivotItemFragment extends Fragment{
@@ -139,7 +141,7 @@ public class Pivot extends CoordinatorLayout {
     public static class FragmentPageAdapter extends FragmentStatePagerAdapter {
 
         private final Context mContext;
-        private final List<PivotItemFragment> mFragments = new ArrayList<>();
+        private final List<WeiboListBase> mFragments = new ArrayList<>();
         private final List<IIcon> mIcon = new ArrayList<>();
 
         public FragmentPageAdapter(Context context, FragmentManager fm) {
@@ -147,12 +149,12 @@ public class Pivot extends CoordinatorLayout {
             mContext = context;
         }
 
-        public void add(PivotItemFragment fragment){
+        public void add(WeiboListBase fragment){
             mFragments.add(fragment);
             mIcon.add(fragment.getIcon());
         }
 
-        public View getHeader(int position){
+        View getHeader(int position){
             View tab = LayoutInflater.from(mContext).inflate(R.layout.tabbar_view, null);
             ImageView img = (ImageView)tab.findViewById(R.id.tabbar_Image);
             Drawable icon = new IconicsDrawable(mContext).icon(mIcon.get(position)).color(Color.WHITE).sizeDp(24);
@@ -170,6 +172,14 @@ public class Pivot extends CoordinatorLayout {
         @Override
         public int getCount() {
             return mFragments.size();
+        }
+
+        public void refresh(int currentIndex) {
+            mFragments.get(currentIndex).refresh();
+        }
+
+        void toTop(int currentIndex) {
+            mFragments.get(currentIndex).toTop();
         }
     }
 }

@@ -15,36 +15,36 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/6.
  */
 public class Favorites {
-    public static void getFavorList(int count, int page, JsonCallback<FavorListModel> callback) throws InvalidAccessTokenException {
+    public static void getFavorList(int count, int page, JsonCallback<FavorListModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("count", String.valueOf(count));
         param.put("page", String.valueOf(page));
         HttpHelper.getAsync(Constants.FAVORITES_LIST, param, callback);
     }
-    public static void getFavor(long id, JsonCallback<FavorModel> callback) throws InvalidAccessTokenException {
+    public static void getFavor(long id, JsonCallback<FavorModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
         HttpHelper.getAsync(Constants.FAVORITES_SHOW, param, callback);
     }
-    public static void getFavorListByTag(long tid, int count, int page, JsonCallback<FavorListModel> callback) throws InvalidAccessTokenException {
+    public static void getFavorListByTag(long tid, int count, int page, JsonCallback<FavorListModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("tid", String.valueOf(tid));
         param.put("count", String.valueOf(count));
         param.put("page", String.valueOf(page));
         HttpHelper.getAsync(Constants.FAVORITES_LIST_BY_TAG, param, callback);
     }
-    public static void getTags(int count, int page, JsonCallback<FavorTagListModel> callback) throws InvalidAccessTokenException {
+    public static void getTags(int count, int page, JsonCallback<FavorTagListModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("count", String.valueOf(count));
         param.put("page", String.valueOf(page));
         HttpHelper.getAsync(Constants.FAVORITES_TAGS, param, callback);
     }
-    public static void addFavor(long id, JsonCallback<FavorModel> callback) throws InvalidAccessTokenException {
+    public static void addFavor(long id, JsonCallback<FavorModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
         HttpHelper.postAsync(Constants.FAVORITES_CREATE, param, callback);
     }
-    public static void removeFavor(long id, JsonCallback<FavorModel> callback) throws InvalidAccessTokenException {
+    public static void removeFavor(long id, JsonCallback<FavorModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
         HttpHelper.postAsync(Constants.FAVORITES_DESTROY, param, callback);

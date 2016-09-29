@@ -14,7 +14,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback;
  * Created by Tlaster on 2016/9/7.
  */
 public class Home {
-    public static void getTimeline(int count, int page, long max_id, long since_id, int base_app, FeatureType feature, int trim_user, JsonCallback<MessageListModel> callback) throws InvalidAccessTokenException {
+    public static void getTimeline(int count, int page, long max_id, long since_id, int base_app, FeatureType feature, int trim_user, JsonCallback<MessageListModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("count", String.valueOf(count));
         param.put("page", String.valueOf(page));
@@ -25,10 +25,10 @@ public class Home {
         param.put("feature", String.valueOf(feature.getValue()));
         HttpHelper.getAsync(Constants.HOME_TIMELINE, param, callback);
     }
-    public static void getTimeline(int count, JsonCallback<MessageListModel> callback) throws InvalidAccessTokenException {
+    public static void getTimeline(int count, JsonCallback<MessageListModel> callback) {
         getTimeline(count, 1, 0, 0, 0, FeatureType.All, 0, callback);
     }
-    public static void getTimeline(int count, long max_id, JsonCallback<MessageListModel> callback) throws InvalidAccessTokenException {
+    public static void getTimeline(int count, long max_id, JsonCallback<MessageListModel> callback) {
         getTimeline(count, 1, max_id, 0, 0, FeatureType.All, 0, callback);
     }
 }

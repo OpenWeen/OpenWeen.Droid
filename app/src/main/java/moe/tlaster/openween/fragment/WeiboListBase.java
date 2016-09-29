@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -23,7 +24,6 @@ import okhttp3.Call;
  * Created by Tlaster on 2016/9/10.
  */
 public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
-
     protected interface Callback<T> {
         void onError(Exception e);
         void onResponse(T response, int totalCount);
@@ -54,6 +54,10 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
         return mAdapter.getData().size() < mTotalCount;
     }
 
+    public void toTop() {
+        mRecyclerView.smoothScrollToPosition(0);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +73,6 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
         mAdapter.setOnLoadMoreListener(() -> mRecyclerView.post(this::loadMore));
         mRecyclerView.addOnItemTouchListener(itemTouch());
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
-        mSwipeRefreshLayout.post(()-> mSwipeRefreshLayout.setRefreshing(true));
         refresh();
         return view;
     }
@@ -85,6 +88,7 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
             @Override
             public void onError(Exception e) {
                 //mAdapter.showLoadMoreFailedView();//TODO:Show refresh failed
+                Toast.makeText(getContext(), "加载失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -95,12 +99,14 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
         });
     }
 
-    private void refresh() {
+    public void refresh() {
+        mSwipeRefreshLayout.post(()-> mSwipeRefreshLayout.setRefreshing(true));
         mPage = 1;
         refreshOverride(new Callback<List<T>>() {
             @Override
             public void onError(Exception e) {
                 //mAdapter.showLoadMoreFailedView();//TODO:Show refresh failed
+                Toast.makeText(getContext(), "加载失败", Toast.LENGTH_SHORT).show();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
