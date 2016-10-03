@@ -1,38 +1,23 @@
-package moe.tlaster.openween;
+package moe.tlaster.openween.activity;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
-import com.mikepenz.materialdrawer.util.DrawerImageLoader;
-import com.mikepenz.materialdrawer.util.DrawerUIUtils;
-import com.mikepenz.materialize.holder.ImageHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import moe.tlaster.openween.R;
 import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.controls.Pivot;
-import moe.tlaster.openween.common.helpers.InvalidAccessTokenException;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.core.api.user.User;
 import moe.tlaster.openween.core.model.user.UserModel;
@@ -41,7 +26,7 @@ import moe.tlaster.openween.fragment.main.Message;
 import moe.tlaster.openween.fragment.main.Timeline;
 import okhttp3.Call;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.main_pivot)
     public Pivot mPivot;

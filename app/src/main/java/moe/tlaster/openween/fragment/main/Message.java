@@ -64,6 +64,7 @@ public class Message extends WeiboListBase<BaseModel> {
     }
 
     private void childClick(int id) {
+
     }
 
     @Override

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="moe.tlaster.openween.MainActivity">
+    tools:context="moe.tlaster.openween.activity.MainActivity">
 
     <moe.tlaster.openween.common.controls.Pivot
         android:id="@+id/main_pivot"

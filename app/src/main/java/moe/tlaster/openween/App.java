@@ -16,10 +16,13 @@ import com.mikepenz.materialdrawer.util.DrawerUIUtils;
  * Created by Tlaster on 2016/9/10.
  */
 public class App extends Application {
+
+    private static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        mContext = getApplicationContext();
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
             public void set(ImageView imageView, Uri uri, Drawable placeholder) {
@@ -42,5 +45,9 @@ public class App extends Application {
                 return super.placeholder(ctx, tag);
             }
         });
+    }
+
+    public static Context getContext() {
+        return mContext;
     }
 }

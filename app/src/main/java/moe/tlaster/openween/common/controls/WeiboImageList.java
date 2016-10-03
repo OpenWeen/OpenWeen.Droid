@@ -49,17 +49,15 @@ public class WeiboImageList extends AppCompatActivity {
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.weibo_image_indicator);
         mSwipeBackLayout = (SwipeBackLayout) findViewById(R.id.weibo_image_swipeback);
         mSwipeBackLayout.setEnableFlingBack(false);
-        mSwipeBackLayout.setDragEdge(SwipeBackLayout.DragEdge.BOTTOM);
+        mSwipeBackLayout.setDragEdge(SwipeBackLayout.DragEdge.TOP);
         viewPager.setAdapter(new ImagePagerAdapter(getIntent().getExtras().getStringArrayList(INTENTNAME)));
         indicator.setViewPager(viewPager);
-        viewPager.post(()->{
-           viewPager.setCurrentItem(getIntent().getIntExtra(POSITIONNAME, 0), false);
-        });
+        viewPager.post(()-> viewPager.setCurrentItem(getIntent().getIntExtra(POSITIONNAME, 0), false));
     }
 
 
 
-    public class ImagePagerAdapter extends PagerAdapter {
+    class ImagePagerAdapter extends PagerAdapter {
         private List<String> mData;
 
         ImagePagerAdapter(List<String> data) {

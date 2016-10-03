@@ -1,40 +1,31 @@
-package moe.tlaster.openween;
+package moe.tlaster.openween.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.transitionseverywhere.AutoTransition;
 import com.transitionseverywhere.ChangeBounds;
-import com.transitionseverywhere.Fade;
-import com.transitionseverywhere.Slide;
 import com.transitionseverywhere.Transition;
 import com.transitionseverywhere.TransitionManager;
 import com.transitionseverywhere.TransitionSet;
-import com.transitionseverywhere.extra.Scale;
 
+import moe.tlaster.openween.R;
 import moe.tlaster.openween.common.StaticResource;
-import moe.tlaster.openween.common.helpers.InvalidAccessTokenException;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.common.helpers.SettingHelper;
-import moe.tlaster.openween.core.api.Entity;
 import moe.tlaster.openween.core.api.user.Account;
 import okhttp3.Call;
 
-import static com.transitionseverywhere.TransitionSet.ORDERING_SEQUENTIAL;
 import static com.transitionseverywhere.TransitionSet.ORDERING_TOGETHER;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,56 +38,16 @@ public class SplashActivity extends AppCompatActivity {
                     .setOrdering(ORDERING_TOGETHER)
                     //.addTransition(new Slide(Gravity.LEFT))
                     .addTransition(new ChangeBounds())
-                    .setDuration(1000).setStartDelay(1000).addListener(new Transition.TransitionListener() {
-                        @Override
-                        public void onTransitionStart(Transition transition) {
-
-                        }
-
+                    .setDuration(1000).setStartDelay(1000).addListener(new Transition.TransitionListenerAdapter() {
                         @Override
                         public void onTransitionEnd(Transition transition) {
-                            TransitionManager.beginDelayedTransition((ViewGroup) SplashActivity.this.findViewById(R.id.splash_container), new AutoTransition().setDuration(500).addListener(new Transition.TransitionListener() {
-                                @Override
-                                public void onTransitionStart(Transition transition) {
-
-                                }
-
+                            TransitionManager.beginDelayedTransition((ViewGroup) SplashActivity.this.findViewById(R.id.splash_container), new AutoTransition().setDuration(500).addListener(new Transition.TransitionListenerAdapter() {
                                 @Override
                                 public void onTransitionEnd(Transition transition) {
                                     allTransitionEnd();
                                 }
-
-                                @Override
-                                public void onTransitionCancel(Transition transition) {
-
-                                }
-
-                                @Override
-                                public void onTransitionPause(Transition transition) {
-
-                                }
-
-                                @Override
-                                public void onTransitionResume(Transition transition) {
-
-                                }
                             }));
                             SplashActivity.this.findViewById(R.id.splash_progress_content).setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onTransitionCancel(Transition transition) {
-
-                        }
-
-                        @Override
-                        public void onTransitionPause(Transition transition) {
-
-                        }
-
-                        @Override
-                        public void onTransitionResume(Transition transition) {
-
                         }
                     }));
             findViewById(R.id.splash_title).setVisibility(View.VISIBLE);
@@ -104,11 +55,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void allTransitionEnd() {
-        String[] tokens = SettingHelper.getListSetting(SplashActivity.this, SettingHelper.ACCESSTOKEN);
-        if (tokens == null) {
+        if (SettingHelper.getListSetting(SplashActivity.this, SettingHelper.ACCESSTOKEN) == null) {
             goLogin();
         } else {
-            Entity.setAccessToken(tokens[0]);
             Account.getUid(new JsonCallback<String>() {
                 @Override
                 public void onError(Call call, Exception e, int id) {

@@ -1,10 +1,9 @@
-package moe.tlaster.openween;
+package moe.tlaster.openween.activity;
 
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,13 +18,14 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import moe.tlaster.openween.R;
 import moe.tlaster.openween.common.helpers.SettingHelper;
 
 /**
  * Created by Asahi on 2016/9/26.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_app_id)
     public EditText mAppId;
     @BindView(R.id.login_app_secret)

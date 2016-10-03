@@ -22,15 +22,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SplashActivity" android:label="@string/app_name" android:theme="@style/SplashTheme">
+        <activity android:name=".activity.SplashActivity" android:label="@string/app_name" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:label="@string/app_name"/>
+        <activity android:name=".activity.MainActivity" android:label="@string/app_name"/>
         <activity android:name=".common.controls.WeiboImageList" android:theme="@style/PopupTheme"/>
-        <activity android:name=".LoginActivity" android:theme="@style/AppTheme" android:label="OpenWeen - 登陆"/>
+        <activity android:name=".activity.LoginActivity" android:theme="@style/AppTheme" android:label="OpenWeen - 登陆"/>
     </application>
 
 </manifest>

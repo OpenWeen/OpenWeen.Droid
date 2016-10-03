@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import icepick.Icepick;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.fragment.WeiboListBase;
 import okhttp3.Call;
@@ -136,6 +138,17 @@ public class Pivot extends CoordinatorLayout {
 
     public static abstract class PivotItemFragment extends Fragment{
         public abstract IIcon getIcon();
+
+        @Override public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            Icepick.restoreInstanceState(this, savedInstanceState);
+        }
+
+        @Override public void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
+            Icepick.saveInstanceState(this, outState);
+        }
+
     }
 
     public static class FragmentPageAdapter extends FragmentStatePagerAdapter {
