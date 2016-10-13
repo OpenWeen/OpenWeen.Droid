@@ -1,11 +1,23 @@
 package moe.tlaster.openween.core.model.user;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
+
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import moe.tlaster.openween.common.helpers.TimeHelper;
 
 /**
  * Created by Tlaster on 2016/9/2.
  */
-public class UserModel {
+public class UserModel extends UserBaseModel implements Parcelable {
     @SerializedName("screen_name")
     private String mScreenName;
     @SerializedName("name")
@@ -55,7 +67,7 @@ public class UserModel {
     @SerializedName("bi_followers_count")
     private int mBiFollowersCount = 0;
     @SerializedName("cover_image")
-    private String mCoverimage;
+    private String mCoverimage = "";
     @SerializedName("cover_image_phone")
     private String mCoverImagePhone;
     @SerializedName("avatar_hd")
@@ -66,6 +78,67 @@ public class UserModel {
     private String mLang;
     @SerializedName("level")
     private int mLevel;
+
+    public String getCreatedAtDiffForHuman(){
+        try {
+            return TimeHelper.getmPrettyTime().format(TimeHelper.getmSimpleDateFormat().parse(mCreatedAt));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return mCreatedAt;
+    }
+
+    public Date getCreatedDate(){
+        try {
+            return TimeHelper.getmSimpleDateFormat().parse(mCreatedAt);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+    protected UserModel(Parcel in) {
+        mScreenName = in.readString();
+        mName = in.readString();
+        mRemark = in.readString();
+        mProvince = in.readString();
+        mCity = in.readString();
+        mLocation = in.readString();
+        mDescription = in.readString();
+        mUrl = in.readString();
+        mProfileImageUrl = in.readString();
+        mDomain = in.readString();
+        mGender = in.readString();
+        mFavouritesCount = in.readInt();
+        mVerifiedType = in.readInt();
+        mCreatedAt = in.readString();
+        mFollowing = in.readByte() != 0;
+        mAllowAllActMsg = in.readByte() != 0;
+        mGeoEnabled = in.readByte() != 0;
+        mVerified = in.readByte() != 0;
+        mAllowAllComment = in.readByte() != 0;
+        mAvatarLarge = in.readString();
+        mVerifiedReason = in.readString();
+        mFollowMe = in.readByte() != 0;
+        mOnlineStatus = in.readInt();
+        mBiFollowersCount = in.readInt();
+        mCoverimage = in.readString();
+        mCoverImagePhone = in.readString();
+        mAvatarHD = in.readString();
+        mWeihao = in.readString();
+        mLang = in.readString();
+        mLevel = in.readInt();
+    }
+
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
+        @Override
+        public UserModel createFromParcel(Parcel in) {
+            return new UserModel(in);
+        }
+
+        @Override
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
+        }
+    };
 
     public String getScreenName() {
         return mScreenName;
@@ -305,5 +378,44 @@ public class UserModel {
 
     public void setLevel(int level) {
         mLevel = level;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mScreenName);
+        dest.writeString(mName);
+        dest.writeString(mRemark);
+        dest.writeString(mProvince);
+        dest.writeString(mCity);
+        dest.writeString(mLocation);
+        dest.writeString(mDescription);
+        dest.writeString(mUrl);
+        dest.writeString(mProfileImageUrl);
+        dest.writeString(mDomain);
+        dest.writeString(mGender);
+        dest.writeInt(mFavouritesCount);
+        dest.writeInt(mVerifiedType);
+        dest.writeString(mCreatedAt);
+        dest.writeByte((byte) (mFollowing ? 1 : 0));
+        dest.writeByte((byte) (mAllowAllActMsg ? 1 : 0));
+        dest.writeByte((byte) (mGeoEnabled ? 1 : 0));
+        dest.writeByte((byte) (mVerified ? 1 : 0));
+        dest.writeByte((byte) (mAllowAllComment ? 1 : 0));
+        dest.writeString(mAvatarLarge);
+        dest.writeString(mVerifiedReason);
+        dest.writeByte((byte) (mFollowMe ? 1 : 0));
+        dest.writeInt(mOnlineStatus);
+        dest.writeInt(mBiFollowersCount);
+        dest.writeString(mCoverimage);
+        dest.writeString(mCoverImagePhone);
+        dest.writeString(mAvatarHD);
+        dest.writeString(mWeihao);
+        dest.writeString(mLang);
+        dest.writeInt(mLevel);
     }
 }

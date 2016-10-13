@@ -48,7 +48,6 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
         return new LinearLayoutManager(getContext());
     }
     protected abstract BaseQuickAdapter<T> initAdapter();
-    protected abstract RecyclerView.OnItemTouchListener itemTouch();
 
     private boolean HasMore(){
         return mAdapter.getData().size() < mTotalCount;
@@ -71,12 +70,10 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
         mAdapter.openLoadMore(20);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnLoadMoreListener(() -> mRecyclerView.post(this::loadMore));
-        mRecyclerView.addOnItemTouchListener(itemTouch());
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
         refresh();
         return view;
     }
-
 
     private void loadMore() {
         if (!HasMore()) {

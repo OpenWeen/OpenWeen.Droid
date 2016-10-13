@@ -24,10 +24,18 @@ public class UserTimeline {
         param.put("base_app", String.valueOf(base_app));
         param.put("feature", String.valueOf(feature.getValue()));
         param.put("trim_user", String.valueOf(trim_user));
-        HttpHelper.getAsync(Constants.USER_TIMELINE, param, callback);
+        param.put("source", "211160679");
+        param.put("from", "1055095010");
+        HttpHelper.getAsync("https://api.weibo.cn/2/statuses/user_timeline", param, callback);
     }
     public static void getUserTimeline(long uid, int count, int page, JsonCallback<MessageListModel> callback) {
         getUserTimeline(uid, count, page, 0, 0, 0, FeatureType.All, 0, callback);
+    }
+    public static void getUserTimeline(long uid, int count, long max_id, JsonCallback<MessageListModel> callback){
+        getUserTimeline(uid, count, 1, max_id, 0, 0, FeatureType.All, 0, callback);
+    }
+    public static void getUserTimeline(long uid, int count, JsonCallback<MessageListModel> callback){
+        getUserTimeline(uid, count, 1, 0, 0, 0, FeatureType.All, 0, callback);
     }
 
 
@@ -41,7 +49,9 @@ public class UserTimeline {
         param.put("base_app", String.valueOf(base_app));
         param.put("feature", String.valueOf(feature.getValue()));
         param.put("trim_user", String.valueOf(trim_user));
-        HttpHelper.getAsync(Constants.USER_TIMELINE, param, callback);
+        param.put("source", "211160679");
+        param.put("from", "1055095010");
+        HttpHelper.getAsync("https://api.weibo.cn/2/statuses/user_timeline", param, callback);
     }
     public static void getUserTimeline(String screen_name, int count, int page, JsonCallback<MessageListModel> callback) {
         getUserTimeline(screen_name, count, page, 0, 0, 0, FeatureType.All, 0, callback);

@@ -1,11 +1,14 @@
 package moe.tlaster.openween.common.controls;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
@@ -13,9 +16,21 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import moe.tlaster.openween.common.helpers.JsonCallback;
+import moe.tlaster.openween.core.api.shortUrl.ShortUrl;
+import moe.tlaster.openween.core.model.status.PictureModel;
+import moe.tlaster.openween.core.model.url.UrlInfoListModel;
+import moe.tlaster.openween.core.model.url.UrlInfoModel;
+import okhttp3.Call;
 
 /**
  * Created by Asahi on 2016/9/24.
@@ -28,7 +43,7 @@ public class WeiboTextBlock extends TextView {
     }
     
     private static final String AT = "@[^,\uff0c\uff1a:\\s@]+";
-    private static final String TOPIC = "#[\\w]+#";
+    private static final String TOPIC = "#[^#]+#";
     private static final String EMOJI = "\\[[\\w]+\\]";
     private static final String URL = "http://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
     private static final String REGEX = "(" + AT + ")|(" + TOPIC + ")|(" + EMOJI + ")|(" + URL + ")";
@@ -103,7 +118,7 @@ public class WeiboTextBlock extends TextView {
                     @Override
                     public void onClick(View widget) {
                         if (mUserClicked != null)
-                            mUserClicked.call(at);
+                            mUserClicked.call(at.substring(1));
                     }
                 };
                 spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -143,11 +158,46 @@ public class WeiboTextBlock extends TextView {
                     public void onClick(View widget) {
                         if(mLinkClicked != null)
                             mLinkClicked.call(url);
+                        ShortUrl.info(new JsonCallback<UrlInfoListModel>() {
+                            @Override
+                            public void onError(Call call, Exception e, int id) {
+                                openLink(url);
+                            }
+                            @Override
+                            public void onResponse(UrlInfoListModel response, int id) {
+                                UrlInfoModel item = response.getUrls().get(0);
+                                switch (item.getType()){
+                                    case 39: {
+                                        try {
+                                            String picid = item.getAnnotations().get(0).getItem().getPicIds()[0];
+                                            if (!TextUtils.isEmpty(picid)) {
+                                                Intent intent = new Intent(getContext(), WeiboImageList.class);
+                                                intent.putStringArrayListExtra(WeiboImageList.INTENTNAME, new ArrayList<String>(){{add("http://ww1.sinaimg.cn/large/"+picid+".jpg");}});
+                                                getContext().startActivity(intent);
+                                            }
+                                        } catch (Exception e) {
+                                            //Do nothing
+                                            openLink(item.getUrlLong());
+                                        }
+                                    }
+                                    break;
+                                    default:
+                                        openLink(item.getUrlLong());
+                                        break;
+                                }
+                            }
+                        }, url);
                     }
                 };
                 spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
         super.setText(spannableString, type);
+    }
+
+    private void openLink(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        getContext().startActivity(intent);
     }
 }

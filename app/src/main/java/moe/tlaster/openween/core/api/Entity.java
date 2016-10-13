@@ -9,8 +9,14 @@ import moe.tlaster.openween.common.helpers.SettingHelper;
  * Created by Tlaster on 2016/9/3.
  */
 public class Entity {
+    private static String mAccessToken;
     public static String getAccessToken() {
-        return SettingHelper.getListSetting(App.getContext(), SettingHelper.ACCESSTOKEN)[0];
+        return mAccessToken;
+        //return SettingHelper.getListSetting(App.getContext(), SettingHelper.ACCESSTOKEN)[0];
+    }
+
+    public static void setAccessToken(String accessToken){
+        mAccessToken = accessToken;
     }
 
     //public static void setAccessToken(String mAccessToken) {

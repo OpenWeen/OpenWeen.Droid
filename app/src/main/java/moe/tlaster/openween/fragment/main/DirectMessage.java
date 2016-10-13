@@ -27,11 +27,6 @@ public class DirectMessage extends WeiboListBase {
         return null;
     }
 
-    @Override
-    protected RecyclerView.OnItemTouchListener itemTouch() {
-        return null;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

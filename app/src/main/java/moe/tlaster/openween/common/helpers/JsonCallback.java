@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.callback.Callback;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import okhttp3.Response;
 
@@ -15,7 +16,7 @@ public abstract class JsonCallback<T> extends Callback<T> {
     @Override
     public T parseNetworkResponse(Response response, int id) throws Exception {
         String string = response.body().string();
-        Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        Type entityClass = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         if (entityClass == String.class) {
             return (T) string;
         }

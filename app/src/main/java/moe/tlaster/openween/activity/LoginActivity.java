@@ -79,9 +79,7 @@ public class LoginActivity extends BaseActivity {
     private String[] decodeLoginData(String str) {
         if (!isLoginData(str))
             return null;
-
         String data = str.substring(START.length(), str.length() - END.length() - 1);
-
         try {
             return new String(Base64.decode(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING | Base64.NO_CLOSE)).split(SEPERATOR);
         } catch (Exception e) {
@@ -99,6 +97,8 @@ public class LoginActivity extends BaseActivity {
         dialog.setContentView(R.layout.login_web_view);
         WebView webView = (WebView)dialog.findViewById(R.id.login_webview);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.clearHistory();
+        webView.clearCache(true);
         webView.loadUrl("https://api.weibo.com/oauth2/authorize?client_id=" + mAppId.getText() + "&response_type=token&display=mobile&redirect_uri=" +
                 mRedirectUri.getText() + "&key_hash=" + mAppSecret.getText() + "&packagename=" + mPackageName.getText() + "&scope=" + mScope.getText());
         webView.setWebViewClient(new WebViewClient(){
@@ -110,7 +110,7 @@ public class LoginActivity extends BaseActivity {
                     int expiresIndex = url.indexOf("expires_in=");
                     String token = url.substring(tokenIndex + 13, url.indexOf("&", tokenIndex));
                     String expiresIn = url.substring(expiresIndex + 11, url.indexOf("&", expiresIndex));
-                    SettingHelper.setListSetting(LoginActivity.this, SettingHelper.ACCESSTOKEN, token);
+                    SettingHelper.setListSetting(LoginActivity.this, SettingHelper.ACCESSTOKEN, false, token);
                     goSplash();
                     dialog.dismiss();
                 }
@@ -122,8 +122,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void goSplash() {
-        Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         finish();
     }
 

@@ -4,9 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import moe.tlaster.openween.core.api.Constants;
-import moe.tlaster.openween.core.model.Url.UrlInfoListModel;
+import moe.tlaster.openween.core.model.url.UrlInfoListModel;
 import moe.tlaster.openween.common.helpers.HttpHelper;
-import moe.tlaster.openween.common.helpers.InvalidAccessTokenException;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 
 /**

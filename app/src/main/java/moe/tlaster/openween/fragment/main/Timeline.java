@@ -30,45 +30,6 @@ public class Timeline extends WeiboListBase<MessageModel> {
     }
 
     @Override
-    protected RecyclerView.OnItemTouchListener itemTouch() {
-        return new OnItemChildClickListener() {
-            @Override
-            public void SimpleOnItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                childClick(view.getId());
-            }
-
-            @Override
-            public void onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
-                childClick(view.getId());
-            }
-
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                itemClick();
-            }
-        };
-    }
-
-    private void itemClick() {
-
-    }
-
-    private void childClick(int id) {
-        switch (id){
-            case R.id.user_img:
-            case R.id.user_name:
-            case R.id.repost_user_name:
-                break;
-            case R.id.weibo_content:
-            case R.id.repost_weibo_content:
-                break;
-            default:
-                break;
-        }
-    }
-
-
-    @Override
     protected void loadMoreOverride(Callback<List<MessageModel>> callback) {
         Home.getTimeline(mLoadCount, mAdapter.getData().get(mAdapter.getData().size() - 1).getID(), new JsonCallback<MessageListModel>() {
             @Override

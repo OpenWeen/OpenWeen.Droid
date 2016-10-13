@@ -7,6 +7,7 @@ import java.util.Map;
 import moe.tlaster.openween.core.api.Constants;
 import moe.tlaster.openween.core.model.comment.CommentListModel;
 import moe.tlaster.openween.core.model.comment.CommentModel;
+import moe.tlaster.openween.core.model.status.MediaModel;
 import moe.tlaster.openween.core.model.types.AuthorType;
 import moe.tlaster.openween.core.model.types.SourceType;
 import moe.tlaster.openween.common.helpers.HttpHelper;
@@ -122,6 +123,20 @@ public class Comments {
     public static void postComment(long id, String comment, JsonCallback<CommentModel> callback) {
         postComment(id, comment, false, callback);
     }
+    public static void postCommentWithPic(long id, String comment, String pid, boolean commentOri, JsonCallback<CommentModel> callback) {
+        Map<String, String> param = new HashMap<>();
+        param.put("id", String.valueOf(id));
+        param.put("comment", comment);
+        param.put("comment_ori", commentOri ? "1" : "0");
+        param.put("media", new MediaModel(pid).toString());
+        param.put("source", "211160679");
+        param.put("from", "1055095010");
+        HttpHelper.postAsync("https://api.weibo.cn/2/comments/create", param, callback);
+    }
+    public static void postCommentWithPic(long id, String comment, String pid, JsonCallback<CommentModel> callback) {
+        postCommentWithPic(id, comment, pid, false, callback);
+    }
+
     public static void reply(long id, long cid, String comment, boolean comment_ori, boolean without_mention, JsonCallback<CommentModel> callback) {
         Map<String, String> param = new HashMap<>();
         param.put("id", String.valueOf(id));
@@ -133,6 +148,22 @@ public class Comments {
     }
     public static void reply(long id, long cid, String comment, JsonCallback<CommentModel> callback) {
         reply(id, cid, comment, false, false, callback);
+    }
+    public static void replyWithPic(long id, long cid, String comment, String pid, boolean comment_ori, boolean without_mention, JsonCallback<CommentModel> callback) {
+        Map<String, String> param = new HashMap<>();
+        param.put("id", String.valueOf(id));
+        param.put("cid", String.valueOf(cid));
+        param.put("comment", comment);
+        param.put("comment_ori", comment_ori ? "1" : "0");
+        param.put("without_mention", without_mention ? "1" : "0");
+        param.put("media", new MediaModel(pid).toString());
+        param.put("source", "211160679");
+        param.put("from", "1055095010");
+        HttpHelper.postAsync("https://api.weibo.cn/2/comments/reply", param, callback);
+    }
+
+    public static void replyWithPic(long id, long cid, String comment, String pid, JsonCallback<CommentModel> callback) {
+        replyWithPic(id, cid, comment, pid, false, false, callback);
     }
     public static void delete(long cid, JsonCallback<CommentModel> callback) {
         Map<String, String> param = new HashMap<>();

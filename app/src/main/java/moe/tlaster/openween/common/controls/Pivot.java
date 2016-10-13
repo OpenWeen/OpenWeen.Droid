@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import icepick.Icepick;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.fragment.WeiboListBase;
 import okhttp3.Call;
@@ -77,6 +76,10 @@ public class Pivot extends CoordinatorLayout {
     public void setAdapter(FragmentPageAdapter adapter) {
         mAdapter = adapter;
         initViewPager(adapter);
+    }
+
+    public CircleImageView getProfileImageView(){
+        return (CircleImageView) findViewById(R.id.profile_image);
     }
 
     private void initViewPager(FragmentPageAdapter adapter) {
@@ -138,17 +141,6 @@ public class Pivot extends CoordinatorLayout {
 
     public static abstract class PivotItemFragment extends Fragment{
         public abstract IIcon getIcon();
-
-        @Override public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            Icepick.restoreInstanceState(this, savedInstanceState);
-        }
-
-        @Override public void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-            Icepick.saveInstanceState(this, outState);
-        }
-
     }
 
     public static class FragmentPageAdapter extends FragmentStatePagerAdapter {

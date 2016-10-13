@@ -2,6 +2,8 @@ package moe.tlaster.openween.core.model.status;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 /**
  * Created by Tlaster on 2016/9/2.
  */
@@ -14,6 +16,19 @@ public class PictureModel {
     private String mBmiddlePic;
     @SerializedName("original_pic")
     private String mOriginalPic;
+
+    public PictureModel() {
+
+    }
+
+    PictureModel(UserTimelineImageModel item) {
+        if (item != null){
+            mPicID = item.getPicId();
+            mThumbnailPic = item.getThumbnail().getUrl();
+            mBmiddlePic = item.getBmiddle().getUrl();
+            mOriginalPic = item.getOriginal().getUrl();
+        }
+    }
 
     public String getPicID() {
         return mPicID;

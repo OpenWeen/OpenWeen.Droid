@@ -6,6 +6,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
+        android:transitionName="@string/appbar_layout_name"
         android:id="@+id/pivot_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,11 +18,11 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:transitionName="@string/user_profile_icon_name"
                 android:id="@+id/profile_image"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
-                app:civ_border_width="0dp"
+                app:civ_border_width="1dp"
                 app:civ_border_color="#FFFFFFFF"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginLeft="@dimen/dp_10"

@@ -40,34 +40,6 @@ public class Message extends WeiboListBase<BaseModel> {
     }
 
     @Override
-    protected RecyclerView.OnItemTouchListener itemTouch() {
-        return new OnItemChildClickListener() {
-            @Override
-            public void SimpleOnItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                childClick(view.getId());
-            }
-
-            @Override
-            public void onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
-                childClick(view.getId());
-            }
-
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                itemClick();
-            }
-        };
-    }
-
-    private void itemClick() {
-
-    }
-
-    private void childClick(int id) {
-
-    }
-
-    @Override
     protected void refreshOverride(Callback<List<BaseModel>> callback) { //Fucking JAVA
         final List<BaseModel> mention = new ArrayList<>();
         final int[] mentionNumber = {0};

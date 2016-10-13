@@ -22,12 +22,14 @@ public class SettingHelper {
         AppPreferences preferences = new AppPreferences(context);
         return preferences.getString(name, null);
     }
-    public static void setListSetting(final Context context, String name, String... value) {
+    public static void setListSetting(final Context context, String name, boolean isReplace, String... value) {
         String saveValue = getSetting(context, name);
         if (saveValue == null){
             saveValue = TextUtils.join(DELIMITER, value);
-        } else {
+        } else if (!isReplace) {
             saveValue += ";" + TextUtils.join(DELIMITER, value);
+        } else {
+            saveValue = TextUtils.join(DELIMITER, value);
         }
         setSetting(context, name, saveValue);
     }

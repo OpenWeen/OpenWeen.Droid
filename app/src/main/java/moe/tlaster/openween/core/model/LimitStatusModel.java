@@ -20,6 +20,26 @@ public class LimitStatusModel {
     private long mResetTimeInSeconds;
     @SerializedName("user_limit")
     private int mUserLimit;
+    @SerializedName("error")
+    private String mError;
+    @SerializedName("error_code")
+    private String mErrorCode;
+
+    public String getError() {
+        return mError;
+    }
+
+    public void setError(String error) {
+        mError = error;
+    }
+
+    public String getErrorCode() {
+        return mErrorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        mErrorCode = errorCode;
+    }
 
     public long getIpLimit() {
         return mIpLimit;

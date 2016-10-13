@@ -1,8 +1,12 @@
 package moe.tlaster.openween.core.model.status;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import moe.tlaster.openween.core.model.BaseModel;
 import moe.tlaster.openween.core.model.GeoModel;
@@ -47,6 +51,16 @@ public class MessageModel extends BaseModel {
     private WeiboVisibilityModel mVisible;
     @SerializedName("pic_urls")
     private List<PictureModel> mPicUrls;
+    @SerializedName("pic_infos")
+    private Map<String, UserTimelineImageModel> mUserTimelineImage;
+
+    public Map<String, UserTimelineImageModel> getUserTimelineImage() {
+        return mUserTimelineImage;
+    }
+
+    public void setUserTimelineImage(Map<String, UserTimelineImageModel> userTimelineImage) {
+        mUserTimelineImage = userTimelineImage;
+    }
 
     public boolean isFavorited() {
         return mFavorited;
@@ -185,7 +199,9 @@ public class MessageModel extends BaseModel {
     }
 
     public List<PictureModel> getPicUrls() {
-        return mPicUrls;
+        return mPicUrls == null && mUserTimelineImage != null ?
+                Stream.of(mUserTimelineImage.values()).map(PictureModel::new).collect(Collectors.toCollection(ArrayList<PictureModel>::new)) :
+                mPicUrls;
     }
 
     public void setPicUrls(List<PictureModel> picUrls) {

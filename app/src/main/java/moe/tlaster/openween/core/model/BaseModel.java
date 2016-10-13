@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import moe.tlaster.openween.common.helpers.TimeHelper;
 import moe.tlaster.openween.core.model.user.UserModel;
 
 /**
@@ -19,10 +20,6 @@ public abstract class BaseModel implements MultiItemEntity {
 
     public static final int MESSAGE = 1;
     public static final int COMMENT = 2;
-
-    private static PrettyTime mPrettyTime = new PrettyTime(new Locale("ZH_CN"));
-    private static SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US);
-
     @SerializedName("id")
     private long mID;
     @SerializedName("mid")
@@ -67,7 +64,7 @@ public abstract class BaseModel implements MultiItemEntity {
     }
     public String getCreatedAtDiffForHuman(){
         try {
-            return mPrettyTime.format(mSimpleDateFormat.parse(mCreatedAt));
+            return TimeHelper.getmPrettyTime().format(TimeHelper.getmSimpleDateFormat().parse(mCreatedAt));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -76,7 +73,7 @@ public abstract class BaseModel implements MultiItemEntity {
 
     public Date getCreatedDate(){
         try {
-            return mSimpleDateFormat.parse(mCreatedAt);
+            return TimeHelper.getmSimpleDateFormat().parse(mCreatedAt);
         } catch (ParseException e) {
             return null;
         }
