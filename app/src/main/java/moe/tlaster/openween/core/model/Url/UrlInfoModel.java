@@ -1,7 +1,9 @@
-package moe.tlaster.openween.core.model.Url;
+package moe.tlaster.openween.core.model.url;
 
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by Tlaster on 2016/9/2.
@@ -20,7 +22,7 @@ public class UrlInfoModel {
     @SerializedName("url_long")
     private String mUrlLong;
     @SerializedName("annotations")
-    private Object mAnnotations;
+    private List<AnnotationModel> mAnnotations;
     @SerializedName("type")
     private int mType;
 
@@ -72,11 +74,11 @@ public class UrlInfoModel {
         mUrlLong = urlLong;
     }
 
-    public Object getAnnotations() {
+    public List<AnnotationModel> getAnnotations() {
         return mAnnotations;
     }
 
-    public void setAnnotations(Object annotations) {
+    public void setAnnotations(List<AnnotationModel> annotations) {
         mAnnotations = annotations;
     }
 

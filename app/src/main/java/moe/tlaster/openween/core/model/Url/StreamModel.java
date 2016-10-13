@@ -1,4 +1,4 @@
-package moe.tlaster.openween.core.model.Url;
+package moe.tlaster.openween.core.model.url;
 
 import com.google.gson.annotations.SerializedName;
 

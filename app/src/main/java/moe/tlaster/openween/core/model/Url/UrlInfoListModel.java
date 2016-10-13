@@ -1,20 +1,22 @@
-package moe.tlaster.openween.core.model.Url;
+package moe.tlaster.openween.core.model.url;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by Tlaster on 2016/9/2.
  */
 public class UrlInfoListModel {
-    public UrlInfoModel getUrls() {
+    public List<UrlInfoModel> getUrls() {
         return mUrls;
     }
 
-    public void setUrls(UrlInfoModel urls) {
+    public void setUrls(List<UrlInfoModel> urls) {
         mUrls = urls;
     }
 
     @SerializedName("urls")
-    private UrlInfoModel mUrls;
+    private List<UrlInfoModel> mUrls;
 
 }
