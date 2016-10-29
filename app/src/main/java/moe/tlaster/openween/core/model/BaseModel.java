@@ -1,5 +1,7 @@
 package moe.tlaster.openween.core.model;
 
+import android.os.Parcelable;
+
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.google.gson.annotations.SerializedName;
 
@@ -21,19 +23,19 @@ public abstract class BaseModel implements MultiItemEntity {
     public static final int MESSAGE = 1;
     public static final int COMMENT = 2;
     @SerializedName("id")
-    private long mID;
+    protected long mID;
     @SerializedName("mid")
-    private long mMID;
+    protected long mMID;
     @SerializedName("idstr")
-    private String mIDStr;
+    protected String mIDStr;
     @SerializedName("created_at")
-    private String mCreatedAt;
+    protected String mCreatedAt;
     @SerializedName("text")
-    private String mText;
+    protected String mText;
     @SerializedName("source")
-    private String mSource;
+    protected String mSource;
     @SerializedName("user")
-    private UserModel mUser;
+    protected UserModel mUser;
 
     public long getMID() {
         return mMID;

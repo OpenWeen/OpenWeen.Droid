@@ -21,6 +21,8 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 
 import butterknife.BindView;
@@ -30,6 +32,7 @@ import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.controls.Pivot;
 import moe.tlaster.openween.common.entities.PostWeiboType;
 import moe.tlaster.openween.common.helpers.JsonCallback;
+import moe.tlaster.openween.common.helpers.WeiboCardHelper;
 import moe.tlaster.openween.core.api.statuses.PostWeibo;
 import moe.tlaster.openween.core.api.user.User;
 import moe.tlaster.openween.core.model.user.UserModel;
@@ -49,7 +52,16 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         //setupWindowAnimations();
         ButterKnife.bind(this);
-        Drawer drawer = new DrawerBuilder().withActivity(this).build();
+        Drawer drawer = new DrawerBuilder()
+                .withActivity(this)
+                .addDrawerItems(
+                        new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withIdentifier(1).withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings).withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                            return false;
+                        })
+                )
+                .build();
         Pivot.FragmentPageAdapter pageAdapter = new Pivot.FragmentPageAdapter(this, getSupportFragmentManager());
         pageAdapter.add(new Timeline());
         pageAdapter.add(new Message());
@@ -58,6 +70,7 @@ public class MainActivity extends BaseActivity {
         mPivot.setOffscreenPageLimit(3);
         UserModel user = getIntent().getExtras().getParcelable("user");
         mPivot.setProfileImage(user.getAvatarLarge());
+        mPivot.setProfileImageOnClickListener(view -> WeiboCardHelper.goUserActivity(user.getScreenName(), MainActivity.this));
         new AccountHeaderBuilder()
                 .withActivity(MainActivity.this)
                 .withDrawer(drawer)

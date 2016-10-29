@@ -28,6 +28,7 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp_10"/>
             <android.support.design.widget.TabLayout
+                android:transitionName="@string/tab_layout_name"
                 android:id="@+id/pivot_tabs"
                 style="@style/TabLayoutStyle"
                 android:layout_width="match_parent"

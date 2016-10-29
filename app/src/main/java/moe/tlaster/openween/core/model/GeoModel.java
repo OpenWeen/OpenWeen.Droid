@@ -1,11 +1,14 @@
 package moe.tlaster.openween.core.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Tlaster on 2016/8/26.
  */
-public class GeoModel {
+public class GeoModel implements Parcelable {
     @SerializedName("longitude")
     private String mLongitude;
     @SerializedName("latitude")
@@ -96,4 +99,49 @@ public class GeoModel {
     public void setMore(String more) {
         mMore = more;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.mLongitude);
+        dest.writeString(this.mLatitude);
+        dest.writeString(this.mCity);
+        dest.writeString(this.mProvince);
+        dest.writeString(this.mCityName);
+        dest.writeString(this.mProvinceName);
+        dest.writeString(this.mAddress);
+        dest.writeString(this.mPinyin);
+        dest.writeString(this.mMore);
+    }
+
+    public GeoModel() {
+    }
+
+    protected GeoModel(Parcel in) {
+        this.mLongitude = in.readString();
+        this.mLatitude = in.readString();
+        this.mCity = in.readString();
+        this.mProvince = in.readString();
+        this.mCityName = in.readString();
+        this.mProvinceName = in.readString();
+        this.mAddress = in.readString();
+        this.mPinyin = in.readString();
+        this.mMore = in.readString();
+    }
+
+    public static final Parcelable.Creator<GeoModel> CREATOR = new Parcelable.Creator<GeoModel>() {
+        @Override
+        public GeoModel createFromParcel(Parcel source) {
+            return new GeoModel(source);
+        }
+
+        @Override
+        public GeoModel[] newArray(int size) {
+            return new GeoModel[size];
+        }
+    };
 }

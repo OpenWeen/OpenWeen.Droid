@@ -12,4 +12,12 @@ import moe.tlaster.openween.core.model.BaseListModel;
 public class UserListModel extends BaseListModel {
     @SerializedName("users")
     private List<UserModel> mUsers;
+
+    public List<UserModel> getUsers() {
+        return mUsers;
+    }
+
+    public void setUsers(List<UserModel> users) {
+        mUsers = users;
+    }
 }

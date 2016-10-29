@@ -18,6 +18,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.common.helpers.SettingHelper;
 

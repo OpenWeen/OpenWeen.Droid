@@ -15,6 +15,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 import moe.tlaster.openween.R;
+import moe.tlaster.openween.adapter.BaseModelAdapter;
 import moe.tlaster.openween.common.SimpleDividerItemDecoration;
 import moe.tlaster.openween.common.controls.Pivot;
 import moe.tlaster.openween.common.helpers.JsonCallback;
@@ -47,7 +48,9 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
     protected RecyclerView.LayoutManager getLayoutManager(){
         return new LinearLayoutManager(getContext());
     }
-    protected abstract BaseQuickAdapter<T> initAdapter();
+    protected BaseQuickAdapter<T> initAdapter() {
+        return new BaseModelAdapter();
+    }
 
     private boolean HasMore(){
         return mAdapter.getData().size() < mTotalCount;

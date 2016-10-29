@@ -1,8 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:padding="@dimen/dp_10"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <include layout="@layout/user_stats_card"/>
+    <ProgressBar
+        android:layout_marginTop="-6.8dp"
+        android:indeterminate="true"
+        android:id="@+id/user_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/user_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include android:visibility="gone" layout="@layout/user_stats_card" android:id="@+id/user_stats_card"/>
+            <include android:visibility="gone" layout="@layout/user_weibo_card" android:id="@+id/user_weibo_card"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

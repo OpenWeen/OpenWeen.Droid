@@ -79,6 +79,7 @@ public class UserModel extends UserBaseModel implements Parcelable {
     @SerializedName("level")
     private int mLevel;
 
+
     public String getCreatedAtDiffForHuman(){
         try {
             return TimeHelper.getmPrettyTime().format(TimeHelper.getmSimpleDateFormat().parse(mCreatedAt));

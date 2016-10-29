@@ -35,11 +35,6 @@ public class Message extends WeiboListBase<BaseModel> {
     private long mCommentMentionsID;
 
     @Override
-    protected BaseQuickAdapter initAdapter() {
-        return new BaseModelAdapter();
-    }
-
-    @Override
     protected void refreshOverride(Callback<List<BaseModel>> callback) { //Fucking JAVA
         final List<BaseModel> mention = new ArrayList<>();
         final int[] mentionNumber = {0};

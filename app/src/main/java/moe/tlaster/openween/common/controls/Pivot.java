@@ -82,6 +82,10 @@ public class Pivot extends CoordinatorLayout {
         return (CircleImageView) findViewById(R.id.profile_image);
     }
 
+    public TabLayout getTabLayout() {
+        return (TabLayout) findViewById(R.id.pivot_tabs);
+    }
+
     private void initViewPager(FragmentPageAdapter adapter) {
         ViewPager viewPager = (ViewPager) findViewById(R.id.pivot_container);
         viewPager.setAdapter(adapter);
@@ -111,6 +115,10 @@ public class Pivot extends CoordinatorLayout {
                 .icon(GoogleMaterial.Icon.gmd_person)
                 .color(Color.WHITE)
                 .sizeDp(24));
+    }
+
+    public AppBarLayout getAppBarLayout() {
+        return ((AppBarLayout) findViewById(R.id.pivot_appbar));
     }
 
     public void setOffscreenPageLimit(int limit){
@@ -159,7 +167,7 @@ public class Pivot extends CoordinatorLayout {
             mIcon.add(fragment.getIcon());
         }
 
-        View getHeader(int position){
+        public View getHeader(int position){
             View tab = LayoutInflater.from(mContext).inflate(R.layout.tabbar_view, null);
             ImageView img = (ImageView)tab.findViewById(R.id.tabbar_Image);
             Drawable icon = new IconicsDrawable(mContext).icon(mIcon.get(position)).color(Color.WHITE).sizeDp(24);

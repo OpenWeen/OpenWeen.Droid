@@ -25,11 +25,6 @@ import okhttp3.Call;
 public class Timeline extends WeiboListBase<MessageModel> {
 
     @Override
-    protected BaseQuickAdapter<MessageModel> initAdapter() {
-        return new BaseModelAdapter();
-    }
-
-    @Override
     protected void loadMoreOverride(Callback<List<MessageModel>> callback) {
         Home.getTimeline(mLoadCount, mAdapter.getData().get(mAdapter.getData().size() - 1).getID(), new JsonCallback<MessageListModel>() {
             @Override
