@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.goka.flickableview.FlickableImageView;
 import com.liuguangqiang.swipeback.SwipeBackActivity;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -29,17 +30,15 @@ import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
 import moe.tlaster.openween.R;
-import uk.co.senab.photoview.PhotoView;
-import uk.co.senab.photoview.PhotoViewAttacher;
+import moe.tlaster.openween.activity.BaseActivity;
 
 /**
  * Created by Asahi on 2016/9/24.
  */
 
-public class WeiboImageList extends AppCompatActivity {
+public class WeiboImageList extends BaseActivity {
     public static String INTENTNAME = "images";
     public static String POSITIONNAME = "position";
-    private SwipeBackLayout mSwipeBackLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,9 +46,6 @@ public class WeiboImageList extends AppCompatActivity {
         setContentView(R.layout.weibo_image_list);
         ViewPager viewPager = (ViewPager) findViewById(R.id.weibo_image_viewPager);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.weibo_image_indicator);
-        mSwipeBackLayout = (SwipeBackLayout) findViewById(R.id.weibo_image_swipeback);
-        mSwipeBackLayout.setEnableFlingBack(false);
-        mSwipeBackLayout.setDragEdge(SwipeBackLayout.DragEdge.TOP);
         viewPager.setAdapter(new ImagePagerAdapter(getIntent().getExtras().getStringArrayList(INTENTNAME)));
         indicator.setViewPager(viewPager);
         viewPager.post(()-> viewPager.setCurrentItem(getIntent().getIntExtra(POSITIONNAME, 0), false));
@@ -72,32 +68,20 @@ public class WeiboImageList extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View itemTemplate = LayoutInflater.from(WeiboImageList.this).inflate(R.layout.weibo_image_list_itemtemplate, container, false);
-            PhotoView imageView = (PhotoView) itemTemplate.findViewById(R.id.weibo_image_list_item);
-            imageView.setOnClickListener(v -> WeiboImageList.this.finish());
-            Glide.with(WeiboImageList.this).load(mData.get(position)).placeholder(new IconicsDrawable(WeiboImageList.this).icon(GoogleMaterial.Icon.gmd_image).color(Color.GRAY).sizeDp(48)).fitCenter().crossFade().listener(new RequestListener<String, GlideDrawable>() {
+            FlickableImageView imageView = (FlickableImageView) itemTemplate.findViewById(R.id.weibo_image_list_item);
+            imageView.setOnSingleTapListener(WeiboImageList.this::finish);
+            imageView.setOnFlickListener(new FlickableImageView.OnFlickableImageViewFlickListener() {
                 @Override
-                public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                    imageView.setImageDrawable(new IconicsDrawable(WeiboImageList.this).icon(GoogleMaterial.Icon.gmd_mood_bad).color(Color.GRAY).sizeDp(48));
-                    return false;
+                public void onStartFlick() {
+
                 }
 
                 @Override
-                public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);//.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    attacher.setOnScaleChangeListener((scaleFactor, focusX, focusY) -> {
-                        if (attacher.getScale() > 1.f)
-                            WeiboImageList.this.mSwipeBackLayout.setEnablePullToBack(false);
-                        else
-                            WeiboImageList.this.mSwipeBackLayout.setEnablePullToBack(true);
-                    });
-                    imageView.post(() -> {
-                        DisplayMetrics displayMetrics = WeiboImageList.this.getResources().getDisplayMetrics();
-                        attacher.setScale(displayMetrics.widthPixels / ((float) resource.getIntrinsicWidth()));
-                    });
-                    return false;
+                public void onFinishFlick() {
+                    WeiboImageList.this.finish();
                 }
-
-            }).into(imageView);
+            });
+            Glide.with(WeiboImageList.this).load(mData.get(position)).placeholder(new IconicsDrawable(WeiboImageList.this).icon(GoogleMaterial.Icon.gmd_image).color(Color.GRAY).sizeDp(48)).fitCenter().crossFade().into(imageView);
             container.addView(itemTemplate);
             return itemTemplate;
         }

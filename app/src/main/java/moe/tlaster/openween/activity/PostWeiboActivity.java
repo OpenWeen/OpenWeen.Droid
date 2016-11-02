@@ -4,12 +4,17 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -27,18 +32,27 @@ import android.transition.Slide;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.goka.flickableview.FlickableImageView;
+import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.view.IconicsCompatButton;
@@ -50,24 +64,28 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
+import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelector;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 import moe.tlaster.openween.R;
+import moe.tlaster.openween.common.StaticResource;
+import moe.tlaster.openween.common.controls.WeiboImageList;
 import moe.tlaster.openween.common.entities.PostWeiboType;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.core.api.comments.Comments;
 import moe.tlaster.openween.core.api.statuses.PostWeibo;
+import moe.tlaster.openween.core.model.EmotionModel;
 import moe.tlaster.openween.core.model.status.MessageModel;
 import moe.tlaster.openween.core.model.status.PictureModel;
 import moe.tlaster.openween.core.model.types.RepostType;
 import okhttp3.Call;
 import okhttp3.Response;
-import uk.co.senab.photoview.PhotoView;
 
 public class PostWeiboActivity extends BaseActivity {
 
@@ -76,9 +94,7 @@ public class PostWeiboActivity extends BaseActivity {
     private final int REQUEST_READ_EXTERNAL_STORAGE = 1;
     private MaterialDialog mDialog;
     private int mMaxImageCount = 9;
-    private int mKeyboardHeight;
     private PostWeiboType mType;
-
     @BindView(R.id.post_weibo_edit_text)
     public AppCompatEditText mEditText;
     @BindView(R.id.post_weibo_root)
@@ -87,6 +103,14 @@ public class PostWeiboActivity extends BaseActivity {
     public AppCompatTextView mTextCount;
     @BindView(R.id.post_weibo_image_recycler)
     public RecyclerView mImageRecycler;
+    @BindView(R.id.post_weibo_emotion_layout)
+    public LinearLayout mEmotionLayout;
+    @BindView(R.id.post_weibo_emotion_viewPager)
+    public ViewPager mEmotionViewPager;
+    @BindView(R.id.post_weibo_emotion_tab)
+    public TabLayout mEmotionTab;
+    @BindView(R.id.post_weibo_main_content)
+    public RelativeLayout mPostWeiboMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,19 +118,13 @@ public class PostWeiboActivity extends BaseActivity {
         setContentView(R.layout.activity_post_weibo);
         setupWindowAnimations();
         ButterKnife.bind(this);
-        mRoot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mEditText.requestFocus();
-                mEditText.requestFocusFromTouch();
-                mKeyboardHeight = mRoot.getRootView().getHeight()- mRoot.getHeight();
-                mRoot.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            }
-        });
+        mEditText.requestFocusFromTouch();
+        mEditText.requestFocus();
+        setEmotion();
         mAdapter = new BaseQuickAdapter<String>(R.layout.weibo_image_list_itemtemplate, null) {
             @Override
             protected void convert(BaseViewHolder baseViewHolder, String path) {
-                PhotoView view = baseViewHolder.getView(R.id.weibo_image_list_item);
+                FlickableImageView view = baseViewHolder.getView(R.id.weibo_image_list_item);
                 view.setMaxHeight(100);
                 view.setMaxWidth(100);
                 Glide.with(PostWeiboActivity.this).load(new File(path)).centerCrop().into(view);
@@ -181,6 +199,55 @@ public class PostWeiboActivity extends BaseActivity {
             return -1;
         }
     }
+
+
+    private void setEmotion() {
+        if (StaticResource.getEmotions() != null && StaticResource.getEmotions().size() > 0) {
+            Map<String, List<EmotionModel>> map = Stream.of(StaticResource.getEmotions()).sortBy(EmotionModel::getCategory).collect(Collectors.groupingBy(EmotionModel::getCategory));
+            mEmotionViewPager.setAdapter(new PagerAdapter() {
+                @Override
+                public int getCount() {
+                    return map.keySet().size();
+                }
+                @Override
+                public Object instantiateItem(ViewGroup container, int position) {
+                    View itemTemplate = LayoutInflater.from(PostWeiboActivity.this).inflate(R.layout.list_layout, container, false);
+                    itemTemplate.findViewById(R.id.refresher).setEnabled(false);
+                    int column = 8;
+                    RecyclerView recyclerView = (RecyclerView) itemTemplate.findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new GridLayoutManager(PostWeiboActivity.this, column));
+                    recyclerView.setAdapter(new BaseQuickAdapter<EmotionModel>(R.layout.emotion_image, map.get(map.keySet().toArray()[position])) {
+                        @Override
+                        protected void convert(BaseViewHolder baseViewHolder, EmotionModel emotionModel) {
+                            baseViewHolder.setImageBitmap(R.id.emotion_img, BitmapFactory.decodeFile(emotionModel.getUrl()));
+                            baseViewHolder.getView(R.id.emotion_img).setOnClickListener(view -> {
+                                int position = mEditText.getSelectionStart();
+                                mEditText.setText(mEditText.getText().insert(position, emotionModel.getValue()));
+                                mEditText.setSelection(position + emotionModel.getValue().length());
+                            });
+                        }
+                    });
+                    container.addView(itemTemplate);
+                    return itemTemplate;
+                }
+                @Override
+                public boolean isViewFromObject(View view, Object object) {
+                    return view == object;
+                }
+
+                @Override
+                public void destroyItem(ViewGroup container, int position, Object object) {
+                    (container).removeView((View) object);
+                }
+            });
+            mEmotionTab.setupWithViewPager(mEmotionViewPager);
+            for (int i = 0; i < mEmotionTab.getTabCount(); i++) {
+                TabLayout.Tab tab = mEmotionTab.getTabAt(i);
+                tab.setText(map.keySet().toArray()[i].toString());
+            }
+        }
+    }
+
 
     private void initData() {
         if (mType == PostWeiboType.NewPost) return;
@@ -270,7 +337,14 @@ public class PostWeiboActivity extends BaseActivity {
                     .show();
             return;
         }
-        mDialog = new MaterialDialog.Builder(this).title("正在发送").content("请坐和放宽").progress(true, 0).progressIndeterminateStyle(false).show();
+        mDialog = new MaterialDialog.Builder(this)
+                .title("正在发送")
+                .content(getString(R.string.please_wait))
+                .progress(true, 0)
+                .progressIndeterminateStyle(false)
+                .cancelable(false)
+                .canceledOnTouchOutside(false)
+                .show();
         switch (mType) {
             case NewPost: newPost();
                 break;
@@ -360,7 +434,6 @@ public class PostWeiboActivity extends BaseActivity {
                 public void onError(Call call, Exception e, int id) {
                     jsonCallback.onError(call, e, id);
                 }
-
                 @Override
                 public void onResponse(PictureModel response, int id) {
                     jsonCallback.onResponse(response, finalI);
@@ -379,7 +452,7 @@ public class PostWeiboActivity extends BaseActivity {
     }
 
     private void onAction(String content) {
-        mDialog.hide();
+        mDialog.dismiss();
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
     }
 

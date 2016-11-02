@@ -41,8 +41,7 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.PostWeiboActivity"
-            android:label="@string/title_activity_post_weibo"
-            android:windowSoftInputMode="adjustResize"/>
+            android:label="@string/title_activity_post_weibo"/>
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize"/>
@@ -50,7 +49,7 @@
             android:name=".activity.UserActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@style/Theme.Sliding.Light"/>
+            android:theme="@style/AppTheme.Sliding"/>
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings"

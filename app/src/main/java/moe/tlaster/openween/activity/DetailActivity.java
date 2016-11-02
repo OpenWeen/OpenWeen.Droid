@@ -55,6 +55,21 @@ public class DetailActivity extends BaseActivity {
             TabLayout.Tab tab = mTabLayout.getTabAt(i);
             tab.setCustomView(pageAdapter.getHeader(i));
         }
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getCustomView().setAlpha(1.f);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getCustomView().setAlpha(0.37f);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
         int index = mMessageModel.getText().toString().indexOf("\u5168\u6587\uff1a http://m.weibo.cn/");
         if (index != -1) {
             Query.getStatus(mMessageModel.getID(), true, new JsonCallback<MessageModel>() {
@@ -68,13 +83,15 @@ public class DetailActivity extends BaseActivity {
                 public void onResponse(MessageModel response, int id) {
                     mMessageModel = response;
                     response.setText(response.getLongText().getContent());
-                    WeiboCardHelper.setData(mWeibo, response, DetailActivity.this, false, Color.WHITE);
+                    WeiboCardHelper.setData(mWeibo, response, DetailActivity.this, true, Color.WHITE);
                     mProgressBar.setVisibility(View.GONE);
+                    mWeibo.setVisibility(View.VISIBLE);
                 }
             });
         } else {
-            WeiboCardHelper.setData(mWeibo, mMessageModel, this, false, Color.WHITE);
+            WeiboCardHelper.setData(mWeibo, mMessageModel, this, true, Color.WHITE);
             mProgressBar.setVisibility(View.GONE);
+            mWeibo.setVisibility(View.VISIBLE);
         }
     }
 }

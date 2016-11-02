@@ -19,12 +19,16 @@ import android.widget.TextView;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.core.api.shortUrl.ShortUrl;
 import moe.tlaster.openween.core.model.status.PictureModel;
@@ -140,13 +144,16 @@ public class WeiboTextBlock extends TextView {
             if (emoji != null) {
                 int start = matcher.start(3);
                 int end = start + emoji.length();
-                int ResId = 0; //EmotionUtils.getImgByName(emoji);
-                Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), ResId);
-                if (bitmap != null) {
-                    int size = (int) getTextSize();
-                    bitmap = Bitmap.createScaledBitmap(bitmap, size, size, true);
-                    ImageSpan imageSpan = new ImageSpan(getContext(), bitmap);
-                    spannableString.setSpan(imageSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                try {
+                    String filePath = Stream.of(StaticResource.getEmotions()).filter(item -> Objects.equals(item.getValue(), emoji)).findFirst().get().getUrl();
+                    Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+                    if (bitmap != null) {
+                        int size = (int) getTextSize();
+                        bitmap = Bitmap.createScaledBitmap(bitmap, size, size, true);
+                        ImageSpan imageSpan = new ImageSpan(getContext(), bitmap, ImageSpan.ALIGN_BASELINE);
+                        spannableString.setSpan(imageSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                } catch (Exception e) {
                 }
             }
 

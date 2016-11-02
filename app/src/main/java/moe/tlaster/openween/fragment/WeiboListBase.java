@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import java.util.List;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.adapter.BaseModelAdapter;
 import moe.tlaster.openween.common.SimpleDividerItemDecoration;
+import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.controls.Pivot;
 import moe.tlaster.openween.common.helpers.JsonCallback;
+import moe.tlaster.openween.core.api.Entity;
 import okhttp3.Call;
 
 /**
@@ -57,7 +60,7 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
     }
 
     public void toTop() {
-        mRecyclerView.smoothScrollToPosition(0);
+        mRecyclerView.scrollToPosition(0);
     }
 
     @Nullable
@@ -79,7 +82,7 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
     }
 
     private void loadMore() {
-        if (!HasMore()) {
+        if (!HasMore() || TextUtils.isEmpty(Entity.getAccessToken())) {
             mAdapter.loadComplete();
             mAdapter.addFooterView(getLayoutInflater(null).inflate(R.layout.not_loading, (ViewGroup) mRecyclerView.getParent(), false));
             return;
@@ -100,6 +103,7 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
     }
 
     public void refresh() {
+        if (TextUtils.isEmpty(Entity.getAccessToken())) return;
         mSwipeRefreshLayout.post(()-> mSwipeRefreshLayout.setRefreshing(true));
         mPage = 1;
         refreshOverride(new Callback<List<T>>() {

@@ -3,7 +3,7 @@
     <string name="action_settings">设置</string>
     <string name="title_activity_login">登陆</string>
     <string name="title_activity_post_weibo">发送微博</string>
-
+    <string name="please_wait">请坐和放宽</string>
 
     <string name="main_fab_name">main_fab</string>
     <string name="user_profile_icon_name">user_profile_icon</string>
@@ -23,6 +23,9 @@
 
 
     <!-- Strings related to Settings -->
+
+    <string name="download_emotion_key">download_emotion</string>
+    <string name="delete_emotion_key">delete_emotion</string>
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>

@@ -9,6 +9,7 @@ import com.mikepenz.iconics.typeface.IIcon;
 
 import java.util.List;
 
+import moe.tlaster.openween.adapter.BaseModelAdapter;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.core.model.status.MessageModel;
 import moe.tlaster.openween.core.model.status.RepostListModel;
@@ -30,6 +31,11 @@ public class Repost extends WeiboListBase<MessageModel> {
         bundle.putLong("id", id);
         repost.setArguments(bundle);
         return repost;
+    }
+
+    @Override
+    protected BaseQuickAdapter<MessageModel> initAdapter() {
+        return new BaseModelAdapter<>(false);
     }
 
     @Override

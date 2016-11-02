@@ -3,6 +3,7 @@ package moe.tlaster.openween.activity;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.Ringtone;
@@ -19,9 +20,30 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
+import com.zhy.http.okhttp.callback.FileCallBack;
+
+import moe.tlaster.openween.App;
 import moe.tlaster.openween.R;
+import moe.tlaster.openween.common.StaticResource;
+import moe.tlaster.openween.common.helpers.DeviceHelper;
+import moe.tlaster.openween.common.helpers.JsonCallback;
+import moe.tlaster.openween.core.api.statuses.Emotions;
+import moe.tlaster.openween.core.model.EmotionModel;
+import okhttp3.Call;
+import okhttp3.Response;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -157,7 +179,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
                 || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
+                || TestPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     /**
@@ -178,6 +201,85 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("example_text"));
             bindPreferenceSummaryToValue(findPreference("example_list"));
+            findPreference(getString(R.string.download_emotion_key)).setOnPreferenceClickListener(preference -> {
+                MaterialDialog[] dialog = {new MaterialDialog.Builder(getActivity())
+                        .title("正在下载表情")
+                        .content(R.string.please_wait)
+                        .progress(true, 0)
+                        .cancelable(false)
+                        .canceledOnTouchOutside(false)
+                        .show()};
+                Emotions.getEmotions(new JsonCallback<List<EmotionModel>>() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        dialog[0].dismiss();
+                        Toast.makeText(App.getContext(), "下载表情失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(List<EmotionModel> responseList, int id) {
+                        dialog[0].hide();
+                        dialog[0] = new MaterialDialog.Builder(getActivity())
+                                .title("正在下载表情")
+                                .content(R.string.please_wait)
+                                .progress(false, responseList.size(), true)
+                                .cancelable(false)
+                                .canceledOnTouchOutside(false)
+                                .show();
+                        for (int i = 0; i < responseList.size(); i++) {
+                            EmotionModel item = responseList.get(i);
+                            if (TextUtils.isEmpty(item.getCategory()))
+                                item.setCategory("表情");
+                            String fileName = item.getValue().replace("[", "").replace("]", "") + ".jpg";
+                            String filePath = getActivity().getExternalFilesDir(null).getPath() + File.separator + "emotion" + File.separator + item.getCategory() + File.separator;
+                            int finalI = i;
+                            OkHttpUtils.get().url(item.getUrl()).build().execute(new FileCallBack(filePath, fileName) {
+                                @Override
+                                public void onError(Call call, Exception e, int id) {
+
+                                }
+
+                                @Override
+                                public void onResponse(File response, int id) {
+                                    dialog[0].incrementProgress(1);
+                                    if (finalI == responseList.size() - 1) {
+                                        try {
+                                            File file = new File(getActivity().getExternalFilesDir(null).getPath() + File.separator + "emotion" + File.separator + "emotion.json");
+                                            if (file.exists()) file.delete();
+                                            file.createNewFile();
+                                            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file));
+                                            outputStreamWriter.write(new Gson().toJson(responseList));
+                                            outputStreamWriter.close();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        StaticResource.setEmotions(responseList);
+                                        dialog[0].dismiss();
+                                        Toast.makeText(getActivity(), "下载表情完毕", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            item.setUrl(filePath + fileName);
+                            responseList.set(i, item);
+                        }
+                    }
+                });
+                return true;
+            });
+            findPreference(getString(R.string.delete_emotion_key)).setOnPreferenceClickListener( preference -> {
+                File file = new File(getActivity().getExternalFilesDir(null), "emotion");
+                if (file.exists()) {
+                    MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                            .title("正在删除表情")
+                            .content(R.string.please_wait)
+                            .progress(true, 0)
+                            .show();
+                    DeviceHelper.deleteRecursive(file);
+                    dialog.dismiss();
+                    Toast.makeText(getActivity(), "删除表情成功", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            });
         }
 
         @Override
@@ -238,6 +340,31 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class TestPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_test);
+            setHasOptionsMenu(true);
+
+            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
+            // to their values. When their values change, their summaries are
+            // updated to reflect the new value, per the Android Design
+            // guidelines.
         }
 
         @Override

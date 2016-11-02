@@ -8,77 +8,97 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="moe.tlaster.openween.activity.PostWeiboActivity">
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <RelativeLayout
+            android:id="@+id/post_weibo_main_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/post_weibo_grid"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true">
+            android:layout_height="365dp">
 
-            <com.mikepenz.iconics.view.IconicsCompatButton
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="{gmd-image}"
-                android:id="@+id/post_weibo_add_image_button"
+                android:orientation="horizontal"
+                android:id="@+id/post_weibo_grid"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <com.mikepenz.iconics.view.IconicsCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="{gmd-image}"
+                    android:id="@+id/post_weibo_add_image_button"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
+
+                <com.mikepenz.iconics.view.IconicsCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="{gmd-insert-emoticon}"
+                    app:iiv_color="@android:color/darker_gray"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/post_weibo_add_image_button"
+                    android:id="@+id/post_weibo_add_emotion_button"/>
+
+                <com.mikepenz.iconics.view.IconicsCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="{gmd-send}"
+                    android:id="@+id/post_weibo_send_button"
+                    android:layout_alignParentEnd="true"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/post_weibo_textcount"
+                    android:textSize="22sp"
+                    android:text="140"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/post_weibo_send_button"/>
+            </RelativeLayout>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/post_weibo_edit_text"
+                android:hint="说些什么吧"
+                android:gravity="start"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/post_weibo_grid"/>
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:padding="@dimen/dp_10"
+                android:minHeight="100dp"
+                android:id="@+id/post_weibo_image_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/post_weibo_grid"
                 android:layout_alignParentStart="true"/>
-
-            <com.mikepenz.iconics.view.IconicsCompatButton
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="{gmd-insert-emoticon}"
-                app:iiv_color="@android:color/darker_gray"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/post_weibo_add_image_button"
-                android:id="@+id/post_weibo_add_emotion_button"/>
-
-            <com.mikepenz.iconics.view.IconicsCompatButton
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="{gmd-send}"
-                android:id="@+id/post_weibo_send_button"
-                android:layout_alignParentEnd="true"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/post_weibo_textcount"
-                android:textSize="22sp"
-                android:text="140"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/post_weibo_send_button"/>
         </RelativeLayout>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/post_weibo_edit_text"
-            android:hint="说些什么吧"
-            android:gravity="start"
+        <LinearLayout
+            android:id="@+id/post_weibo_emotion_layout"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/post_weibo_grid"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:visibility="gone"
-            android:padding="@dimen/dp_10"
-            android:minHeight="100dp"
-            android:id="@+id/post_weibo_image_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/post_weibo_grid"
-            android:layout_alignParentStart="true"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TabLayout
+                app:tabMode="scrollable"
+                android:id="@+id/post_weibo_emotion_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/post_weibo_emotion_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -3,11 +3,13 @@ package moe.tlaster.openween.fragment.detail;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.IIcon;
 
 import java.util.List;
 
+import moe.tlaster.openween.adapter.BaseModelAdapter;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.core.api.comments.Comments;
 import moe.tlaster.openween.core.model.comment.CommentListModel;
@@ -38,6 +40,10 @@ public class Comment extends WeiboListBase<CommentModel> {
         mID = getArguments().getLong("id");
     }
 
+    @Override
+    protected BaseQuickAdapter<CommentModel> initAdapter() {
+        return new BaseModelAdapter<>(false);
+    }
 
     @Override
     protected void loadMoreOverride(Callback<List<CommentModel>> callback) {

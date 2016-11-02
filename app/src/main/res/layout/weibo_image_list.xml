@@ -4,22 +4,13 @@
                 android:background="@color/md_black_1000"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <com.liuguangqiang.swipeback.SwipeBackLayout
-        android:id="@+id/weibo_image_swipeback"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/weibo_image_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v4.view.ViewPager
-                android:id="@+id/weibo_image_viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/weibo_image_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_alignParentBottom="true"/>
-        </RelativeLayout>
-    </com.liuguangqiang.swipeback.SwipeBackLayout>
+        android:layout_height="match_parent" />
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/weibo_image_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

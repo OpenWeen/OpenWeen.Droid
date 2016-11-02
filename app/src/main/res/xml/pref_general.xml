@@ -29,5 +29,10 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/pref_title_add_friends_to_messages"/>
-
+    <Preference
+        android:title="下载/更新表情"
+        android:key="@string/download_emotion_key"/>
+    <Preference
+        android:title="删除表情"
+        android:key="@string/delete_emotion_key"/>
 </PreferenceScreen>

@@ -28,10 +28,10 @@ public class WeiboCardHelper {
     public static void setData(View baseView, BaseModel baseModel, Context context) {
         setData(baseView, baseModel, context, true);
     }
-    public static void setData(View baseView, BaseModel baseModel, Context context, boolean isEnableAction) {
-        setData(baseView, baseModel, context, isEnableAction, Color.BLACK);
+    public static void setData(View baseView, BaseModel baseModel, Context context, boolean isEnableRepost) {
+        setData(baseView, baseModel, context, isEnableRepost, Color.BLACK);
     }
-    public static void setData(View baseView, BaseModel baseModel, Context context, boolean isEnableAction, int textColor) {
+    public static void setData(View baseView, BaseModel baseModel, Context context, boolean isEnableRepost, int textColor) {
         View weiboContentContainer = baseView.findViewById(R.id.weibo_content_container);
         View weiboRepostContainer = baseView.findViewById(R.id.weibo_repost_container);
         View weiboRepostLinear = baseView.findViewById(R.id.weibo_repost_linear);
@@ -40,40 +40,40 @@ public class WeiboCardHelper {
             baseView.findViewById(R.id.comment).setVisibility(View.GONE);
             baseView.findViewById(R.id.weibo_action).setVisibility(View.VISIBLE);
             MessageModel messageModel = (MessageModel) baseModel;
-            if (messageModel.getRetweetedStatus() != null) {
+            if (messageModel.getRetweetedStatus() != null && isEnableRepost) {
                 weiboRepostLinear.setVisibility(View.VISIBLE);
                 setWeiboContent(weiboRepostContainer, messageModel.getRetweetedStatus(), context);
             } else {
                 weiboRepostLinear.setVisibility(View.GONE);
             }
             View weiboAction = baseView.findViewById(R.id.weibo_action);
-            if (isEnableAction) {
-                weiboAction.setVisibility(View.VISIBLE);
-                ((TextView) weiboAction.findViewById(R.id.like_count)).setText(String.valueOf(messageModel.getAttitudesCount()));
-                ((TextView) weiboAction.findViewById(R.id.comment_count)).setText(String.valueOf(messageModel.getCommentsCount()));
-                ((TextView) weiboAction.findViewById(R.id.repost_count)).setText(String.valueOf(messageModel.getRepostsCount()));
-                weiboAction.findViewById(R.id.repost).setOnClickListener(v -> {
-                    Intent i = new Intent(context, PostWeiboActivity.class);
-                    i.putExtra(context.getString(R.string.post_weibo_type_name), PostWeiboType.RePost);
-                    i.putExtra(context.getString(R.string.post_weibo_id_name), messageModel.getID());
-                    i.putExtra(context.getString(R.string.post_weibo_data_name), messageModel.getRetweetedStatus() == null ? "" : "//@" + messageModel.getUser().getName() + ":" + messageModel.getText());
-                    context.startActivity(i);
-                });
-                weiboAction.findViewById(R.id.comment).setOnClickListener(v -> {
-                    Intent i = new Intent(context, PostWeiboActivity.class);
-                    i.putExtra(context.getString(R.string.post_weibo_type_name), PostWeiboType.Comment);
-                    i.putExtra(context.getString(R.string.post_weibo_id_name), messageModel.getID());
-                    context.startActivity(i);
-                });
-            } else {
-                weiboAction.setVisibility(View.GONE);
-            }
+            weiboAction.setVisibility(View.VISIBLE);
+            ((TextView) weiboAction.findViewById(R.id.like_count)).setText(String.valueOf(messageModel.getAttitudesCount()));
+            ((TextView) weiboAction.findViewById(R.id.comment_count)).setText(String.valueOf(messageModel.getCommentsCount()));
+            ((TextView) weiboAction.findViewById(R.id.repost_count)).setText(String.valueOf(messageModel.getRepostsCount()));
+            weiboAction.findViewById(R.id.repost).setOnClickListener(v -> {
+                Intent i = new Intent(context, PostWeiboActivity.class);
+                i.putExtra(context.getString(R.string.post_weibo_type_name), PostWeiboType.RePost);
+                i.putExtra(context.getString(R.string.post_weibo_id_name), messageModel.getID());
+                i.putExtra(context.getString(R.string.post_weibo_data_name), messageModel.getRetweetedStatus() == null ? "" : "//@" + messageModel.getUser().getName() + ":" + messageModel.getText());
+                context.startActivity(i);
+            });
+            weiboAction.findViewById(R.id.comment).setOnClickListener(v -> {
+                Intent i = new Intent(context, PostWeiboActivity.class);
+                i.putExtra(context.getString(R.string.post_weibo_type_name), PostWeiboType.Comment);
+                i.putExtra(context.getString(R.string.post_weibo_id_name), messageModel.getID());
+                context.startActivity(i);
+            });
         } else if (baseModel instanceof CommentModel) {
             baseView.findViewById(R.id.comment).setVisibility(View.VISIBLE);
             baseView.findViewById(R.id.weibo_action).setVisibility(View.GONE);
             CommentModel commentModel = (CommentModel) baseModel;
-            weiboRepostLinear.setVisibility(View.VISIBLE);
-            setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), commentModel.getStatus(), false, context);
+            if (isEnableRepost) {
+                weiboRepostLinear.setVisibility(View.VISIBLE);
+                setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), commentModel.getStatus(), false, context);
+            } else {
+                weiboRepostLinear.setVisibility(View.GONE);
+            }
             baseView.findViewById(R.id.comment).setOnClickListener(getReplyCommentListener(commentModel, context));
         }
     }

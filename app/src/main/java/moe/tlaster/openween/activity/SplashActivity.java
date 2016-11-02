@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 
 import com.github.jorgecastilloprz.FABProgressCircle;
 import com.github.jorgecastilloprz.listeners.FABProgressListener;
+import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
@@ -30,6 +31,8 @@ import com.transitionseverywhere.TransitionSet;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,11 +44,13 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.common.StaticResource;
+import moe.tlaster.openween.common.helpers.DeviceHelper;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.common.helpers.SettingHelper;
 import moe.tlaster.openween.core.api.Entity;
 import moe.tlaster.openween.core.api.user.Account;
 import moe.tlaster.openween.core.api.user.User;
+import moe.tlaster.openween.core.model.EmotionModel;
 import moe.tlaster.openween.core.model.LimitStatusModel;
 import moe.tlaster.openween.core.model.user.UserModel;
 import okhttp3.Call;
@@ -103,6 +108,10 @@ public class SplashActivity extends BaseActivity {
         if (SettingHelper.getListSetting(SplashActivity.this, SettingHelper.ACCESSTOKEN) == null) {
             goLogin();
         } else {
+            try {
+                StaticResource.setEmotions(Arrays.asList(new Gson().fromJson(DeviceHelper.readFromFile(getExternalFilesDir(null).getPath() + File.separator + "emotion" + File.separator + "emotion.json"), EmotionModel[].class)));
+            } catch (NullPointerException e) {
+            }
             Entity.setAccessToken(SettingHelper.getListSetting(this, SettingHelper.ACCESSTOKEN)[0]);
             Account.getLimitStatus(new JsonCallback<LimitStatusModel>() {
                 @Override

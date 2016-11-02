@@ -19,6 +19,7 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             android:transitionName="@string/appbar_layout_name">
             <android.support.v7.widget.Toolbar
+                app:layout_scrollFlags="scroll|enterAlways"
                 android:id="@+id/detail_toolbar"
                 android:contentInsetLeft="0dp"
                 android:contentInsetStart="0dp"
@@ -34,7 +35,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <include layout="@layout/base_model_template" android:id="@+id/detail_weibo" />
+                    <include layout="@layout/base_model_template" android:visibility="gone" android:id="@+id/detail_weibo" />
                     <ProgressBar
                         android:indeterminate="true"
                         android:id="@+id/detail_progressBar"
@@ -42,6 +43,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <android.support.design.widget.TabLayout
+                        android:layout_gravity="bottom"
+                        style="@style/TabLayoutStyle"
                         android:transitionName="@string/tab_layout_name"
                         android:id="@+id/detail_tab"
                         android:layout_width="match_parent"

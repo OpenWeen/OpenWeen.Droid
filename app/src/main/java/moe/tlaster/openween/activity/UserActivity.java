@@ -106,14 +106,14 @@ public class UserActivity extends SlidingActivity {
             @Override
             public void onResponse(MessageListModel response, int id) {
                 if (response.getStatuses().size() > 0) {
-                    WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_1), response.getStatuses().get(0), UserActivity.this, false);
+                    WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_1), response.getStatuses().get(0), UserActivity.this, true);
                     TransitionManager.beginDelayedTransition(mLinearLayout, new Slide(Gravity.BOTTOM));
                     mWeiboCard.setVisibility(View.VISIBLE);
                 }
                 if (response.getStatuses().size() > 1)
-                    WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_2), response.getStatuses().get(1), UserActivity.this, false);
+                    WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_2), response.getStatuses().get(1), UserActivity.this, true);
                 if (response.getStatuses().size() > 2)
-                    WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_3), response.getStatuses().get(2), UserActivity.this, false);
+                    WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_3), response.getStatuses().get(2), UserActivity.this, true);
             }
         });
     }

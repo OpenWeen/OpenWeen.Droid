@@ -3,6 +3,7 @@ package moe.tlaster.openween.adapter;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.support.v4.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,23 +36,23 @@ import moe.tlaster.openween.core.model.user.UserModel;
  * Created by Asahi on 2016/9/23.
  */
 
-public class BaseModelAdapter<T> extends BaseQuickAdapter<BaseModel> {
+public class BaseModelAdapter<T extends BaseModel> extends BaseQuickAdapter<T> {
 
-    private boolean mIsEnableAction;
+    private boolean mIsEnableRepost;
 
     public BaseModelAdapter() {
         this(true);
     }
 
-    public BaseModelAdapter(boolean isEnableAction) {
+    public BaseModelAdapter(boolean isEnableRepost) {
         super(R.layout.base_model_template, new ArrayList<>());
-        mIsEnableAction = isEnableAction;
+        mIsEnableRepost = isEnableRepost;
     }
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, BaseModel baseModel) {
         View baseView = baseViewHolder.getConvertView();
-        WeiboCardHelper.setData(baseView, baseModel, mContext, mIsEnableAction);
+        WeiboCardHelper.setData(baseView, baseModel, mContext, mIsEnableRepost);
         if (baseModel instanceof MessageModel)
         {
             baseView.findViewById(R.id.weibo_content_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail((MessageModel) baseModel, baseView));
@@ -60,7 +61,6 @@ public class BaseModelAdapter<T> extends BaseQuickAdapter<BaseModel> {
         }
         if (baseModel instanceof CommentModel && ((CommentModel) baseModel).getStatus() != null)
             baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail(((CommentModel) baseModel).getStatus(), baseView));
-
     }
 
     private void goDetail(MessageModel baseModel, View baseView) {
