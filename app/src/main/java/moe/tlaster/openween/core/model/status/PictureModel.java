@@ -2,6 +2,7 @@ package moe.tlaster.openween.core.model.status;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -45,7 +46,10 @@ public class PictureModel implements Parcelable {
         return mThumbnailPic;
     }
     public String toLarge() {
-        return mThumbnailPic.replace("thumbnail", "large");
+        if (TextUtils.isEmpty(mOriginalPic))
+            return mThumbnailPic.replace("thumbnail", "large");
+        else
+            return mOriginalPic;
     }
     public String toBmiddle() {
         return mThumbnailPic.replace("thumbnail", "bmiddle");

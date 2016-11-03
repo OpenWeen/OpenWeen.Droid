@@ -99,16 +99,17 @@ public class WeiboCardHelper {
         setWeiboContent(view, item, enableImage, context, Color.BLACK);
     }
     private static void setWeiboContent(View view, BaseModel item, boolean enableImage, Context context, int textColor) {
-        TextView userName = (TextView) view.findViewById(R.id.user_name);
-        TextView time = (TextView) view.findViewById(R.id.created_time);
+        View userHeader = view.findViewById(R.id.user_header);
+        TextView userName = (TextView) userHeader.findViewById(R.id.user_name);
+        TextView time = (TextView) userHeader.findViewById(R.id.user_sub_text);
         WeiboTextBlock content = (WeiboTextBlock) view.findViewById(R.id.weibo_content);
         userName.setTextColor(textColor);
         content.setTextColor(textColor);
         if (item.getUser() != null) {
-            Glide.with(context).load(item.getUser().getAvatarLarge()).into((ImageView) view.findViewById(R.id.user_img));
+            Glide.with(context).load(item.getUser().getAvatarLarge()).into((ImageView) userHeader.findViewById(R.id.user_img));
             userName.setText(item.getUser().getScreenName());
             userName.setOnClickListener(v -> goUserActivity(item.getUser().getScreenName(), context));
-            view.findViewById(R.id.user_img).setOnClickListener(v -> goUserActivity(item.getUser().getScreenName(), context));
+            userHeader.setOnClickListener(v -> goUserActivity(item.getUser().getScreenName(), context));
         }
         time.setText(item.getCreatedAtDiffForHuman());
         content.setText(item.getText());

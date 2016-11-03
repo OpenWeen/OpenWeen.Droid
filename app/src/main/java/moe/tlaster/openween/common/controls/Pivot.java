@@ -147,7 +147,7 @@ public class Pivot extends CoordinatorLayout {
         });
     }
 
-    public static abstract class PivotItemFragment extends Fragment{
+    public static abstract class PivotItemFragment extends Fragment {
         public abstract IIcon getIcon();
     }
 

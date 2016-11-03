@@ -15,11 +15,12 @@
     <string name="post_weibo_data_name">post_weibo_data</string>
     <string name="post_weibo_id_name">post_weibo_id</string>
     <string name="post_weibo_cid_name">post_weibo_cid</string>
+    <string name="weibo_list_user_id_name">weibo_list_user_id</string>
+    <string name="user_list_type_name">user_list_type</string>
 
     <string name="user_page_username_name">user_page_username</string>
     <string name="title_activity_settings">Settings</string>
     <string name="detail_message_model_name">detail_message_model</string>
-
 
 
     <!-- Strings related to Settings -->

@@ -70,37 +70,74 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        //ProgressBar progressBar = (ProgressBar) findViewById(R.id.splash_progressbar);
-        //progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        findViewById(R.id.splash_container).post(()->{
-            /*TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.splash_icon_container), new TransitionSet()
-                    .setOrdering(ORDERING_TOGETHER)
-                    //.addTransition(new Slide(Gravity.LEFT))
-                    .addTransition(new ChangeBounds())
-                    .setDuration(1000).setStartDelay(1000).addListener(new Transition.TransitionListenerAdapter() {
-                        @Override
-                        public void onTransitionEnd(Transition transition) {
-                            TransitionManager.beginDelayedTransition((ViewGroup) SplashActivity.this.findViewById(R.id.splash_container), new AutoTransition().setDuration(500).addListener(new Transition.TransitionListenerAdapter() {
-                                @Override
-                                public void onTransitionEnd(Transition transition) {
-                                    allTransitionEnd();
-                                }
-                            }));
-                            //SplashActivity.this.findViewById(R.id.splash_progress_content).setVisibility(View.VISIBLE);
-                        }
-                    }));*/
-            TransitionManager.beginDelayedTransition((ViewGroup) SplashActivity.this.findViewById(R.id.splash_icon_container), new TransitionSet()
-                    .setOrdering(ORDERING_TOGETHER)
-                    //.addTransition(new Slide(Gravity.LEFT))
-                    .addTransition(new ChangeBounds())
-                    .setDuration(1000).setStartDelay(1000).addListener(new Transition.TransitionListenerAdapter() {
+        boolean enableAnimate = false;
+        if (enableAnimate) {
+            findViewById(R.id.splash_container).post(()->{
+                TransitionManager.beginDelayedTransition((ViewGroup) SplashActivity.this.findViewById(R.id.splash_icon_container), new TransitionSet()
+                        .setOrdering(ORDERING_TOGETHER)
+                        //.addTransition(new Slide(Gravity.LEFT))
+                        .addTransition(new ChangeBounds())
+                        .setDuration(1000).setStartDelay(1000).addListener(new Transition.TransitionListenerAdapter() {
+                            @Override
+                            public void onTransitionEnd(Transition transition) {
+                                allTransitionEnd();
+                            }
+                        }));
+                findViewById(R.id.splash_title).setVisibility(View.VISIBLE);
+            });
+        } else {
+            loadWithoutAnimate();
+        }
+    }
+
+    private void loadWithoutAnimate() {
+        if (SettingHelper.getListSetting(SplashActivity.this, SettingHelper.ACCESSTOKEN) == null) {
+            goLogin();
+        } else {
+            try {
+                StaticResource.setEmotions(Arrays.asList(new Gson().fromJson(DeviceHelper.readFromFile(getExternalFilesDir(null).getPath() + File.separator + "emotion" + File.separator + "emotion.json"), EmotionModel[].class)));
+            } catch (NullPointerException e) {
+            }
+            Entity.setAccessToken(SettingHelper.getListSetting(this, SettingHelper.ACCESSTOKEN)[0]);
+            Account.getLimitStatus(new JsonCallback<LimitStatusModel>() {
                 @Override
-                public void onTransitionEnd(Transition transition) {
-                    allTransitionEnd();
+                public void onError(Call call, Exception e, int id) {
+                    if (e.getMessage().contains("403")){
+                        List<String> list = new LinkedList<>(Arrays.asList(SettingHelper.getListSetting(SplashActivity.this, SettingHelper.ACCESSTOKEN)));
+                        list.remove(0);
+                        SettingHelper.setListSetting(SplashActivity.this, SettingHelper.ACCESSTOKEN, true, list.toArray(new String[0]));
+                        goLogin();
+                    }
                 }
-            }));
-            findViewById(R.id.splash_title).setVisibility(View.VISIBLE);
-        });
+                @Override
+                public void onResponse(LimitStatusModel response, int id) {
+                    Account.getUid(new JsonCallback<String>() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            goHome();
+                        }
+                        @Override
+                        public void onResponse(String response, int id) {
+                            StaticResource.setUid(new JsonParser().parse(response).getAsJsonObject().get("uid").getAsLong());
+                            User.getUser(StaticResource.getUid(), new JsonCallback<UserModel>() {
+                                @Override
+                                public void onError(Call call, Exception e, int id) {
+                                    goHome();
+                                }
+                                @Override
+                                public void onResponse(UserModel response, int id) {
+                                    mUser = response;
+                                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                                    i.putExtra("user", mUser);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
     }
 
     private void allTransitionEnd() {
@@ -193,14 +230,10 @@ public class SplashActivity extends BaseActivity {
 
     private void navigate() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this, mCircleImageView, getString(R.string.user_profile_icon_name));
-                i.putExtra("user", mUser);
-                startActivity(i, transitionActivityOptions.toBundle());
-            } else {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            }
+            Intent i = new Intent(SplashActivity.this, MainActivity.class);
+            ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this, mCircleImageView, getString(R.string.user_profile_icon_name));
+            i.putExtra("user", mUser);
+            startActivity(i, transitionActivityOptions.toBundle());
             finish();
         }, 2000);
     }

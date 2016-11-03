@@ -10,37 +10,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c80304eb-5b5e-4370-9f2e-507e250dc54e" name="Default" comment="Init">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/flickableview_1_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/emotion_image.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/xml/pref_test.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/PhotoView_1_3_0.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserListActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/WeiboListActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/UserListAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Follower.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Following.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Timeline.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_weibo_list.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/user_header_template.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/1_library_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/BaseRecyclerViewAdapterHelper_v2_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/MultiImageSelector_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/android_android_25.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/blurry_2_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/butterknife_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/butterknife_annotations_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/circleimageview_2_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/circleindicator_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/core_0_9_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/dialogplus_1_11.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/fabprogresscircle_1_01.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/fastadapter_1_8_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/flickableview_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/glide_3_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/google_material_typeface_2_2_0_3_original.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gridlayout_v7_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/iconics_core_2_8_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/library_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/library_1_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/materialdrawer_5_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/materialize_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp3_integration_1_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/palette_v7_24_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/peekview_1_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/picasso_2_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/prettytime_4_0_1_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sliding_activity_1_4_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/stream_1_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/transitionseverywhere_1_6_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tray_0_11_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/BaseActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/StaticResource.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/StaticResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboImageList.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboImageList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/DeviceHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/DeviceHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Comment.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Comment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_post_weibo.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_post_weibo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/pivot_template.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/pivot_template.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list_itemtemplate.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list_itemtemplate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/PictureModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/PictureModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/user_stats_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/user_stats_card.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/user_weibo_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/user_weibo_card.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/weibo_item_card_template.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/weibo_item_card_template.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" />
     </list>
     <ignored path="OpenWeen.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,98 +116,7 @@
     <favorites_list name="OpenWeen" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="activity_post_weibo.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_post_weibo.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
-              <folding>
-                <element signature="e#3811#3825#0" expanded="true" />
-                <marker date="1478081779964" expanded="false" signature="827:3218" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="emotion_image.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emotion_image.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostWeiboActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="221" column="125" selection-start-line="221" selection-start-column="125" selection-end-line="221" selection-end-column="125" />
-              <folding>
-                <element signature="e#8452#8453#0" expanded="true" />
-                <element signature="e#8518#8519#0" expanded="true" />
-                <element signature="e#10194#10195#0" expanded="true" />
-                <element signature="e#10255#10256#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="weibo_image_list_itemtemplate.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list_itemtemplate.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pivot.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1215">
-              <caret line="170" column="44" selection-start-line="170" selection-start-column="44" selection-end-line="170" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WeiboTextBlock.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1261">
-              <caret line="146" column="21" selection-start-line="146" selection-start-column="21" selection-end-line="148" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WeiboListBase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
-              <folding>
-                <element signature="e#1934#1935#0" expanded="true" />
-                <element signature="e#1983#1984#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -173,10 +124,10 @@
         <option value="ASEnum" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="layoutResourceFile" />
-        <option value="ASClass" />
         <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
+        <option value="layoutResourceFile" />
+        <option value="ASClass" />
       </list>
     </option>
   </component>
@@ -2122,26 +2073,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/user/UserModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/user_weibo_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/user_stats_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/main/Message.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/tabbar_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/base_model_template.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/BaseModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/LongTextModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/WeiboVisibilityModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/GeoModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/UserTimelineImageModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/UserTimelineImageDetailModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/PictureModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/MessageModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Comment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java" />
@@ -2149,30 +2083,47 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/main/Timeline.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboImageList.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/App.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/StaticResource.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/DeviceHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list_itemtemplate.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/emotion_popup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_post_weibo.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/emotion_image.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/PictureModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/WeiboListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_weibo_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/user_weibo_card.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/user_header_template.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Follower.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/user_stats_card.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Timeline.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Following.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Follower.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/UserListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/weibo_item_card_template.xml" />
       </list>
     </option>
   </component>
@@ -2223,6 +2174,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2294,13 +2248,186 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="detail" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adapter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openween" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenWeen.Droid" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2311,7 +2438,7 @@
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="weiboimage&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboImageList.java&#10;instantiateItem&#9;PSI&#9;JAVA://moe.tlaster.openween.common.controls.WeiboImageList.ImagePagerAdapter#instantiateItem&#10;pivot&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java&#10;weibotext&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java&#10;main&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/MainActivity.java&#10;pager&#9;PSI&#9;JAVA://moe.tlaster.openween.common.controls.WeiboImageList.ImagePagerAdapter&#10;json&#9;PSI&#9;JAVA://moe.tlaster.openween.common.helpers.JsonCallback&#10;spla&#9;PSI&#9;JAVA://moe.tlaster.openween.activity.SplashActivity&#10;static&#9;PSI&#9;JAVA://moe.tlaster.openween.common.StaticResource&#10;po&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java&#10;weibotex&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java&#10;pos&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java&#10;settinga&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java&#10;image&#9;PSI&#9;JAVA://moe.tlaster.openween.common.controls.WeiboImageList&#10;user&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java&#10;userac&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java&#10;setting&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java&#10;detailac&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java&#10;weiboba&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java&#10;httphelper&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/HttpHelper.java&#10;time&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/main/Timeline.java&#10;basemodel&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java&#10;detail&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java&#10;pivott&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/res/layout/pivot_template.xml&#10;comment&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/detail/Comment.java&#10;repost&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java&#10;timelin&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/main/Timeline.java&#10;home&#9;PSI&#9;JAVA://moe.tlaster.openween.core.api.statuses.Home&#10;message&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/main/Message.java&#10;repo&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java&#10;basemodelada&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java&#10;weibotextblock&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java&#10;messagemo&#9;PSI&#9;JAVA://moe.tlaster.openween.core.model.status.MessageModel&#10;string&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/res/values/strings.xml&#10;value&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/res/values/values.xml&#10;weiboaction&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/res/layout/weibo_action.xml&#10;spl&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java&#10;weibohelp&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;weibocardhelp&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;weiboimag&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/WeiboImageAdapter.java&#10;activity&#9;PSI&#9;JAVA://moe.tlaster.openween.activity.LoginActivity&#10;usera&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java&#10;usermod&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/core/model/user/UserModel.java&#10;base&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/core/model/BaseModel.java&#10;basemod&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/core/model/BaseModel.java&#10;usermodel&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/core/model/user/UserModel.java&#10;timeline&#9;PSI&#9;JAVA://moe.tlaster.openween.fragment.main.Timeline&#10;weiboim&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/WeiboImageAdapter.java&#10;weibo&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java&#10;baseac&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/BaseActivity.java" />
+    <property name="SearchEverywhereHistoryKey" value="basemodel&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java&#10;weibocard&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;userlistada&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/UserListAdapter.java&#10;userac&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java&#10;weiboli&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/WeiboListActivity.java&#10;weiboca&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;weibocardh&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;user&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java&#10;weibohelp&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;timeline&#9;PSI&#9;JAVA://moe.tlaster.openween.fragment.main.Timeline&#10;basemodela&#9;PSI&#9;JAVA://moe.tlaster.openween.adapter.BaseModelAdapter&#10;weibotext&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java&#10;splash&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java&#10;weiboimage&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboImageList.java&#10;instantiateItem&#9;PSI&#9;JAVA://moe.tlaster.openween.common.controls.WeiboImageList.ImagePagerAdapter#instantiateItem&#10;pivot&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java&#10;main&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/MainActivity.java&#10;pager&#9;PSI&#9;JAVA://moe.tlaster.openween.common.controls.WeiboImageList.ImagePagerAdapter&#10;json&#9;PSI&#9;JAVA://moe.tlaster.openween.common.helpers.JsonCallback&#10;spla&#9;PSI&#9;JAVA://moe.tlaster.openween.activity.SplashActivity&#10;static&#9;PSI&#9;JAVA://moe.tlaster.openween.common.StaticResource&#10;po&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java&#10;weibotex&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java&#10;pos&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java&#10;settinga&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java&#10;image&#9;PSI&#9;JAVA://moe.tlaster.openween.common.controls.WeiboImageList&#10;setting&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java&#10;detailac&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java&#10;weiboba&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java&#10;httphelper&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/HttpHelper.java&#10;time&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/main/Timeline.java&#10;detail&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/DetailActivity.java&#10;pivott&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/res/layout/pivot_template.xml&#10;comment&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/detail/Comment.java&#10;repost&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java&#10;timelin&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/main/Timeline.java&#10;home&#9;PSI&#9;JAVA://moe.tlaster.openween.core.api.statuses.Home&#10;message&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/main/Message.java&#10;repo&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java&#10;basemodelada&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java&#10;weibotextblock&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java&#10;messagemo&#9;PSI&#9;JAVA://moe.tlaster.openween.core.model.status.MessageModel&#10;string&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/res/values/strings.xml&#10;value&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/res/values/values.xml&#10;weiboaction&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/res/layout/weibo_action.xml&#10;spl&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java&#10;weibocardhelp&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java&#10;weiboimag&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/adapter/WeiboImageAdapter.java&#10;activity&#9;PSI&#9;JAVA://moe.tlaster.openween.activity.LoginActivity&#10;usera&#9;FILE&#9;file://C:/Users/Asahi/Documents/Project/OpenWeen.Droid/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2678,12 +2805,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-1631" width="2902" height="1642" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281361" sideWeight="0.50853485" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30262226" sideWeight="0.49146515" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49539334" sideWeight="0.49146515" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2691,17 +2818,17 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38979447" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295535" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3245925" sideWeight="0.49288762" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3229885" sideWeight="0.49288762" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20128022" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295535" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20056899" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295535" sideWeight="0.49715504" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295535" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295535" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295535" sideWeight="0.5028449" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10775249" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10775249" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296586" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2766,239 +2893,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="147" />
+      <option name="time" value="155" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_data_sync.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="51" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_notification.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="160" column="85" selection-start-line="160" selection-start-column="85" selection-end-line="160" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/weibo_image_list.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_test.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.3.0/1c66d33986b64a4631a79357940b5e6723f9aafb/library-1.3.0-sources.jar!/com/liulishuo/filedownloader/BaseDownloadTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.3.0/1c66d33986b64a4631a79357940b5e6723f9aafb/library-1.3.0-sources.jar!/com/liulishuo/filedownloader/FileDownloadSampleListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.chrisbanes/PhotoView/1.3.0/AndroidManifest.xml" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.3.0/1c66d33986b64a4631a79357940b5e6723f9aafb/library-1.3.0-sources.jar!/com/liulishuo/filedownloader/FileDownloadMessenger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.3.0/1c66d33986b64a4631a79357940b5e6723f9aafb/library-1.3.0-sources.jar!/com/liulishuo/filedownloader/DownloadTaskHunter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.3.0/1c66d33986b64a4631a79357940b5e6723f9aafb/library-1.3.0-sources.jar!/com/liulishuo/filedownloader/FileDownloadQueueSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-856">
-          <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.3.0/1c66d33986b64a4631a79357940b5e6723f9aafb/library-1.3.0-sources.jar!/com/liulishuo/filedownloader/FileDownloadListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="67" column="28" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/java/io/File.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad.material-dialogs/core/0.9.0.2/977b96d0b7df79d130d7e003112e357ae980ebf0/core-0.9.0.2-sources.jar!/com/afollestad/materialdialogs/MaterialDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="1110" column="35" selection-start-line="1110" selection-start-column="35" selection-end-line="1110" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/graphics/Bitmap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="890">
-          <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/text/style/ImageSpan.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/content/ContextWrapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="123" column="28" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/JsonCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/PictureModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
-          <folding>
-            <element signature="e#1108#1109#0" expanded="false" />
-            <element signature="e#1174#1175#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/StaticResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#320#321#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/WeiboImageAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -3010,54 +2913,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-          <folding>
-            <element signature="e#4533#4534#0" expanded="false" />
-            <element signature="e#4591#4592#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-core-ui/25.0.0/support-core-ui-25.0.0-sources.jar!/android/support/v4/view/PagerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4402">
           <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pivot_template.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="32" column="45" selection-start-line="31" selection-start-column="44" selection-end-line="32" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
-          <folding>
-            <element signature="e#4088#4128#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3065,10 +2924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-          <folding>
-            <element signature="e#3425#3426#0" expanded="false" />
-            <element signature="e#3462#3463#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3076,7 +2931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-702">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3091,21 +2945,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
           <caret line="131" column="15" selection-start-line="131" selection-start-column="15" selection-end-line="131" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emotion_popup.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="12" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emotion_popup.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -3114,37 +2957,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1261">
-          <caret line="146" column="21" selection-start-line="146" selection-start-column="21" selection-end-line="148" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
-          <folding>
-            <element signature="e#1934#1935#0" expanded="true" />
-            <element signature="e#1983#1984#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboImageList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
           <caret line="71" column="44" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/widget/LinearLayout.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="228" column="15" selection-start-line="228" selection-start-column="15" selection-end-line="228" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emotion_image.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_post_weibo.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="170" column="44" selection-start-line="170" selection-start-column="44" selection-end-line="170" selection-end-column="44" />
+        <state relative-caret-position="729">
+          <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
+          <folding>
+            <element signature="e#812#3219#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.klinkerapps/sliding-activity/1.4.3/6b4a4a5de5644b297e77d6fa3f87540adc686f03/sliding-activity-1.4.3-sources.jar!/com/klinker/android/sliding/SlidingActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="345" column="35" selection-start-line="345" selection-start-column="35" selection-end-line="345" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="796" column="19" selection-start-line="796" selection-start-column="19" selection-end-line="796" selection-end-column="19" />
+          <folding>
+            <element signature="e#23169#23170#0" expanded="true" />
+            <element signature="e#23220#23221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="70" column="62" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="917">
+          <caret line="131" column="53" selection-start-line="131" selection-start-column="53" selection-end-line="131" selection-end-column="53" />
+          <folding>
+            <element signature="e#11542#11584#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="228" column="23" selection-start-line="228" selection-start-column="23" selection-end-line="228" selection-end-column="23" />
+          <folding>
+            <element signature="e#7190#7230#0" expanded="true" />
+            <element signature="e#10902#10942#0" expanded="true" />
+            <element signature="e#11002#11042#0" expanded="true" />
+            <element signature="e#14518#14549#0" expanded="true" />
+            <element signature="e#15393#15431#0" expanded="true" />
+            <element signature="e#15466#15505#0" expanded="true" />
+            <element signature="e#15717#15755#0" expanded="true" />
+            <element signature="e#15790#15829#0" expanded="true" />
+            <element signature="e#16230#16268#0" expanded="true" />
+            <element signature="e#16486#16524#0" expanded="true" />
+            <element signature="e#16920#16958#0" expanded="true" />
+            <element signature="e#17189#17227#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/core/model/status/PictureModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="863">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/WeiboImageAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_weibo_list.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
           <folding />
         </state>
       </provider>
@@ -3154,16 +3093,222 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="49" />
+        <state relative-caret-position="243">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/widget/LinearLayout.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/main/Timeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="27" column="76" selection-start-line="27" selection-start-column="76" selection-end-line="39" selection-end-column="11" />
+          <folding>
+            <element signature="e#2077#2078#0" expanded="true" />
+            <element signature="e#2128#2129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/WeiboListBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/app/Fragment.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/app/FragmentTransaction.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
-          <caret line="228" column="15" selection-start-line="228" selection-start-column="15" selection-end-line="228" selection-end-column="15" />
+          <caret line="25" column="58" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-fragment/25.0.0/support-fragment-25.0.0-sources.jar!/android/support/v4/app/Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3348">
+          <caret line="180" column="13" selection-start-line="180" selection-start-column="13" selection-end-line="180" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_weibo_list.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_weibo_card.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1221">
+          <caret line="50" column="50" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/Pivot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="999">
+          <caret line="149" column="68" selection-start-line="149" selection-start-column="68" selection-end-line="149" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/detail/Repost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="44" selection-end-column="5" />
+          <folding>
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/WeiboListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="20" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_stats_card.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="198" column="52" selection-start-line="198" selection-start-column="52" selection-end-line="198" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Follower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Following.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="862">
+          <caret line="70" column="38" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2598#2599#0" expanded="true" />
+            <element signature="e#2651#2652#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/UserListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1009#1069#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/fragment/user/Timeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="68" column="71" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2494#2495#0" expanded="true" />
+            <element signature="e#2545#2546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#832#871#0" expanded="true" />
+            <element signature="e#1074#1117#0" expanded="true" />
+            <element signature="e#1345#1388#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_header_template.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/controls/WeiboTextBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="917">
+          <caret line="200" column="45" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/UserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+          <folding>
+            <element signature="e#6770#6813#0" expanded="true" />
+            <element signature="e#6859#6898#0" expanded="true" />
+            <element signature="e#7183#7226#0" expanded="true" />
+            <element signature="e#7272#7311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pivot_template.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="32" column="45" selection-start-line="31" selection-start-column="44" selection-end-line="32" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -3179,40 +3324,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_post_weibo.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/base_model_template.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
-          <folding>
-            <element signature="e#3811#3825#0" expanded="true" />
-            <marker date="1478081779964" expanded="false" signature="827:3218" ph="..." />
-          </folding>
+        <state relative-caret-position="864">
+          <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/activity/PostWeiboActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="221" column="125" selection-start-line="221" selection-start-column="125" selection-end-line="221" selection-end-column="125" />
-          <folding>
-            <element signature="e#8452#8453#0" expanded="true" />
-            <element signature="e#8518#8519#0" expanded="true" />
-            <element signature="e#10194#10195#0" expanded="true" />
-            <element signature="e#10255#10256#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emotion_image.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/weibo_item_card_template.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/common/helpers/WeiboCardHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="87" column="10" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/moe/tlaster/openween/adapter/BaseModelAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="57" column="170" selection-start-line="57" selection-start-column="170" selection-end-line="57" selection-end-column="170" />
           <folding />
         </state>
       </provider>

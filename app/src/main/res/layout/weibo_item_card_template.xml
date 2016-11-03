@@ -3,34 +3,7 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginEnd="@dimen/dp_10"
-        android:layout_width="@dimen/user_img"
-        android:layout_height="@dimen/user_img"
-        android:id="@+id/user_img"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/user_name_height"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/md_black_1000"
-        android:textSize="16sp"
-        android:id="@+id/user_name"
-        android:text="name"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/user_img"/>
-
-    <TextView
-        android:text="time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/created_time"
-        android:layout_below="@+id/user_name"
-        android:layout_toEndOf="@+id/user_img"/>
+    <include layout="@layout/user_header_template" android:id="@+id/user_header"/>
 
     <moe.tlaster.openween.common.controls.WeiboTextBlock
         android:paddingTop="@dimen/dp_10"
@@ -39,7 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/weibo_content"
         android:textColor="@color/md_black_1000"
-        android:layout_below="@+id/user_img"
+        android:layout_below="@+id/user_header"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
 

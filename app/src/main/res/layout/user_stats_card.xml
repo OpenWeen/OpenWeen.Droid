@@ -124,11 +124,13 @@
             android:gravity="center_vertical"
             android:padding="@dimen/dp_10">
             <LinearLayout
+                android:id="@+id/user_stats_following_layout"
+                android:clickable="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:background="?android:selectableItemBackground"
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_weight="1">
                 <LinearLayout
                     android:orientation="horizontal"
@@ -194,11 +196,13 @@
                   android:background="@android:color/darker_gray"/>
 
             <LinearLayout
+                android:id="@+id/user_stats_follower_layout"
+                android:clickable="true"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:background="?android:selectableItemBackground"
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_weight="1">
 
                 <LinearLayout

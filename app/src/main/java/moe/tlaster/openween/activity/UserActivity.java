@@ -1,5 +1,7 @@
 package moe.tlaster.openween.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -30,6 +32,7 @@ import java.net.URL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.adapter.BaseModelAdapter;
@@ -77,6 +80,7 @@ public class UserActivity extends SlidingActivity {
         setHeaderContent(headerView);
         String userName = getIntent().getExtras().getString(getString(R.string.user_page_username_name));
         mWeiboCard.findViewById(R.id.user_weibo_all).setOnClickListener(this::goAllWeiboList);
+        mWeiboCard.findViewById(R.id.user_weibo_all_bottom).setOnClickListener(this::goAllWeiboList);
         User.getUser(userName, new JsonCallback<UserModel>() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -84,6 +88,7 @@ public class UserActivity extends SlidingActivity {
             }
             @Override
             public void onResponse(UserModel response, int id) {
+                if (isDestroyed()) return;
                 mUser = response;
                 initUser();
                 initWeibo();
@@ -93,7 +98,9 @@ public class UserActivity extends SlidingActivity {
     }
 
     private void goAllWeiboList(View view) {
-
+        Intent intent = new Intent(this, WeiboListActivity.class);
+        intent.putExtra(getString(R.string.weibo_list_user_id_name), mUser.getID());
+        startActivity(intent);
     }
 
     private void initWeibo() {
@@ -105,6 +112,7 @@ public class UserActivity extends SlidingActivity {
 
             @Override
             public void onResponse(MessageListModel response, int id) {
+                if (isDestroyed()) return;
                 if (response.getStatuses().size() > 0) {
                     WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_1), response.getStatuses().get(0), UserActivity.this, true);
                     TransitionManager.beginDelayedTransition(mLinearLayout, new Slide(Gravity.BOTTOM));
@@ -125,10 +133,12 @@ public class UserActivity extends SlidingActivity {
             {
                 @Override
                 public void onError(Call call, Exception e, int id) {
+
                 }
                 @Override
                 public void onResponse(Bitmap response, int id) {
-                    setImage(response);
+                    if (!isDestroyed())
+                        setImage(response);
                 }
             });
         OkHttpUtils.get().url(mUser.getAvatarLarge()).build().execute(new BitmapCallback()
@@ -138,11 +148,24 @@ public class UserActivity extends SlidingActivity {
             }
             @Override
             public void onResponse(Bitmap response, int id) {
+                if (isDestroyed()) return;
                 mCircleImageView.setImageBitmap(response);
             }
         });
         TransitionManager.beginDelayedTransition(mLinearLayout, new Slide(Gravity.BOTTOM));
         mStatsCard.setVisibility(View.VISIBLE);
+        mStatsCard.findViewById(R.id.user_stats_following_layout).setOnClickListener(view -> {
+            Intent intent = new Intent(this, UserListActivity.class);
+            intent.putExtra(getString(R.string.weibo_list_user_id_name), mUser.getID());
+            intent.putExtra(getString(R.string.user_list_type_name), UserListActivity.USER_LIST_TYPE_FOLLOWING);
+            startActivity(intent);
+        });
+        mStatsCard.findViewById(R.id.user_stats_follower_layout).setOnClickListener(view -> {
+            Intent intent = new Intent(this, UserListActivity.class);
+            intent.putExtra(getString(R.string.weibo_list_user_id_name), mUser.getID());
+            intent.putExtra(getString(R.string.user_list_type_name), UserListActivity.USER_LIST_TYPE_FOLLOWER);
+            startActivity(intent);
+        });
         ((TextView) mStatsCard.findViewById(R.id.user_stats_user_des)).setText(mUser.getDescription());
         ((TextView) mStatsCard.findViewById(R.id.user_stats_follower_count)).setText(String.valueOf(mUser.getFollowersCount()));
         ((TextView) mStatsCard.findViewById(R.id.user_stats_following_count)).setText(String.valueOf(mUser.getFriendsCount()));
@@ -166,6 +189,7 @@ public class UserActivity extends SlidingActivity {
 
             @Override
             public void onResponse(UserListModel response, int id) {
+                if (isDestroyed()) return;
                 if (response.getUsers().size() > 0)
                     Glide.with(UserActivity.this).load(response.getUsers().get(0).getAvatarLarge()).fitCenter().crossFade().into(((CircleImageView) mStatsCard.findViewById(R.id.user_stats_follower_icon_1)));
                 if (response.getUsers().size() > 1)
@@ -182,6 +206,7 @@ public class UserActivity extends SlidingActivity {
 
             @Override
             public void onResponse(UserListModel response, int id) {
+                if (isDestroyed()) return;
                 if (response.getUsers().size() > 0)
                     Glide.with(UserActivity.this).load(response.getUsers().get(0).getAvatarLarge()).fitCenter().crossFade().into(((CircleImageView) mStatsCard.findViewById(R.id.user_stats_following_icon_1)));
                 if (response.getUsers().size() > 1)

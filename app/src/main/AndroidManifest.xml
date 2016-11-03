@@ -53,9 +53,13 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"/>
         <activity android:name=".activity.DetailActivity"/>
+        <activity android:name=".activity.WeiboListActivity"
+                  android:theme="@style/AppTheme"
+                  android:label="微博列表"/>
+        <activity android:name=".activity.UserListActivity"
+                  android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

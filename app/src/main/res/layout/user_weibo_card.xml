@@ -48,7 +48,7 @@
               android:background="@android:color/darker_gray"/>
         <Button
             android:text="查看所有"
-            android:id="@id/user_weibo_all"
+            android:id="@+id/user_weibo_all_bottom"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

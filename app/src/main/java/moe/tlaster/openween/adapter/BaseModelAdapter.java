@@ -57,10 +57,10 @@ public class BaseModelAdapter<T extends BaseModel> extends BaseQuickAdapter<T> {
         {
             baseView.findViewById(R.id.weibo_content_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail((MessageModel) baseModel, baseView));
             if (((MessageModel) baseModel).getRetweetedStatus() != null)
-                baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail(((MessageModel) baseModel).getRetweetedStatus(), baseView));
+                baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail(((MessageModel) baseModel).getRetweetedStatus(), baseView.findViewById(R.id.weibo_repost_container)));
         }
         if (baseModel instanceof CommentModel && ((CommentModel) baseModel).getStatus() != null)
-            baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail(((CommentModel) baseModel).getStatus(), baseView));
+            baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail(((CommentModel) baseModel).getStatus(), baseView.findViewById(R.id.weibo_repost_container)));
     }
 
     private void goDetail(MessageModel baseModel, View baseView) {
@@ -69,5 +69,4 @@ public class BaseModelAdapter<T extends BaseModel> extends BaseQuickAdapter<T> {
         i.putExtra(mContext.getString(R.string.detail_message_model_name), baseModel);
         mContext.startActivity(i, transitionActivityOptions.toBundle());
     }
-
 }

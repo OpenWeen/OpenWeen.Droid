@@ -41,7 +41,10 @@ import okhttp3.Call;
  */
 
 public class WeiboTextBlock extends TextView {
-    
+
+    private OnClickListener mOnClickListener;
+    private boolean mCanClick = true;
+
     public interface WeiboTextCallback{
         void call(String data);
     }
@@ -93,6 +96,17 @@ public class WeiboTextBlock extends TextView {
     }
 
     @Override
+    public void setOnClickListener(OnClickListener l) {
+        mOnClickListener = view -> {
+            if (mCanClick)
+                l.onClick(view);
+            else
+                mCanClick = true;
+        };
+        super.setOnClickListener(mOnClickListener);
+    }
+
+    @Override
     public void setText(CharSequence text, BufferType type) {
         SpannableString spannableString;
         int index = text.toString().indexOf("\u5168\u6587\uff1a http://m.weibo.cn/");
@@ -121,8 +135,9 @@ public class WeiboTextBlock extends TextView {
                 ExClickableSpan clickableSpan = new ExClickableSpan() {
                     @Override
                     public void onClick(View widget) {
-                        if (mUserClicked != null)
+                        if (mUserClicked != null) {
                             mUserClicked.call(at.substring(1));
+                        }
                     }
                 };
                 spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -134,8 +149,9 @@ public class WeiboTextBlock extends TextView {
                 ExClickableSpan clickableSpan = new ExClickableSpan() {
                     @Override
                     public void onClick(View widget) {
-                        if (mTopicClicked != null)
+                        if (mTopicClicked != null) {
                             mTopicClicked.call(topic);
+                        }
                     }
                 };
                 spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -163,6 +179,7 @@ public class WeiboTextBlock extends TextView {
                 ExClickableSpan clickableSpan = new ExClickableSpan() {
                     @Override
                     public void onClick(View widget) {
+                        mCanClick = false;
                         if(mLinkClicked != null)
                             mLinkClicked.call(url);
                         ShortUrl.info(new JsonCallback<UrlInfoListModel>() {
