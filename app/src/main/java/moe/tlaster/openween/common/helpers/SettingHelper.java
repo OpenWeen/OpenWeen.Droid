@@ -22,6 +22,10 @@ public class SettingHelper {
         AppPreferences preferences = new AppPreferences(context);
         return preferences.getString(name, null);
     }
+    public static boolean getBooleanSetting(final Context context, String name) {
+        AppPreferences preferences = new AppPreferences(context);
+        return preferences.getBoolean(name, false);
+    }
     public static void setListSetting(final Context context, String name, boolean isReplace, String... value) {
         String saveValue = getSetting(context, name);
         if (saveValue == null){

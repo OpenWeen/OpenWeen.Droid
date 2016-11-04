@@ -7,9 +7,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.transitionseverywhere.Fade;
+import com.transitionseverywhere.Slide;
+import com.transitionseverywhere.TransitionManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,6 +90,7 @@ public class DetailActivity extends BaseActivity {
                     mMessageModel = response;
                     response.setText(response.getLongText().getContent());
                     WeiboCardHelper.setData(mWeibo, response, DetailActivity.this, true, Color.WHITE);
+                    TransitionManager.beginDelayedTransition((LinearLayout) mProgressBar.getParent());
                     mProgressBar.setVisibility(View.GONE);
                     mWeibo.setVisibility(View.VISIBLE);
                 }

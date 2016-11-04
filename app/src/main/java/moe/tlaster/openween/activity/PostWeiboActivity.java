@@ -62,6 +62,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -203,7 +204,7 @@ public class PostWeiboActivity extends BaseActivity {
 
     private void setEmotion() {
         if (StaticResource.getEmotions() != null && StaticResource.getEmotions().size() > 0) {
-            Map<String, List<EmotionModel>> map = Stream.of(StaticResource.getEmotions()).sortBy(EmotionModel::getCategory).collect(Collectors.groupingBy(EmotionModel::getCategory));
+            Map<String, List<EmotionModel>> map = Stream.of(StaticResource.getEmotions()).collect(Collectors.groupingBy(EmotionModel::getCategory, LinkedHashMap::new, Collectors.toList()));
             mEmotionViewPager.setAdapter(new PagerAdapter() {
                 @Override
                 public int getCount() {

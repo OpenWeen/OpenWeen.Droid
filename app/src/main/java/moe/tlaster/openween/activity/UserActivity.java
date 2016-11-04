@@ -176,11 +176,46 @@ public class UserActivity extends SlidingActivity {
         if (!TextUtils.isEmpty(mUser.getVerifiedReason())) ((TextView) mStatsCard.findViewById(R.id.user_verified_reason)).setText(mUser.getVerifiedReason());
         else mStatsCard.findViewById(R.id.user_stats_verified_box).setVisibility(View.GONE);
         ((TextView) mStatsCard.findViewById(R.id.user_stats_created_time)).setText(mUser.getCreatedAtDiffForHuman());
-        if (mUser.isFollowing() && mUser.isFollowMe()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("互相关注");
-        else if (mUser.isFollowMe()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("被关注");
-        else if (mUser.isFollowing()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("正在关注");
-        else if (mUser.getID() == StaticResource.getUid()) mStatsCard.findViewById(R.id.user_stats_follow_state).setVisibility(View.INVISIBLE);
-        else ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("关注");
+        checkForFollowState();
+        mStatsCard.findViewById(R.id.user_stats_follow_state).setOnClickListener(view -> {
+            mProgressBar.setVisibility(View.VISIBLE);
+            mStatsCard.findViewById(R.id.user_stats_follow_state).setEnabled(false);
+            if (mUser.isFollowing()) {
+                Friends.unfollow(mUser.getID(), new JsonCallback<UserModel>() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Toast.makeText(UserActivity.this, "取消关注失败", Toast.LENGTH_SHORT).show();
+                        mProgressBar.setVisibility(View.GONE);
+                        mStatsCard.findViewById(R.id.user_stats_follow_state).setEnabled(true);
+                    }
+
+                    @Override
+                    public void onResponse(UserModel response, int id) {
+                        mUser.setFollowing(!mUser.isFollowing());
+                        checkForFollowState();
+                        mProgressBar.setVisibility(View.GONE);
+                        mStatsCard.findViewById(R.id.user_stats_follow_state).setEnabled(true);
+                    }
+                });
+            } else {
+                Friends.follow(mUser.getID(), new JsonCallback<UserModel>() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Toast.makeText(UserActivity.this, "关注失败", Toast.LENGTH_SHORT).show();
+                        mProgressBar.setVisibility(View.GONE);
+                        mStatsCard.findViewById(R.id.user_stats_follow_state).setEnabled(true);
+                    }
+
+                    @Override
+                    public void onResponse(UserModel response, int id) {
+                        mUser.setFollowing(!mUser.isFollowing());
+                        checkForFollowState();
+                        mProgressBar.setVisibility(View.GONE);
+                        mStatsCard.findViewById(R.id.user_stats_follow_state).setEnabled(true);
+                    }
+                });
+            }
+        });
         Friends.getFollowers(mUser.getID(), 3, 0, new JsonCallback<UserListModel>() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -215,5 +250,13 @@ public class UserActivity extends SlidingActivity {
                     Glide.with(UserActivity.this).load(response.getUsers().get(2).getAvatarLarge()).fitCenter().crossFade().into(((CircleImageView) mStatsCard.findViewById(R.id.user_stats_following_icon_3)));
             }
         });
+    }
+
+    private void checkForFollowState() {
+        if (mUser.isFollowing() && mUser.isFollowMe()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("互相关注");
+        else if (mUser.isFollowMe()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("被关注");
+        else if (mUser.isFollowing()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("正在关注");
+        else if (mUser.getID() == StaticResource.getUid()) mStatsCard.findViewById(R.id.user_stats_follow_state).setVisibility(View.INVISIBLE);
+        else ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("关注");
     }
 }

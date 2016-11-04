@@ -15,7 +15,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "0.89757"
         jackOptions {
             enabled true
         }
@@ -33,7 +33,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile('com.mikepenz:materialdrawer:5.6.0@aar') {
+    compile('com.mikepenz:materialdrawer:5.7.0@aar') {
         transitive = true
     }
     compile group: 'org.ocpsoft.prettytime', name: 'prettytime', version: '4.0.1.Final'

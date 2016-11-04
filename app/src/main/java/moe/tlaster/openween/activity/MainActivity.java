@@ -33,8 +33,11 @@ import moe.tlaster.openween.common.controls.Pivot;
 import moe.tlaster.openween.common.entities.PostWeiboType;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.common.helpers.WeiboCardHelper;
+import moe.tlaster.openween.core.api.friendships.Groups;
 import moe.tlaster.openween.core.api.statuses.PostWeibo;
 import moe.tlaster.openween.core.api.user.User;
+import moe.tlaster.openween.core.model.status.GroupListModel;
+import moe.tlaster.openween.core.model.status.GroupModel;
 import moe.tlaster.openween.core.model.user.UserModel;
 import moe.tlaster.openween.fragment.main.DirectMessage;
 import moe.tlaster.openween.fragment.main.Message;
@@ -52,18 +55,26 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         //setupWindowAnimations();
         ButterKnife.bind(this);
+        Timeline timeline = new Timeline();
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .addDrawerItems(
+                        new PrimaryDrawerItem().withIdentifier(1).withName("首页").withIcon(GoogleMaterial.Icon.gmd_home).withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                            timeline.toGroup(-1);
+                            return false;
+                        }),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withIdentifier(1).withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings).withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                        new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withIdentifier(2).withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings).withOnDrawerItemClickListener((view, position, drawerItem) -> {
                             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                             return false;
                         })
                 )
+                .withCloseOnClick(true)
                 .build();
+        drawer.setSelection(-1);
         Pivot.FragmentPageAdapter pageAdapter = new Pivot.FragmentPageAdapter(this, getSupportFragmentManager());
-        pageAdapter.add(new Timeline());
+        pageAdapter.add(timeline);
         pageAdapter.add(new Message());
         pageAdapter.add(new DirectMessage());
         mPivot.setAdapter(pageAdapter);
@@ -84,6 +95,23 @@ public class MainActivity extends BaseActivity {
             Intent i = new Intent(MainActivity.this, PostWeiboActivity.class);
             i.putExtra(getString(R.string.post_weibo_type_name), PostWeiboType.NewPost);
             startActivity(i, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+        });
+        Groups.getGroups(new JsonCallback<GroupListModel>() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+
+            }
+
+            @Override
+            public void onResponse(GroupListModel response, int id) {
+                for (int i = response.getLists().size() - 1; i >= 0; i--) {
+                    GroupModel item = response.getLists().get(i);
+                    drawer.addItemAtPosition(new PrimaryDrawerItem().withIdentifier(item.getID()).withName(item.getName()).withOnDrawerItemClickListener(((view, position, drawerItem) -> {
+                        timeline.toGroup(item.getID());
+                        return false;
+                    })), 3);
+                }
+            }
         });
     }
 

@@ -45,4 +45,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         //Icepick.saveInstanceState(this, outState);
         outState.putBoolean(mShouldRestart, true);
     }
+
 }

@@ -2,12 +2,14 @@ package moe.tlaster.openween.activity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -68,10 +70,10 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
-        boolean enableAnimate = false;
+        boolean enableAnimate = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.enable_animate_key), true);
         if (enableAnimate) {
+            setContentView(R.layout.activity_splash);
+            ButterKnife.bind(this);
             findViewById(R.id.splash_container).post(()->{
                 TransitionManager.beginDelayedTransition((ViewGroup) SplashActivity.this.findViewById(R.id.splash_icon_container), new TransitionSet()
                         .setOrdering(ORDERING_TOGETHER)
