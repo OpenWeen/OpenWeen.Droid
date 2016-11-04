@@ -8,6 +8,9 @@ import android.text.TextUtils;
 import android.transition.Explode;
 import android.transition.Slide;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -37,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             finish();
             return;
         }
+        checkForUpdates();
     }
 
     @Override
@@ -45,5 +49,30 @@ public abstract class BaseActivity extends AppCompatActivity {
         //Icepick.saveInstanceState(this, outState);
         outState.putBoolean(mShouldRestart, true);
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkForCrashes();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
 
+    private void unregisterManagers() {
+        UpdateManager.unregister();
+    }
+
+    private void checkForUpdates() {
+        UpdateManager.register(this);
+    }
 }

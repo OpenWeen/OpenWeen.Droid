@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -233,9 +234,9 @@ public class SplashActivity extends BaseActivity {
     private void navigate() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent i = new Intent(SplashActivity.this, MainActivity.class);
-            ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this, mCircleImageView, getString(R.string.user_profile_icon_name));
+            ActivityOptionsCompat transitionAnimation = ActivityOptionsCompat.makeSceneTransitionAnimation(SplashActivity.this, mCircleImageView, getString(R.string.user_profile_icon_name));
             i.putExtra("user", mUser);
-            startActivity(i, transitionActivityOptions.toBundle());
+            startActivity(i, transitionAnimation.toBundle());
             finish();
         }, 2000);
     }

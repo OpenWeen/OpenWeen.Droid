@@ -3,6 +3,7 @@ package moe.tlaster.openween.activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
@@ -21,6 +23,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.holder.ImageHolder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
@@ -82,13 +85,16 @@ public class MainActivity extends BaseActivity {
         UserModel user = getIntent().getExtras().getParcelable("user");
         mPivot.setProfileImage(user.getAvatarLarge());
         mPivot.setProfileImageOnClickListener(view -> WeiboCardHelper.goUserActivity(user.getScreenName(), MainActivity.this));
-        new AccountHeaderBuilder()
+        AccountHeaderBuilder accountHeaderBuilder = new AccountHeaderBuilder()
                 .withActivity(MainActivity.this)
                 .withDrawer(drawer)
-                .withHeaderBackground(new com.mikepenz.materialdrawer.holder.ImageHolder(user.getCoverimage()))
                 .addProfiles(new ProfileDrawerItem().withNameShown(true).withName(user.getScreenName()).withEmail(user.getDescription()).withIcon(user.getAvatarLarge()))
-                .withOnAccountHeaderListener((view, profile, currentProfile) -> false)
-                .build();
+                .withOnAccountHeaderListener((view, profile, currentProfile) -> false);
+        if (!TextUtils.isEmpty(user.getCoverimage()))
+            accountHeaderBuilder.withHeaderBackground(new ImageHolder(user.getCoverimage()));
+        else
+            accountHeaderBuilder.withHeaderBackground(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+        accountHeaderBuilder.build();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab);
         fab.setImageDrawable(new IconicsDrawable(this).icon(GoogleMaterial.Icon.gmd_add).color(Color.WHITE).sizeDp(24));
         fab.setOnClickListener(view -> {

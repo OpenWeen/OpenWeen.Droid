@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 android {
     compileSdkVersion 25
     buildToolsVersion "25"
@@ -15,11 +16,12 @@ android {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
-        versionName "0.89757"
+        versionName "0.89757.2"
         jackOptions {
             enabled true
         }
         resValue "string", "tray__authority", "${applicationId}.tray"
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: properties.getProperty("HOCKEYAPP_APP_ID")]
         // add this to set a unique tray authority based on your applicationId
 
     }
@@ -67,6 +69,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.0.2'
     compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
     compile 'com.github.goka.flickableview:flickableview:1.0.0'
+    compile 'net.hockeyapp.android:HockeySDK:4.1.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
