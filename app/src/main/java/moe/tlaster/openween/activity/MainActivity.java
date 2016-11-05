@@ -4,19 +4,11 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.transition.Explode;
-import android.transition.Fade;
 import android.transition.Slide;
 import android.view.Gravity;
-import android.view.View;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -31,14 +23,11 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import moe.tlaster.openween.R;
-import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.controls.Pivot;
 import moe.tlaster.openween.common.entities.PostWeiboType;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.common.helpers.WeiboCardHelper;
 import moe.tlaster.openween.core.api.friendships.Groups;
-import moe.tlaster.openween.core.api.statuses.PostWeibo;
-import moe.tlaster.openween.core.api.user.User;
 import moe.tlaster.openween.core.model.status.GroupListModel;
 import moe.tlaster.openween.core.model.status.GroupModel;
 import moe.tlaster.openween.core.model.user.UserModel;
@@ -58,11 +47,15 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         //setupWindowAnimations();
         ButterKnife.bind(this);
+
         Timeline timeline = new Timeline();
+
+        PrimaryDrawerItem drawerItemHome;
+
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withIdentifier(1).withName("首页").withIcon(GoogleMaterial.Icon.gmd_home).withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                        drawerItemHome = new PrimaryDrawerItem().withIdentifier(1).withName("首页").withIcon(GoogleMaterial.Icon.gmd_home).withOnDrawerItemClickListener((view, position, drawerItem) -> {
                             timeline.toGroup(-1);
                             return false;
                         }),
@@ -75,7 +68,7 @@ public class MainActivity extends BaseActivity {
                 )
                 .withCloseOnClick(true)
                 .build();
-        drawer.setSelection(-1);
+        drawer.setSelection(drawerItemHome, false);
         Pivot.FragmentPageAdapter pageAdapter = new Pivot.FragmentPageAdapter(this, getSupportFragmentManager());
         pageAdapter.add(timeline);
         pageAdapter.add(new Message());
