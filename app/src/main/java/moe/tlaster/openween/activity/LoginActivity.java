@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
@@ -27,6 +30,7 @@ import moe.tlaster.openween.common.helpers.SettingHelper;
  */
 
 public class LoginActivity extends BaseActivity {
+
     @BindView(R.id.login_app_id)
     public EditText mAppId;
     @BindView(R.id.login_app_secret)
@@ -37,6 +41,8 @@ public class LoginActivity extends BaseActivity {
     public EditText mScope;
     @BindView(R.id.login_package_name)
     public EditText mPackageName;
+
+    MenuItem mExitItem;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,6 +102,7 @@ public class LoginActivity extends BaseActivity {
     public void login(){
         Dialog dialog = new Dialog(this, R.style.AppTheme_NoActionBar);
         dialog.setContentView(R.layout.login_web_view);
+        dialog.getWindow().setStatusBarColor(getWindow().getStatusBarColor());
         WebView webView = (WebView)dialog.findViewById(R.id.login_webview);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.clearHistory();
@@ -136,11 +143,32 @@ public class LoginActivity extends BaseActivity {
         startActivity(browserIntent);
     }
 
-    @OnClick(R.id.login_cancel)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	    menu.clear();
+
+	    mExitItem = menu.add("取消");
+	    MenuItemCompat.setShowAsAction(mExitItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+
+	    return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+	    if (mExitItem.equals(item)) {
+		    cancel();
+		    return true;
+	    }
+	    return false;
+    }
+
+
     public void cancel(){
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
+
 }
