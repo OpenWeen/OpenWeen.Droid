@@ -96,50 +96,6 @@ public class UserModel extends UserBaseModel implements Parcelable {
             return null;
         }
     }
-    protected UserModel(Parcel in) {
-        mScreenName = in.readString();
-        mName = in.readString();
-        mRemark = in.readString();
-        mProvince = in.readString();
-        mCity = in.readString();
-        mLocation = in.readString();
-        mDescription = in.readString();
-        mUrl = in.readString();
-        mProfileImageUrl = in.readString();
-        mDomain = in.readString();
-        mGender = in.readString();
-        mFavouritesCount = in.readInt();
-        mVerifiedType = in.readInt();
-        mCreatedAt = in.readString();
-        mFollowing = in.readByte() != 0;
-        mAllowAllActMsg = in.readByte() != 0;
-        mGeoEnabled = in.readByte() != 0;
-        mVerified = in.readByte() != 0;
-        mAllowAllComment = in.readByte() != 0;
-        mAvatarLarge = in.readString();
-        mVerifiedReason = in.readString();
-        mFollowMe = in.readByte() != 0;
-        mOnlineStatus = in.readInt();
-        mBiFollowersCount = in.readInt();
-        mCoverimage = in.readString();
-        mCoverImagePhone = in.readString();
-        mAvatarHD = in.readString();
-        mWeihao = in.readString();
-        mLang = in.readString();
-        mLevel = in.readInt();
-    }
-
-    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
-        @Override
-        public UserModel createFromParcel(Parcel in) {
-            return new UserModel(in);
-        }
-
-        @Override
-        public UserModel[] newArray(int size) {
-            return new UserModel[size];
-        }
-    };
 
     public String getScreenName() {
         return mScreenName;
@@ -388,35 +344,93 @@ public class UserModel extends UserBaseModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mScreenName);
-        dest.writeString(mName);
-        dest.writeString(mRemark);
-        dest.writeString(mProvince);
-        dest.writeString(mCity);
-        dest.writeString(mLocation);
-        dest.writeString(mDescription);
-        dest.writeString(mUrl);
-        dest.writeString(mProfileImageUrl);
-        dest.writeString(mDomain);
-        dest.writeString(mGender);
-        dest.writeInt(mFavouritesCount);
-        dest.writeInt(mVerifiedType);
-        dest.writeString(mCreatedAt);
-        dest.writeByte((byte) (mFollowing ? 1 : 0));
-        dest.writeByte((byte) (mAllowAllActMsg ? 1 : 0));
-        dest.writeByte((byte) (mGeoEnabled ? 1 : 0));
-        dest.writeByte((byte) (mVerified ? 1 : 0));
-        dest.writeByte((byte) (mAllowAllComment ? 1 : 0));
-        dest.writeString(mAvatarLarge);
-        dest.writeString(mVerifiedReason);
-        dest.writeByte((byte) (mFollowMe ? 1 : 0));
-        dest.writeInt(mOnlineStatus);
-        dest.writeInt(mBiFollowersCount);
-        dest.writeString(mCoverimage);
-        dest.writeString(mCoverImagePhone);
-        dest.writeString(mAvatarHD);
-        dest.writeString(mWeihao);
-        dest.writeString(mLang);
-        dest.writeInt(mLevel);
+        dest.writeString(this.mScreenName);
+        dest.writeString(this.mName);
+        dest.writeString(this.mRemark);
+        dest.writeString(this.mProvince);
+        dest.writeString(this.mCity);
+        dest.writeString(this.mLocation);
+        dest.writeString(this.mDescription);
+        dest.writeString(this.mUrl);
+        dest.writeString(this.mProfileImageUrl);
+        dest.writeString(this.mDomain);
+        dest.writeString(this.mGender);
+        dest.writeInt(this.mFavouritesCount);
+        dest.writeInt(this.mVerifiedType);
+        dest.writeString(this.mCreatedAt);
+        dest.writeByte(this.mFollowing ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.mAllowAllActMsg ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.mGeoEnabled ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.mVerified ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.mAllowAllComment ? (byte) 1 : (byte) 0);
+        dest.writeString(this.mAvatarLarge);
+        dest.writeString(this.mVerifiedReason);
+        dest.writeByte(this.mFollowMe ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.mOnlineStatus);
+        dest.writeInt(this.mBiFollowersCount);
+        dest.writeString(this.mCoverimage);
+        dest.writeString(this.mCoverImagePhone);
+        dest.writeString(this.mAvatarHD);
+        dest.writeString(this.mWeihao);
+        dest.writeString(this.mLang);
+        dest.writeInt(this.mLevel);
+        dest.writeLong(this.mID);
+        dest.writeString(this.mIDStr);
+        dest.writeInt(this.mFollowersCount);
+        dest.writeInt(this.mFriendsCount);
+        dest.writeInt(this.mStatusesCount);
     }
+
+    public UserModel() {
+    }
+
+    protected UserModel(Parcel in) {
+        this.mScreenName = in.readString();
+        this.mName = in.readString();
+        this.mRemark = in.readString();
+        this.mProvince = in.readString();
+        this.mCity = in.readString();
+        this.mLocation = in.readString();
+        this.mDescription = in.readString();
+        this.mUrl = in.readString();
+        this.mProfileImageUrl = in.readString();
+        this.mDomain = in.readString();
+        this.mGender = in.readString();
+        this.mFavouritesCount = in.readInt();
+        this.mVerifiedType = in.readInt();
+        this.mCreatedAt = in.readString();
+        this.mFollowing = in.readByte() != 0;
+        this.mAllowAllActMsg = in.readByte() != 0;
+        this.mGeoEnabled = in.readByte() != 0;
+        this.mVerified = in.readByte() != 0;
+        this.mAllowAllComment = in.readByte() != 0;
+        this.mAvatarLarge = in.readString();
+        this.mVerifiedReason = in.readString();
+        this.mFollowMe = in.readByte() != 0;
+        this.mOnlineStatus = in.readInt();
+        this.mBiFollowersCount = in.readInt();
+        this.mCoverimage = in.readString();
+        this.mCoverImagePhone = in.readString();
+        this.mAvatarHD = in.readString();
+        this.mWeihao = in.readString();
+        this.mLang = in.readString();
+        this.mLevel = in.readInt();
+        this.mID = in.readLong();
+        this.mIDStr = in.readString();
+        this.mFollowersCount = in.readInt();
+        this.mFriendsCount = in.readInt();
+        this.mStatusesCount = in.readInt();
+    }
+
+    public static final Parcelable.Creator<UserModel> CREATOR = new Parcelable.Creator<UserModel>() {
+        @Override
+        public UserModel createFromParcel(Parcel source) {
+            return new UserModel(source);
+        }
+
+        @Override
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
+        }
+    };
 }

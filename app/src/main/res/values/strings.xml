@@ -10,6 +10,8 @@
     <string name="appbar_layout_name">appbar_layout</string>
     <string name="tab_layout_name">tab_layout</string>
     <string name="base_model_template_name">base_model_template</string>
+    <string name="user_header_name">user_header</string>
+    <string name="user_item_name">user_item</string>
 
     <string name="post_weibo_type_name">post_weibo_type</string>
     <string name="post_weibo_data_name">post_weibo_data</string>

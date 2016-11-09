@@ -16,13 +16,20 @@
                       android:orientation="horizontal"
                       android:paddingStart="@dimen/dp_10">
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="微博"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"/>
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/user_weibo_count"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
             <Button
                 android:text="查看所有"
                 android:id="@+id/user_weibo_all"

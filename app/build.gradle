@@ -70,6 +70,7 @@ dependencies {
     compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
     compile 'com.github.goka.flickableview:flickableview:1.0.0'
     compile 'net.hockeyapp.android:HockeySDK:4.1.1'
+    compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }

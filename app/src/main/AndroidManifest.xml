@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="moe.tlaster.openween">
+    package="moe.tlaster.openween">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -17,51 +16,57 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
-        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
+        <meta-data
+            android:name="net.hockeyapp.android.appIdentifier"
+            android:value="${HOCKEYAPP_APP_ID}" />
         <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
-            android:value="GlideModule"/>
+            android:value="GlideModule" />
+
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".common.controls.WeiboImageList"
-            android:theme="@style/PopupTheme"/>
+            android:theme="@style/PopupTheme" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="OpenWeen - 登陆"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.PostWeiboActivity"
-            android:label="@string/title_activity_post_weibo"/>
+            android:label="@string/title_activity_post_weibo" />
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".activity.UserActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:theme="@style/AppTheme.Sliding"/>
+            android:theme="@style/AppTheme.Sliding" />
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".activity.DetailActivity"/>
-        <activity android:name=".activity.WeiboListActivity"
-                  android:theme="@style/AppTheme"
-                  android:label="微博列表"/>
-        <activity android:name=".activity.UserListActivity"
-                  android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.DetailActivity" />
+        <activity
+            android:name=".activity.WeiboListActivity"
+            android:label="微博列表"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.UserListActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.DirectMessageActivity"/>
     </application>
 
 </manifest>

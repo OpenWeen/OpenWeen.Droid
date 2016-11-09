@@ -15,7 +15,7 @@ public class DirectMessageModel {
     @SerializedName("created_at")
     private String mCreatedAt;
     @SerializedName("text")
-    private String mTetx;
+    private String mText;
     @SerializedName("sender_id")
     private long mSenderID;
     @SerializedName("recipient_id")
@@ -55,12 +55,12 @@ public class DirectMessageModel {
         mCreatedAt = createdAt;
     }
 
-    public String getTetx() {
-        return mTetx;
+    public String getText() {
+        return mText;
     }
 
-    public void setTetx(String tetx) {
-        mTetx = tetx;
+    public void setText(String text) {
+        mText = text;
     }
 
     public long getSenderID() {

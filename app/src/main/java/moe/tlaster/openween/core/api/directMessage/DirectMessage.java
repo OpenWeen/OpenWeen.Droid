@@ -33,8 +33,8 @@ public class DirectMessage {
         param.put("max_id", String.valueOf(max_id));
         HttpHelper.getAsync(Constants.DIRECT_MESSAGES_CONVERSATION, param, callback);
     }
-    public static void getConversation(String uid, int count, int page, JsonCallback<DirectMessageListModel> callback) {
-        getConversation(uid, 0, 0, count, page, callback);
+    public static void getConversation(String uid, int count, long max_id, JsonCallback<DirectMessageListModel> callback) {
+        getConversation(uid, 0, max_id, count, 1, callback);
     }
     public static void getDirectMessages(long since_id, long max_id, int count, int page, JsonCallback<DirectMessageListModel> callback) {
         Map<String, String> param = new HashMap<>();

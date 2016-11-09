@@ -52,7 +52,8 @@ public class Message extends WeiboListBase<BaseModel> {
             public void onResponse(MessageListModel response, int id) {
                 mention.addAll(response.getStatuses());
                 mentionNumber[0] += response.getTotalNumber();
-                mMentionID = response.getStatuses().get(response.getStatuses().size() - 1).getID();
+                if (response.getStatuses().size() > 0)
+                    mMentionID = response.getStatuses().get(response.getStatuses().size() - 1).getID();
                 Remind.clearUnread(RemindType.Comment);
                 Comments.getCommentToMe(mLoadCount, new JsonCallback<CommentListModel>() {
                     @Override
@@ -63,7 +64,8 @@ public class Message extends WeiboListBase<BaseModel> {
                     public void onResponse(CommentListModel response, int id) {
                         comment.addAll(response.getComments());
                         commentNumber[0] = response.getTotalNumber();
-                        mCommentID = response.getComments().get(response.getComments().size() - 1).getID();
+                        if (response.getComments().size() > 0)
+                            mCommentID = response.getComments().get(response.getComments().size() - 1).getID();
                         Remind.clearUnread(RemindType.MentionComment);
                         Comments.getCommentMentions(mLoadCount, new JsonCallback<CommentListModel>() {
                             @Override
@@ -74,7 +76,8 @@ public class Message extends WeiboListBase<BaseModel> {
                             public void onResponse(CommentListModel response, int id) {
                                 commentMentions.addAll(response.getComments());
                                 commentMentionsNumber[0] = response.getTotalNumber();
-                                mCommentMentionsID = response.getComments().get(response.getComments().size() - 1).getID();
+                                if (response.getComments().size() > 0)
+                                    mCommentMentionsID = response.getComments().get(response.getComments().size() - 1).getID();
                                 callback.onResponse(Stream.concat(Stream.concat(Stream.of(mention), Stream.of(comment)), Stream.of(commentMentions))
                                                 .sortBy(BaseModel::getCreatedDate)
                                                 .custom(new Reverse<>()).collect(Collectors.toList()),
@@ -107,39 +110,42 @@ public class Message extends WeiboListBase<BaseModel> {
             public void onResponse(MessageListModel response, int id) {
                 mention.addAll(response.getStatuses());
                 mentionNumber[0] += response.getTotalNumber();
-                mMentionID = response.getStatuses().get(response.getStatuses().size() - 1).getID();
+                if (response.getStatuses().size() > 0)
+                    mMentionID = response.getStatuses().get(response.getStatuses().size() - 1).getID();
+                Comments.getCommentToMe(mCommentID, mLoadCount, new JsonCallback<CommentListModel>() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(CommentListModel response, int id) {
+                        comment.addAll(response.getComments());
+                        commentNumber[0] = response.getTotalNumber();
+                        if (response.getComments().size() > 0)
+                            mCommentID = response.getComments().get(response.getComments().size() - 1).getID();
+                        Comments.getCommentMentions(mCommentMentionsID, mLoadCount, new JsonCallback<CommentListModel>() {
+                            @Override
+                            public void onError(Call call, Exception e, int id) {
+
+                            }
+
+                            @Override
+                            public void onResponse(CommentListModel response, int id) {
+                                commentMentions.addAll(response.getComments());
+                                commentMentionsNumber[0] = response.getTotalNumber();
+                                if (response.getComments().size() > 0)
+                                    mCommentMentionsID = response.getComments().get(response.getComments().size() - 1).getID();
+                                callback.onResponse(Stream.concat(Stream.concat(Stream.of(mention), Stream.of(comment)), Stream.of(commentMentions))
+                                                .sortBy(BaseModel::getCreatedDate)
+                                                .custom(new Reverse<>()).collect(Collectors.toList()),
+                                        mentionNumber[0] + commentNumber[0] + commentMentionsNumber[0]);
+                            }
+                        });
+                    }
+                });
             }
         });
-        Comments.getCommentToMe(mCommentID, mLoadCount, new JsonCallback<CommentListModel>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-
-            }
-
-            @Override
-            public void onResponse(CommentListModel response, int id) {
-                comment.addAll(response.getComments());
-                commentNumber[0] = response.getTotalNumber();
-                mCommentID = response.getComments().get(response.getComments().size() - 1).getID();
-            }
-        });
-        Comments.getCommentMentions(mCommentMentionsID, mLoadCount, new JsonCallback<CommentListModel>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-
-            }
-
-            @Override
-            public void onResponse(CommentListModel response, int id) {
-                commentMentions.addAll(response.getComments());
-                commentMentionsNumber[0] = response.getTotalNumber();
-                mCommentMentionsID = response.getComments().get(response.getComments().size() - 1).getID();
-            }
-        });
-        callback.onResponse(Stream.concat(Stream.concat(Stream.of(mention), Stream.of(comment)), Stream.of(commentMentions))
-                        .sortBy(BaseModel::getCreatedDate)
-                        .custom(new Reverse<>()).collect(Collectors.toList()),
-                mentionNumber[0] + commentNumber[0] + commentMentionsNumber[0]);
     }
 
     @Override
