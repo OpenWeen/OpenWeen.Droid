@@ -1,11 +1,11 @@
-l# OpenWeen.Droid
+# OpenWeen.Droid
 第三方微博客户端
 
 # 测试中
 
 ## TODO
 <del>私信</del>  
-通知推送  
+<del>通知推送</del>  
 屏蔽关键词/用户  
 添加黑名单  
 允许拆分提及与评论  
