@@ -129,11 +129,6 @@ public class LoginActivity extends BaseActivity {
         dialog.setCancelable(true);
     }
 
-    private void goSplash() {
-        startActivity(new Intent(LoginActivity.this, SplashActivity.class));
-        finish();
-    }
-
     @OnClick(R.id.login_what)
     public void what(){
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);

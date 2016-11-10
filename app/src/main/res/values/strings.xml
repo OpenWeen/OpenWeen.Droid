@@ -29,9 +29,32 @@
     <string name="enable_animate_key">enable_animate</string>
     <string name="download_emotion_key">download_emotion</string>
     <string name="delete_emotion_key">delete_emotion</string>
+    <string name="feedback_key">feedback</string>
+    <string name="enable_notification_name">enable_notification</string>
+    <string name="unread_item_name">unread_item</string>
+    <string name="is_mention_notify_name">is_mention_notify</string>
+    <string name="is_comment_notify_name">is_comment_notify</string>
+    <string name="is_follower_notify_name">is_follower_notify</string>
+    <string name="is_message_notify_name">is_message_notify</string>
+    <string name="notification_interval_key">notification_interval</string>
+    <string name="notification_interval_default">1min</string>
+    <string-array name="notification_interval_list">
+        <item>1分钟</item>
+        <item>3分钟</item>
+        <item>5分钟</item>
+        <item>10分钟</item>
+        <item>30分钟</item>
+    </string-array>
+    <string-array name="notification_interval_value_list">
+        <item>1min</item>
+        <item>3min</item>
+        <item>5min</item>
+        <item>10min</item>
+        <item>30min</item>
+    </string-array>
 
     <string name="title_activity_settings">设置</string>
 
-    <!-- Example General settings -->
     <string name="pref_header_general">通用</string>
+    <string name="pref_header_notification">通知</string>
 </resources>

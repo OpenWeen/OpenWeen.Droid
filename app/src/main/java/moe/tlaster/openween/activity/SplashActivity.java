@@ -1,6 +1,10 @@
 package moe.tlaster.openween.activity;
 
 import android.app.ActivityOptions;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -34,6 +38,8 @@ import com.transitionseverywhere.TransitionSet;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 
+import net.hockeyapp.android.metrics.MetricsManager;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +56,7 @@ import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.helpers.DeviceHelper;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.common.helpers.SettingHelper;
+import moe.tlaster.openween.common.service.NotificationService;
 import moe.tlaster.openween.core.api.Entity;
 import moe.tlaster.openween.core.api.user.Account;
 import moe.tlaster.openween.core.api.user.User;
@@ -58,6 +65,7 @@ import moe.tlaster.openween.core.model.LimitStatusModel;
 import moe.tlaster.openween.core.model.user.UserModel;
 import okhttp3.Call;
 
+import static android.app.job.JobInfo.NETWORK_TYPE_ANY;
 import static com.transitionseverywhere.TransitionSet.ORDERING_TOGETHER;
 
 public class SplashActivity extends BaseActivity {
@@ -71,6 +79,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MetricsManager.register(getApplication());
         boolean enableAnimate = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.enable_animate_key), true);
         if (enableAnimate) {
             setContentView(R.layout.activity_splash);

@@ -45,13 +45,15 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (!getIntent().hasExtra("user")) {
+            goSplash();
+            return;
+        }
+        UserModel user = getIntent().getExtras().getParcelable("user");
         //setupWindowAnimations();
         ButterKnife.bind(this);
-
         Timeline timeline = new Timeline();
-
         PrimaryDrawerItem drawerItemHome;
-
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .addDrawerItems(
@@ -75,7 +77,6 @@ public class MainActivity extends BaseActivity {
         pageAdapter.add(new DirectMessage());
         mPivot.setAdapter(pageAdapter);
         mPivot.setOffscreenPageLimit(3);
-        UserModel user = getIntent().getExtras().getParcelable("user");
         mPivot.setProfileImage(user.getAvatarLarge());
         mPivot.setProfileImageOnClickListener(view -> WeiboCardHelper.goUserActivity(user.getScreenName(), MainActivity.this));
         AccountHeaderBuilder accountHeaderBuilder = new AccountHeaderBuilder()

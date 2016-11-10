@@ -136,4 +136,23 @@ public class UnreadModel {
     public void setMsgBox(int msgBox) {
         mMsgBox = msgBox;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof UnreadModel)) return false;
+        UnreadModel model = (UnreadModel) obj;
+        return model.getStatus() == getStatus() &&
+                model.getFollower() == getFollower() &&
+                model.getCmt() == getCmt() &&
+                model.getDm() == getDm() &&
+                model.getMentionStatus() == getMentionStatus() &&
+                model.getMentionCmt() == getMentionCmt() &&
+                model.getGroup() == getGroup() &&
+                model.getPrivateGroup() == getPrivateGroup() &&
+                model.getNotice() == getNotice() &&
+                model.getInvite() == getInvite() &&
+                model.getBadge() == getBadge() &&
+                model.getPhoto() == getPhoto() &&
+                model.getMsgBox() == getMsgBox();
+    }
 }

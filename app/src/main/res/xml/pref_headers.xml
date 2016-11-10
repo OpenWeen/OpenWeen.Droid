@@ -6,4 +6,8 @@
         android:fragment="moe.tlaster.openween.activity.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general"/>
+    <header
+        android:fragment="moe.tlaster.openween.activity.SettingsActivity$NotificationPreferenceFragment"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/pref_header_notification"/>
 </preference-headers>

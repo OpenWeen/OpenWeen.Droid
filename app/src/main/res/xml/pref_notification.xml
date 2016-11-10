@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/enable_notification_name"
+        android:title="启用通知推送"/>
+    <ListPreference
+        android:key="@string/notification_interval_key"
+        android:entries="@array/notification_interval_list"
+        android:entryValues="@array/notification_interval_value_list"
+        android:defaultValue="@string/notification_interval_default"
+        android:title="通知间隔"
+        android:dialogTitle="请选择"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/is_mention_notify_name"
+        android:title="提及"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/is_comment_notify_name"
+        android:title="评论"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/is_message_notify_name"
+        android:title="私信"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/is_follower_notify_name"
+        android:title="粉丝"/>
+</PreferenceScreen>

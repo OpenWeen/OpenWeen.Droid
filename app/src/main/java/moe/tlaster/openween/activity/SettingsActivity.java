@@ -30,6 +30,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.FileCallBack;
 
+import net.hockeyapp.android.FeedbackManager;
+
 import moe.tlaster.openween.App;
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.common.StaticResource;
@@ -183,7 +185,24 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
-                || GeneralPreferenceFragment.class.getName().equals(fragmentName);
+                || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class NotificationPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_notification);
+            setHasOptionsMenu(false);
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.enable_notification_name)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.notification_interval_key)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.is_comment_notify_name)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.is_mention_notify_name)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.is_follower_notify_name)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.is_message_notify_name)));
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -192,8 +211,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
-            setHasOptionsMenu(true);
+            setHasOptionsMenu(false);
             bindPreferenceSummaryToValue(findPreference(getString(R.string.enable_animate_key)));
+            findPreference(getString(R.string.feedback_key)).setOnPreferenceClickListener(preference -> {
+                FeedbackManager.showFeedbackActivity(getActivity());
+                return true;
+            });
             findPreference(getString(R.string.download_emotion_key)).setOnPreferenceClickListener(preference -> {
                 MaterialDialog[] dialog = {new MaterialDialog.Builder(getActivity())
                         .title("正在下载表情")

@@ -1,6 +1,9 @@
 package moe.tlaster.openween;
 
 import android.app.Application;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -11,6 +14,10 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
+
+import moe.tlaster.openween.common.service.NotificationService;
+
+import static android.app.job.JobInfo.NETWORK_TYPE_ANY;
 
 /**
  * Created by Tlaster on 2016/9/10.

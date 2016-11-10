@@ -20,6 +20,9 @@ public class Remind {
         param.put("unread_message", "0");
         HttpHelper.getAsync(Constants.REMIND_UNREAD_COUNT, param, callback);
     }
+    public static void getUnread(JsonCallback<UnreadModel> callback) {
+        HttpHelper.getAsync(Constants.REMIND_UNREAD_COUNT, null, callback);
+    }
     public static void clearUnread(RemindType type) {
         Map<String, String> param = new HashMap<>();
         param.put("type", type.toString());

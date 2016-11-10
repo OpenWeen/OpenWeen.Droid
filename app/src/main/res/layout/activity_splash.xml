@@ -27,7 +27,7 @@
                 android:transitionName="@string/user_profile_icon_name"
                 android:scaleType="centerCrop"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/ic_logo_no_padding"
                 android:id="@+id/splash_icon"
                 android:layout_width="wrap_content"/>
         </com.github.jorgecastilloprz.FABProgressCircle>
