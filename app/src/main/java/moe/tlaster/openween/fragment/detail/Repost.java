@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.IIcon;
 
@@ -34,7 +35,7 @@ public class Repost extends WeiboListBase<MessageModel> {
     }
 
     @Override
-    protected BaseQuickAdapter<MessageModel> initAdapter() {
+    protected BaseQuickAdapter<MessageModel, BaseViewHolder> initAdapter() {
         return new BaseModelAdapter<>(false);
     }
 
@@ -46,7 +47,7 @@ public class Repost extends WeiboListBase<MessageModel> {
 
     @Override
     protected void loadMoreOverride(Callback<List<MessageModel>> callback) {
-        moe.tlaster.openween.core.api.statuses.Repost.getRepost(mID, 0, mAdapter.getData().get(mAdapter.getData().size() - 1).getID(), mLoadCount, 1, AuthorType.All, new JsonCallback<RepostListModel>() {
+        moe.tlaster.openween.core.api.statuses.Repost.getRepost(mID, 0, ((MessageModel) mAdapter.getData().get(mAdapter.getData().size() - 1)).getID(), mLoadCount, 1, AuthorType.All, new JsonCallback<RepostListModel>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 callback.onError(e);

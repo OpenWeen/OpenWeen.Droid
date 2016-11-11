@@ -52,9 +52,12 @@
         <item>10min</item>
         <item>30min</item>
     </string-array>
+    <string name="block_text_key">block_text</string>
+    <string name="block_userid_key">block_userid</string>
 
     <string name="title_activity_settings">设置</string>
 
     <string name="pref_header_general">通用</string>
     <string name="pref_header_notification">通知</string>
+    <string name="pref_header_block">屏蔽</string>
 </resources>

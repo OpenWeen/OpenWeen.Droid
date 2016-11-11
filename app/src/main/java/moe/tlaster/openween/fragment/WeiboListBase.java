@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
 
     protected RecyclerView mRecyclerView;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
-    protected BaseQuickAdapter<T> mAdapter;
+    protected BaseQuickAdapter<T, BaseViewHolder> mAdapter;
     private int mTotalCount = 0;
     protected int mLoadCount = 20;
     protected int mPage = 1;
@@ -51,7 +52,7 @@ public abstract class WeiboListBase<T> extends Pivot.PivotItemFragment {
     protected RecyclerView.LayoutManager getLayoutManager(){
         return new LinearLayoutManager(getContext());
     }
-    protected BaseQuickAdapter<T> initAdapter() {
+    protected BaseQuickAdapter<T, BaseViewHolder> initAdapter() {
         return new BaseModelAdapter();
     }
 

@@ -16,7 +16,7 @@ import moe.tlaster.openween.core.model.directmessage.DirectMessageModel;
  * Created by Asahi on 2016/11/7.
  */
 
-public class DirectMessageAdapter extends BaseQuickAdapter<DirectMessageModel> {
+public class DirectMessageAdapter extends BaseQuickAdapter<DirectMessageModel, BaseViewHolder> {
 
     public DirectMessageAdapter() {
         super(R.layout.direct_message_item_template, null);

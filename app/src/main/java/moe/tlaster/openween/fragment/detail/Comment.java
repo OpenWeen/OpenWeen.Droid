@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.IIcon;
 
@@ -41,13 +42,13 @@ public class Comment extends WeiboListBase<CommentModel> {
     }
 
     @Override
-    protected BaseQuickAdapter<CommentModel> initAdapter() {
+    protected BaseQuickAdapter<CommentModel, BaseViewHolder> initAdapter() {
         return new BaseModelAdapter<>(false);
     }
 
     @Override
     protected void loadMoreOverride(Callback<List<CommentModel>> callback) {
-        Comments.getCommentStatus(mID, 0, mAdapter.getData().get(mAdapter.getData().size() - 1).getID(), mLoadCount, 1, AuthorType.All, new JsonCallback<CommentListModel>() {
+        Comments.getCommentStatus(mID, 0, ((CommentModel) mAdapter.getData().get(mAdapter.getData().size() - 1)).getID(), mLoadCount, 1, AuthorType.All, new JsonCallback<CommentListModel>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 callback.onError(e);

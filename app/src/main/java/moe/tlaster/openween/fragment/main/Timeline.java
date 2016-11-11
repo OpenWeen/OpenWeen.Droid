@@ -43,9 +43,9 @@ public class Timeline extends WeiboListBase<MessageModel> {
             }
         };
         if (mGroupID != -1) {
-            Groups.getGroupTimeline(String.valueOf(mGroupID), mAdapter.getData().get(mAdapter.getData().size() - 1).getID(), mLoadCount, jsonCallback);
+            Groups.getGroupTimeline(String.valueOf(mGroupID), ((MessageModel) mAdapter.getData().get(mAdapter.getData().size() - 1)).getID(), mLoadCount, jsonCallback);
         } else {
-            Home.getTimeline(mLoadCount, mAdapter.getData().get(mAdapter.getData().size() - 1).getID(),jsonCallback);
+            Home.getTimeline(mLoadCount, ((MessageModel) mAdapter.getData().get(mAdapter.getData().size() - 1)).getID(),jsonCallback);
         }
     }
 

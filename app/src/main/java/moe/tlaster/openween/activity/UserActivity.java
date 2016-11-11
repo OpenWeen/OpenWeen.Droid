@@ -1,15 +1,19 @@
 package moe.tlaster.openween.activity;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.github.jorgecastilloprz.FABProgressCircle;
 import com.klinker.android.sliding.SlidingActivity;
@@ -29,6 +34,9 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +48,7 @@ import moe.tlaster.openween.common.SimpleDividerItemDecoration;
 import moe.tlaster.openween.common.StaticResource;
 import moe.tlaster.openween.common.helpers.JsonCallback;
 import moe.tlaster.openween.common.helpers.WeiboCardHelper;
+import moe.tlaster.openween.core.api.blocks.Blocks;
 import moe.tlaster.openween.core.api.friendships.Friends;
 import moe.tlaster.openween.core.api.statuses.UserTimeline;
 import moe.tlaster.openween.core.api.user.User;
@@ -64,6 +73,7 @@ public class UserActivity extends SlidingActivity {
     public ProgressBar mProgressBar;
     @BindView(R.id.user_information)
     public LinearLayout mLinearLayout;
+    private Menu mMenu;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -94,11 +104,23 @@ public class UserActivity extends SlidingActivity {
                     return;
                 }
                 mUser = response;
+                initMenu();
                 initUser();
                 initWeibo();
                 mProgressBar.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void initMenu() {
+        if (mUser.getID() == StaticResource.getUid()) mMenu.clear();
+        String blockUserid = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.block_userid_key), null);
+        if (TextUtils.isEmpty(blockUserid)) return;
+        if (Arrays.asList(blockUserid.split(",")).contains(String.valueOf(mUser.getID()))) {
+            mMenu.findItem(R.id.menu_user_block).setTitle("已屏蔽");
+        } else {
+            mMenu.findItem(R.id.menu_user_block).setTitle("屏蔽");
+        }
     }
 
     private void goAllWeiboList(View view) {
@@ -266,5 +288,54 @@ public class UserActivity extends SlidingActivity {
         else if (mUser.isFollowing()) ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("正在关注");
         else if (mUser.getID() == StaticResource.getUid()) mStatsCard.findViewById(R.id.user_stats_follow_state).setVisibility(View.INVISIBLE);
         else ((Button) mStatsCard.findViewById(R.id.user_stats_follow_state)).setText("关注");
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_user, menu);
+        mMenu = menu;
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mUser != null) {
+            switch (item.getItemId()) {
+                case R.id.menu_user_block:
+                    String blockUserid = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.block_userid_key), null);
+                    List<String> blockList;
+                    if (TextUtils.isEmpty(blockUserid)) blockList = new ArrayList<>();
+                    else blockList = new ArrayList<>(Arrays.asList(blockUserid.split(",")));
+                    if (!blockList.contains(String.valueOf(mUser.getID()))) {
+                        blockList.add(String.valueOf(mUser.getID()));
+                        mMenu.findItem(R.id.menu_user_block).setTitle("已屏蔽");
+                    } else {
+                        blockList.remove(String.valueOf(mUser.getID()));
+                        mMenu.findItem(R.id.menu_user_block).setTitle("屏蔽");
+                    }
+                    PreferenceManager.getDefaultSharedPreferences(this).edit().putString(getString(R.string.block_userid_key), TextUtils.join(",", blockList)).apply();
+                    break;
+                case R.id.menu_user_blacklist:
+                    Blocks.addBlock(mUser.getID(), new JsonCallback<UserModel>() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+
+                        }
+
+                        @Override
+                        public void onResponse(UserModel response, int id) {
+                            Toast.makeText(UserActivity.this, "丢进黑名单成功", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    break;
+                case R.id.menu_user_directmessage:
+                    Intent intent = new Intent(this, DirectMessageActivity.class);
+                    intent.putExtra(getString(R.string.user_item_name), mUser);
+                    startActivity(intent);
+                    break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

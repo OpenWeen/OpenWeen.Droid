@@ -43,7 +43,7 @@ public class Timeline extends WeiboListBase<MessageModel> {
 
     @Override
     protected void loadMoreOverride(Callback<List<MessageModel>> callback) {
-        UserTimeline.getUserTimeline(mID, mLoadCount, mAdapter.getData().get(mAdapter.getData().size() - 1).getID(), new JsonCallback<MessageListModel>() {
+        UserTimeline.getUserTimeline(mID, mLoadCount, ((MessageModel) mAdapter.getData().get(mAdapter.getData().size() - 1)).getID(), new JsonCallback<MessageListModel>() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 callback.onError(e);

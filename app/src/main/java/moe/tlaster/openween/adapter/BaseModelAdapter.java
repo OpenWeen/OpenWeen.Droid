@@ -36,7 +36,7 @@ import moe.tlaster.openween.core.model.user.UserModel;
  * Created by Asahi on 2016/9/23.
  */
 
-public class BaseModelAdapter<T extends BaseModel> extends BaseQuickAdapter<T> {
+public class BaseModelAdapter<T extends BaseModel> extends BaseQuickAdapter<T, BaseViewHolder> {
 
     private boolean mIsEnableRepost;
 
@@ -45,16 +45,19 @@ public class BaseModelAdapter<T extends BaseModel> extends BaseQuickAdapter<T> {
     }
 
     public BaseModelAdapter(boolean isEnableRepost) {
-        super(R.layout.base_model_template, new ArrayList<>());
+        super(R.layout.base_model_template, null);
         mIsEnableRepost = isEnableRepost;
     }
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, BaseModel baseModel) {
+        if (WeiboCardHelper.shouldBlock(mContext, baseModel)) {
+            baseViewHolder.setVisible(R.id.base_model_container, false);
+            return;
+        }
         View baseView = baseViewHolder.getConvertView();
         WeiboCardHelper.setData(baseView, baseModel, mContext, mIsEnableRepost);
-        if (baseModel instanceof MessageModel)
-        {
+        if (baseModel instanceof MessageModel) {
             baseView.findViewById(R.id.weibo_content_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail((MessageModel) baseModel, baseView));
             if (((MessageModel) baseModel).getRetweetedStatus() != null)
                 baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener(view -> goDetail(((MessageModel) baseModel).getRetweetedStatus(), baseView.findViewById(R.id.weibo_repost_container)));

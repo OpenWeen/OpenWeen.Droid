@@ -17,7 +17,7 @@ import moe.tlaster.openween.core.model.user.UserModel;
  * Created by Asahi on 2016/11/3.
  */
 
-public class UserListAdapter extends BaseQuickAdapter<UserModel> {
+public class UserListAdapter extends BaseQuickAdapter<UserModel, BaseViewHolder> {
     public UserListAdapter() {
         super(R.layout.user_header_template, null);
     }

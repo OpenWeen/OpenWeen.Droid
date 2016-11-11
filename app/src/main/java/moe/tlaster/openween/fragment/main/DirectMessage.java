@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.IIcon;
 
@@ -32,7 +33,7 @@ public class DirectMessage extends WeiboListBase<DirectMessageUserModel> {
     private int mCursor;
 
     @Override
-    protected BaseQuickAdapter<DirectMessageUserModel> initAdapter() {
+    protected BaseQuickAdapter<DirectMessageUserModel, BaseViewHolder> initAdapter() {
         return new DirectMessageUserListAdapter();
     }
 

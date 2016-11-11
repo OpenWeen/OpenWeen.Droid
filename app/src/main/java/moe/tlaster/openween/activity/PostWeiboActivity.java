@@ -90,7 +90,7 @@ import okhttp3.Response;
 
 public class PostWeiboActivity extends BaseActivity {
 
-    private BaseQuickAdapter<String> mAdapter;
+    private BaseQuickAdapter<String, BaseViewHolder> mAdapter;
     private final int REQUEST_IMAGE = 0;
     private final int REQUEST_READ_EXTERNAL_STORAGE = 1;
     private MaterialDialog mDialog;
@@ -122,7 +122,7 @@ public class PostWeiboActivity extends BaseActivity {
         mEditText.requestFocusFromTouch();
         mEditText.requestFocus();
         setEmotion();
-        mAdapter = new BaseQuickAdapter<String>(R.layout.weibo_image_list_itemtemplate, null) {
+        mAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.weibo_image_list_itemtemplate, null) {
             @Override
             protected void convert(BaseViewHolder baseViewHolder, String path) {
                 FlickableImageView view = baseViewHolder.getView(R.id.weibo_image_list_item);
@@ -217,7 +217,7 @@ public class PostWeiboActivity extends BaseActivity {
                     int column = 8;
                     RecyclerView recyclerView = (RecyclerView) itemTemplate.findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new GridLayoutManager(PostWeiboActivity.this, column));
-                    recyclerView.setAdapter(new BaseQuickAdapter<EmotionModel>(R.layout.emotion_image, map.get(map.keySet().toArray()[position])) {
+                    recyclerView.setAdapter(new BaseQuickAdapter<EmotionModel, BaseViewHolder>(R.layout.emotion_image, map.get(map.keySet().toArray()[position])) {
                         @Override
                         protected void convert(BaseViewHolder baseViewHolder, EmotionModel emotionModel) {
                             baseViewHolder.setImageBitmap(R.id.emotion_img, BitmapFactory.decodeFile(emotionModel.getUrl()));

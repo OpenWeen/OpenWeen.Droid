@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.IIcon;
 
@@ -39,7 +40,7 @@ public class Follower extends WeiboListBase<UserModel> {
     }
 
     @Override
-    protected BaseQuickAdapter<UserModel> initAdapter() {
+    protected BaseQuickAdapter<UserModel, BaseViewHolder> initAdapter() {
         return new UserListAdapter();
     }
 

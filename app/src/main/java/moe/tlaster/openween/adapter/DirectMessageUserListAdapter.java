@@ -20,7 +20,7 @@ import moe.tlaster.openween.core.model.directmessage.DirectMessageUserModel;
  * Created by Asahi on 2016/11/7.
  */
 
-public class DirectMessageUserListAdapter extends BaseQuickAdapter<DirectMessageUserModel> {
+public class DirectMessageUserListAdapter extends BaseQuickAdapter<DirectMessageUserModel, BaseViewHolder> {
 
     public DirectMessageUserListAdapter() {
         super(R.layout.user_header_template, null);

@@ -3,12 +3,20 @@ package moe.tlaster.openween.common.helpers;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.jaeger.ninegridimageview.NineGridImageView;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import moe.tlaster.openween.R;
 import moe.tlaster.openween.activity.PostWeiboActivity;
@@ -32,6 +40,7 @@ public class WeiboCardHelper {
         setData(baseView, baseModel, context, isEnableRepost, Color.BLACK);
     }
     public static void setData(View baseView, BaseModel baseModel, Context context, boolean isEnableRepost, int textColor) {
+        baseView.setVisibility(View.VISIBLE);
         View weiboContentContainer = baseView.findViewById(R.id.weibo_content_container);
         View weiboRepostContainer = baseView.findViewById(R.id.weibo_repost_container);
         View weiboRepostLinear = baseView.findViewById(R.id.weibo_repost_linear);
@@ -77,6 +86,29 @@ public class WeiboCardHelper {
             baseView.findViewById(R.id.comment).setOnClickListener(getReplyCommentListener(commentModel, context));
         }
     }
+
+    public static boolean shouldBlock(Context context, BaseModel baseModel) {
+        String blockText = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.block_text_key), null);
+        String blockUserid = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.block_userid_key), null);
+        if (TextUtils.isEmpty(blockText) && TextUtils.isEmpty(blockUserid)) return false;
+        Set<String> blockTextList = new HashSet<>(Arrays.asList(blockText != null ? blockText.split(",") : new String[0]));
+        Set<String> blockUserList = new HashSet<>(Arrays.asList(blockUserid != null ? blockUserid.split(",") : new String[0]));
+        if (baseModel instanceof MessageModel) {
+            MessageModel model = (MessageModel) baseModel;
+            return blockUserList.contains(String.valueOf(model.getUser().getID())) ||
+                    (model.getRetweetedStatus() != null && model.getRetweetedStatus().getUser() != null && blockUserList.contains(String.valueOf(model.getRetweetedStatus().getUser().getID()))) ||
+                    Stream.of(blockTextList).anyMatch(item -> !TextUtils.isEmpty(item) && model.getText().contains(item)) ||
+                    (model.getRetweetedStatus() != null && model.getRetweetedStatus().getText() != null && Stream.of(blockTextList).anyMatch(item -> !TextUtils.isEmpty(item) && model.getRetweetedStatus().getText().contains(item)));
+        } else if (baseModel instanceof CommentModel) {
+            CommentModel model = (CommentModel) baseModel;
+            return blockUserList.contains(String.valueOf(model.getUser().getID())) ||
+                    (model.getReplyComment() != null && model.getReplyComment().getUser() != null && blockUserList.contains(String.valueOf(model.getReplyComment().getUser().getID()))) ||
+                    Stream.of(blockTextList).anyMatch(item -> !TextUtils.isEmpty(item) && model.getText().contains(item)) ||
+                    (model.getReplyComment() != null && model.getReplyComment().getText() != null && Stream.of(blockTextList).anyMatch(item -> !TextUtils.isEmpty(item) && model.getReplyComment().getText().contains(item)));
+        }
+        return false;
+    }
+
     private static View.OnClickListener getReplyCommentListener(CommentModel commentModel, Context context){
         return v -> {
             Intent i = new Intent(context, PostWeiboActivity.class);

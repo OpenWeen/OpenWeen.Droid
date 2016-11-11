@@ -186,7 +186,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
+                || BlockPreferenceFragment.class.getName().equals(fragmentName);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class BlockPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_block);
+            setHasOptionsMenu(false);
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.block_text_key)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.block_userid_key)));
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
