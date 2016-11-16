@@ -113,7 +113,10 @@ public class UserActivity extends SlidingActivity {
     }
 
     private void initMenu() {
-        if (mUser.getID() == StaticResource.getUid()) mMenu.clear();
+        if (mUser.getID() == StaticResource.getUid()) {
+            mMenu.clear();
+            return;
+        }
         String blockUserid = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.block_userid_key), null);
         if (TextUtils.isEmpty(blockUserid)) return;
         if (Arrays.asList(blockUserid.split(",")).contains(String.valueOf(mUser.getID()))) {
