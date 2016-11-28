@@ -4,6 +4,10 @@
         android:defaultValue="true"
         android:key="@string/enable_animate_key"
         android:title="显示启动动画"/>
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/is_merge_message_key"
+        android:title="合并转发和评论"/>
     <Preference
         android:title="下载/更新表情"
         android:key="@string/download_emotion_key"/>

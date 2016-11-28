@@ -25,7 +25,7 @@
 
 
     <!-- Strings related to Settings -->
-
+    <string name="is_merge_message_key">is_merge_message</string>
     <string name="enable_animate_key">enable_animate</string>
     <string name="download_emotion_key">download_emotion</string>
     <string name="delete_emotion_key">delete_emotion</string>
