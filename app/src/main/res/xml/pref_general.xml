@@ -14,7 +14,4 @@
     <Preference
         android:title="删除表情"
         android:key="@string/delete_emotion_key"/>
-    <Preference
-        android:title="反馈"
-        android:key="@string/feedback_key"/>
 </PreferenceScreen>

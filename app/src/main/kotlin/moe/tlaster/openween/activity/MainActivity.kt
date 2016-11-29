@@ -63,6 +63,10 @@ class MainActivity : BaseActivity() {
                         PrimaryDrawerItem().withIdentifier(2).withName("设置").withIcon(GoogleMaterial.Icon.gmd_settings).withOnDrawerItemClickListener { view, position, drawerItem ->
                             startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                             false
+                        },
+                        PrimaryDrawerItem().withIdentifier(3).withName("关于").withIcon(GoogleMaterial.Icon.gmd_info).withOnDrawerItemClickListener { view, position, drawerItem ->
+                            startActivity(Intent(this@MainActivity, AboutActivity::class.java))
+                            false
                         }
                 )
                 .withCloseOnClick(true)

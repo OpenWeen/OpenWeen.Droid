@@ -29,7 +29,6 @@
     <string name="enable_animate_key">enable_animate</string>
     <string name="download_emotion_key">download_emotion</string>
     <string name="delete_emotion_key">delete_emotion</string>
-    <string name="feedback_key">feedback</string>
     <string name="enable_notification_name">enable_notification</string>
     <string name="unread_item_name">unread_item</string>
     <string name="is_mention_notify_name">is_mention_notify</string>

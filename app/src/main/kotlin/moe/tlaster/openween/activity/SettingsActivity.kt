@@ -135,10 +135,6 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             setHasOptionsMenu(false)
             bindPreferenceSummaryToValue(findPreference(getString(R.string.enable_animate_key)))
             bindPreferenceSummaryToValue(findPreference(getString(R.string.is_merge_message_key)))
-            findPreference(getString(R.string.feedback_key)).setOnPreferenceClickListener { preference ->
-                FeedbackManager.showFeedbackActivity(activity)
-                true
-            }
             findPreference(getString(R.string.download_emotion_key)).setOnPreferenceClickListener { preference ->
                 val dialog = arrayOf(MaterialDialog.Builder(activity)
                         .title("正在下载表情")

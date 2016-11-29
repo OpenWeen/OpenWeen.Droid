@@ -126,7 +126,11 @@ internal object WeiboCardHelper {
         }
         time.text = item.createdAtDiffForHuman
         content.text = item.text
-        content.userClicked += { data -> goUserActivity(data, context) }
+        content.userClicked = object : WeiboTextBlock.WeiboTextBlockCallback {
+            override fun call(value: String) {
+                goUserActivity(value, context)
+            }
+        }
         val nineGridImageView = view.findViewById(R.id.weibo_img) as NineGridImageView<*>
         if (item is MessageModel) {
             if (enableImage) {

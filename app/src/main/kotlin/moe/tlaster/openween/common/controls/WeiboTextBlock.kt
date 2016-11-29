@@ -17,9 +17,6 @@ import android.view.View
 import android.widget.TextView
 
 
-
-import moe.tlaster.openween.common.Event
-
 import java.io.File
 import java.util.ArrayList
 import java.util.NoSuchElementException
@@ -47,9 +44,12 @@ class WeiboTextBlock : TextView {
     private var mOnClickListener: View.OnClickListener? = null
     private var mCanClick = true
 
-    var userClicked = Event<String>()
-    var linkClicked = Event<String>()
-    var topicClicked = Event<String>()
+    interface WeiboTextBlockCallback {
+        fun call(value: String)
+    }
+    var userClicked: WeiboTextBlockCallback? = null
+    var linkClicked: WeiboTextBlockCallback? = null
+    var topicClicked: WeiboTextBlockCallback? = null
     constructor(context: Context) : super(context) {
     }
 
@@ -96,7 +96,7 @@ class WeiboTextBlock : TextView {
                 val end = start + at.length
                 val clickableSpan = object : ExClickableSpan() {
                     override fun onClick(widget: View) {
-                        userClicked.invoke(at.substring(1))
+                        userClicked?.call(at.substring(1))
                     }
                 }
                 spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -107,7 +107,7 @@ class WeiboTextBlock : TextView {
                 val end = start + topic.length
                 val clickableSpan = object : ExClickableSpan() {
                     override fun onClick(widget: View) {
-                        topicClicked.invoke(topic)
+                        topicClicked?.call(topic)
                     }
                 }
                 spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -136,7 +136,7 @@ class WeiboTextBlock : TextView {
                 val clickableSpan = object : ExClickableSpan() {
                     override fun onClick(widget: View) {
                         mCanClick = false
-                        linkClicked.invoke(url)
+                        linkClicked?.call(url)
                         ShortUrl.info(object : JsonCallback<UrlInfoListModel>() {
                             override fun onError(call: Call, e: Exception, id: Int) {
                                 openLink(url)

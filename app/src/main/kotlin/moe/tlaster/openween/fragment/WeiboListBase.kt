@@ -15,7 +15,6 @@ import com.chad.library.adapter.base.BaseViewHolder
 
 import moe.tlaster.openween.R
 import moe.tlaster.openween.adapter.BaseModelAdapter
-import moe.tlaster.openween.common.Event
 import moe.tlaster.openween.common.SimpleDividerItemDecoration
 import moe.tlaster.openween.common.StaticResource
 import moe.tlaster.openween.common.controls.Pivot
@@ -23,6 +22,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback
 import moe.tlaster.openween.core.api.Entity
 import moe.tlaster.openween.core.model.BaseModel
 import okhttp3.Call
+import java.util.concurrent.Callable
 
 /**
  * Created by Tlaster on 2016/9/10.
@@ -39,7 +39,7 @@ abstract class WeiboListBase<T> : Pivot.PivotItemFragment() {
             mSwipeRefreshLayout?.isRefreshing = false
         }
     }
-    var OnRefresh = Event<View>()
+    var OnRefresh: Runnable? = null
     protected var mRecyclerView: RecyclerView? = null
     protected var mSwipeRefreshLayout: SwipeRefreshLayout? = null
     protected var mAdapter: BaseQuickAdapter<T, BaseViewHolder>? = null
@@ -71,7 +71,8 @@ abstract class WeiboListBase<T> : Pivot.PivotItemFragment() {
         mSwipeRefreshLayout = view.findViewById(swipeRefreshLayout) as SwipeRefreshLayout
         mSwipeRefreshLayout?.setOnRefreshListener{
             this.refresh()
-            OnRefresh.invoke(view)
+            OnRefresh?.run()
+            //OnRefresh.invoke(view)
         }
         mRecyclerView?.layoutManager = layoutManager
         mAdapter = initAdapter()

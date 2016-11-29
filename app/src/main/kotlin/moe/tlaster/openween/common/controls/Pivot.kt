@@ -80,7 +80,7 @@ class Pivot : CoordinatorLayout {
     private fun initViewPager(adapter: FragmentPageAdapter) {
         val viewPager = findViewById(R.id.pivot_container) as ViewPager
         for (i in 0..adapter.Fragments.lastIndex) {
-            adapter.Fragments[i].OnRefresh += { setTabBadge(i, 0) }
+            adapter.Fragments[i].OnRefresh = Runnable { setTabBadge(i, 0) }
         }
         viewPager.adapter = adapter
         val tabLayout = findViewById(R.id.pivot_tabs) as TabLayout
