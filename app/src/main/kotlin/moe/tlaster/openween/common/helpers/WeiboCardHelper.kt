@@ -36,13 +36,14 @@ internal object WeiboCardHelper {
         val weiboContentContainer = baseView.findViewById(R.id.weibo_content_container)
         val weiboRepostContainer = baseView.findViewById(R.id.weibo_repost_container)
         val weiboRepostLinear = baseView.findViewById(R.id.weibo_repost_linear)
-        setWeiboContent(weiboContentContainer, baseModel, context, textColor)
+        val enableImage = !((PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.is_auto_disable_image_key), false) && !DeviceHelper.checkWifiOnAndConnected(context)) || PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.is_disable_image_key), false))
+        setWeiboContent(weiboContentContainer, baseModel, context = context, textColor = textColor, enableImage = enableImage)
         if (baseModel is MessageModel) {
             baseView.findViewById(R.id.comment).visibility = View.GONE
             baseView.findViewById(R.id.weibo_action).visibility = View.VISIBLE
             if (baseModel.retweetedStatus != null && isEnableRepost) {
                 weiboRepostLinear.visibility = View.VISIBLE
-                setWeiboContent(weiboRepostContainer, baseModel.retweetedStatus as MessageModel, context)
+                setWeiboContent(weiboRepostContainer, baseModel.retweetedStatus as MessageModel, context = context, enableImage = enableImage)
             } else {
                 weiboRepostLinear.visibility = View.GONE
             }
@@ -81,8 +82,8 @@ internal object WeiboCardHelper {
         val blockText = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.block_text_key), null)
         val blockUserid = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.block_userid_key), null)
         if (TextUtils.isEmpty(blockText) && TextUtils.isEmpty(blockUserid)) return false
-        val blockTextList = HashSet(Arrays.asList<String>(*blockText?.split(",".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray() ?: arrayOfNulls<String>(0)))
-        val blockUserList = HashSet(Arrays.asList<String>(*blockUserid?.split(",".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray() ?: arrayOfNulls<String>(0)))
+        val blockTextList = HashSet(Arrays.asList<String>(*blockText?.split(",".toRegex())?.dropLastWhile(String::isEmpty)?.toTypedArray() ?: arrayOfNulls<String>(0)))
+        val blockUserList = HashSet(Arrays.asList<String>(*blockUserid?.split(",".toRegex())?.dropLastWhile(String::isEmpty)?.toTypedArray() ?: arrayOfNulls<String>(0)))
         if (baseModel is MessageModel) {
             return blockUserList.contains(baseModel.user!!.id.toString()) || baseModel.retweetedStatus != null && baseModel.retweetedStatus!!.user != null && blockUserList.contains(baseModel.retweetedStatus!!.user!!.id.toString()) || blockTextList.any { item -> !TextUtils.isEmpty(item) && baseModel.text.contains(item) } || baseModel.retweetedStatus != null && blockTextList.any { item -> !TextUtils.isEmpty(item) && baseModel.retweetedStatus!!.text.contains(item) }
         } else if (baseModel is CommentModel) {
@@ -103,15 +104,7 @@ internal object WeiboCardHelper {
     }
 
 
-    private fun setWeiboContent(view: View, item: BaseModel, context: Context) {
-        setWeiboContent(view, item, true, context)
-    }
-
-    private fun setWeiboContent(view: View, item: BaseModel, context: Context, textColor: Int) {
-        setWeiboContent(view, item, true, context, textColor)
-    }
-
-    private fun setWeiboContent(view: View, item: BaseModel, enableImage: Boolean, context: Context, textColor: Int = Color.BLACK) {
+    private fun setWeiboContent(view: View, item: BaseModel, enableImage: Boolean = true, context: Context, textColor: Int = Color.BLACK) {
         val userHeader = view.findViewById(R.id.user_header)
         val userName = userHeader.findViewById(R.id.user_name) as TextView
         val time = userHeader.findViewById(R.id.user_sub_text) as TextView

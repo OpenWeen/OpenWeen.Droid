@@ -58,20 +58,9 @@ class WeiboImageList : BaseActivity() {
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             val itemTemplate = LayoutInflater.from(this@WeiboImageList).inflate(R.layout.weibo_image_list_itemtemplate, container, false)
             val imageView = itemTemplate.findViewById(R.id.weibo_image_list_item) as BigImageView
-//            imageView.setOnSingleTapListener{ this@WeiboImageList.finish() }
-//            imageView.setOnFlickListener(object : FlickableImageView.OnFlickableImageViewFlickListener {
-//                override fun onStartFlick() {
-//
-//                }
-//
-//                override fun onFinishFlick() {
-//                    this@WeiboImageList.finish()
-//                }
-//            })
             imageView.showImage(Uri.parse(mData[position]))
             imageView.setProgressIndicator(ImageProgress())
             imageView.setOnClickListener { this@WeiboImageList.finish() }
-            //Glide.with(this@WeiboImageList).load(mData[position]).placeholder(IconicsDrawable(this@WeiboImageList).icon(GoogleMaterial.Icon.gmd_image).color(Color.GRAY).sizeDp(48)).fitCenter().crossFade().into(imageView)
             container.addView(itemTemplate)
             return itemTemplate
         }

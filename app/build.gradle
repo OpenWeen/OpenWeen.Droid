@@ -9,8 +9,8 @@ android {
         applicationId "moe.tlaster.openween"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 2
-        versionName "misaka.10032"
+        versionCode 3
+        versionName "misaka.10032.1"
         resValue "string", "tray__authority", "${applicationId}.tray"
         manifestPlaceholders = [HOCKEYAPP_APP_ID: properties.getProperty("HOCKEYAPP_APP_ID")]
 
