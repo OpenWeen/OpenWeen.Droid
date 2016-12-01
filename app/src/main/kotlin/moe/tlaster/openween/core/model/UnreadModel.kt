@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
  * Created by Tlaster on 2016/8/26.
  */
 class UnreadModel {
+    @SerializedName("attitude")
+    var attitude = 0
     @SerializedName("status")
     var status = 0
     @SerializedName("follower")

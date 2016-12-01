@@ -77,7 +77,7 @@ abstract class WeiboListBase<T> : Pivot.PivotItemFragment() {
         mRecyclerView?.layoutManager = layoutManager
         mAdapter = initAdapter()
         mAdapter?.openLoadAnimation()
-        mAdapter?.openLoadMore(20)
+        mAdapter?.openLoadMore(mLoadCount)
         mRecyclerView?.adapter = mAdapter
         mAdapter?.setOnLoadMoreListener { mRecyclerView?.post { this.loadMore() } }
         mRecyclerView?.addItemDecoration(SimpleDividerItemDecoration(context))

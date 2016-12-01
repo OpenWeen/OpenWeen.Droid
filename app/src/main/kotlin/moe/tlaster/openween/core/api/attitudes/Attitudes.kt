@@ -6,6 +6,8 @@ import moe.tlaster.openween.core.api.Constants
 import moe.tlaster.openween.common.helpers.HttpHelper
 import moe.tlaster.openween.common.helpers.InvalidAccessTokenException
 import moe.tlaster.openween.common.helpers.JsonCallback
+import moe.tlaster.openween.core.model.attitude.AttitudeListModel
+import moe.tlaster.openween.core.model.attitude.AttitudeModel
 
 /**
  * Created by Tlaster on 2016/9/2.
@@ -23,7 +25,7 @@ object Attitudes {
         param.put("id", id.toString())
         HttpHelper.postAsync(Constants.ATTITUDE_DESTROY, param, callback)
     }
-    fun likeToMe(callback: JsonCallback<String>, with_common_attitude: Boolean = true, with_comment: Boolean = true, since_id: Long = 0, max_id: Long = 0, count: Int = 20, page: Int = 1) {
+    fun likeToMe(callback: JsonCallback<AttitudeListModel>, with_common_attitude: Boolean = true, with_comment: Boolean = true, since_id: Long = 0, max_id: Long = 0, count: Int = 20, page: Int = 1) {
         val param = HashMap<String, String>()
         param.put("with_common_attitude", if (with_common_attitude) "1" else "0")
         param.put("with_comment", if (with_comment) "1" else "0")
@@ -33,6 +35,6 @@ object Attitudes {
         param.put("page", page.toString())
         param.put("source", "211160679")
         param.put("from", "1055095010")
-
+        HttpHelper.getAsync("https://api.weibo.cn/2/like/to_me", param, callback)
     }
 }

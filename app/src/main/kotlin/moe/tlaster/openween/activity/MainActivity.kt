@@ -81,6 +81,7 @@ class MainActivity : BaseActivity() {
             pageAdapter.add(Comment())
             pageAdapter.add(CommentMention())
         }
+        pageAdapter.add(Attitude())
         pageAdapter.add(DirectMessage())
         mPivot.adapter = pageAdapter
         mPivot.setOffscreenPageLimit(pageAdapter.count)
@@ -120,7 +121,7 @@ class MainActivity : BaseActivity() {
             }
         })
         kotlin.concurrent.timer(period = notifyInterval.toLong()){
-            Remind.getUnread(object : JsonCallback<UnreadModel>() {
+            Remind.getUnread(callback = object : JsonCallback<UnreadModel>() {
                 override fun onResponse(response: UnreadModel?, id: Int) {
                     if (PreferenceManager.getDefaultSharedPreferences(this@MainActivity).getBoolean(getString(R.string.is_merge_message_key), false)) {
                         var count = 0
@@ -131,7 +132,8 @@ class MainActivity : BaseActivity() {
                         if (PreferenceManager.getDefaultSharedPreferences(this@MainActivity).getBoolean(getString(R.string.is_comment_notify_name), true))
                             count += response?.cmt!!
                         if (PreferenceManager.getDefaultSharedPreferences(this@MainActivity).getBoolean(getString(R.string.is_message_notify_name), true))
-                            count += response?.dm!!
+                            mPivot.setTabBadge(mPivot.tabLayout.tabCount - 1, response?.dm!!)
+                        mPivot.setTabBadge(mPivot.tabLayout.tabCount - 2, response?.attitude!!)
                         mPivot.setTabBadge(1, count)
                     } else {
                         if (PreferenceManager.getDefaultSharedPreferences(this@MainActivity).getBoolean(getString(R.string.is_mention_notify_name), true)) {
@@ -141,7 +143,8 @@ class MainActivity : BaseActivity() {
                         if (PreferenceManager.getDefaultSharedPreferences(this@MainActivity).getBoolean(getString(R.string.is_comment_notify_name), true))
                             mPivot.setTabBadge(2, response?.cmt!!)
                         if (PreferenceManager.getDefaultSharedPreferences(this@MainActivity).getBoolean(getString(R.string.is_message_notify_name), true))
-                            mPivot.setTabBadge(4, response?.dm!!)
+                            mPivot.setTabBadge(mPivot.tabLayout.tabCount - 1, response?.dm!!)
+                        mPivot.setTabBadge(mPivot.tabLayout.tabCount - 2, response?.attitude!!)
                     }
                 }
 

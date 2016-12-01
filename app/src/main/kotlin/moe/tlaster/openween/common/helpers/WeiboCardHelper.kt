@@ -23,6 +23,7 @@ import moe.tlaster.openween.adapter.WeiboImageAdapter
 import moe.tlaster.openween.common.controls.WeiboTextBlock
 import moe.tlaster.openween.common.entities.PostWeiboType
 import moe.tlaster.openween.core.model.BaseModel
+import moe.tlaster.openween.core.model.attitude.AttitudeModel
 import moe.tlaster.openween.core.model.comment.CommentModel
 import moe.tlaster.openween.core.model.status.MessageModel
 
@@ -37,6 +38,8 @@ internal object WeiboCardHelper {
         val weiboRepostContainer = baseView.findViewById(R.id.weibo_repost_container)
         val weiboRepostLinear = baseView.findViewById(R.id.weibo_repost_linear)
         val enableImage = !((PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.is_auto_disable_image_key), false) && !DeviceHelper.checkWifiOnAndConnected(context)) || PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.is_disable_image_key), false))
+        if (baseModel is AttitudeModel)
+            baseModel.text = "赞了这条微博"
         setWeiboContent(weiboContentContainer, baseModel, context = context, textColor = textColor, enableImage = enableImage)
         if (baseModel is MessageModel) {
             baseView.findViewById(R.id.comment).visibility = View.GONE
@@ -75,6 +78,15 @@ internal object WeiboCardHelper {
                 weiboRepostLinear.visibility = View.GONE
             }
             baseView.findViewById(R.id.comment).setOnClickListener(getReplyCommentListener(baseModel, context))
+        } else if (baseModel is AttitudeModel) {
+            baseView.findViewById(R.id.comment).visibility = View.GONE
+            baseView.findViewById(R.id.weibo_action).visibility = View.GONE
+            if (isEnableRepost) {
+                weiboRepostLinear.visibility = View.VISIBLE
+                setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), baseModel.status as MessageModel, enableImage = false, context = context)
+            } else {
+                weiboRepostLinear.visibility = View.GONE
+            }
         }
     }
 
@@ -136,6 +148,8 @@ internal object WeiboCardHelper {
         } else if (item is CommentModel) {
             nineGridImageView.visibility = View.GONE
             content.setOnClickListener(getReplyCommentListener(item, context))
+        } else if (item is AttitudeModel) {
+            nineGridImageView.visibility = View.GONE
         }
     }
 

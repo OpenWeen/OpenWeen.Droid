@@ -27,6 +27,7 @@ import moe.tlaster.openween.common.controls.WeiboTextBlock
 import moe.tlaster.openween.common.entities.PostWeiboType
 import moe.tlaster.openween.common.helpers.WeiboCardHelper
 import moe.tlaster.openween.core.model.BaseModel
+import moe.tlaster.openween.core.model.attitude.AttitudeModel
 import moe.tlaster.openween.core.model.comment.CommentModel
 import moe.tlaster.openween.core.model.status.MessageModel
 import moe.tlaster.openween.core.model.user.UserModel
@@ -49,7 +50,9 @@ class BaseModelAdapter<T : BaseModel> @JvmOverloads constructor(private val mIsE
             if (p1.retweetedStatus != null)
                 baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener { view -> goDetail(p1.retweetedStatus as MessageModel, baseView.findViewById(R.id.weibo_repost_container)) }
         }
-        if (p1 is CommentModel && p1.status != null)
+        else if (p1 is CommentModel && p1.status != null)
+            baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener { view -> goDetail(p1.status as MessageModel, baseView.findViewById(R.id.weibo_repost_container)) }
+        else if (p1 is AttitudeModel && p1.status != null)
             baseView.findViewById(R.id.weibo_repost_container).findViewById(R.id.weibo_content).setOnClickListener { view -> goDetail(p1.status as MessageModel, baseView.findViewById(R.id.weibo_repost_container)) }
     }
 

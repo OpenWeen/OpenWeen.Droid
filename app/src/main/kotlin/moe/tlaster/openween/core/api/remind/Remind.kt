@@ -13,15 +13,10 @@ import moe.tlaster.openween.common.helpers.JsonCallback
  * Created by Tlaster on 2016/9/7.
  */
 object Remind {
-    fun getUnread(uid: String, callback: JsonCallback<UnreadModel>) {
+    fun getUnread(unread_message: Boolean = true, callback: JsonCallback<UnreadModel>) {
         val param = HashMap<String, String>()
-        param.put("uid", uid.toString())
-        param.put("unread_message", "0")
+        param.put("unread_message", if (unread_message) "1" else "0")
         HttpHelper.getAsync(Constants.REMIND_UNREAD_COUNT, param, callback)
-    }
-
-    fun getUnread(callback: JsonCallback<UnreadModel>) {
-        HttpHelper.getAsync(Constants.REMIND_UNREAD_COUNT, null, callback)
     }
 
     fun clearUnread(type: RemindType) {
