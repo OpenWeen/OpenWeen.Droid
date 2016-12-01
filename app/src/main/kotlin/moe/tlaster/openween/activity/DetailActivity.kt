@@ -65,8 +65,7 @@ class DetailActivity : BaseActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
-        val index = mMessageModel!!.text.indexOf("\u5168\u6587\uff1a http://m.weibo.cn/")
-        if (index != -1) {
+        if (mMessageModel!!.text.contains("\u5168\u6587\uff1a http://m.weibo.cn/") || mMessageModel!!.text.contains("http://m.weibo.cn/client/version")) {
             Query.getStatus(mMessageModel!!.id, true, object : JsonCallback<MessageModel>() {
                 override fun onError(call: Call, e: Exception, id: Int) {
                     mProgressBar.visibility = View.GONE

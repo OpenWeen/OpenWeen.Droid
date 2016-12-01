@@ -69,12 +69,14 @@ class WeiboTextBlock : TextView {
         super.setOnClickListener(mOnClickListener)
     }
 
-    override fun setText(text: CharSequence, type: TextView.BufferType) {
+    override fun setText(oritext: CharSequence, type: TextView.BufferType) {
         val spannableString: SpannableString
-        val index = text.toString().indexOf("\u5168\u6587\uff1a http://m.weibo.cn/")
+        var text = oritext
+        val index = Math.max(text.toString().indexOf("\u5168\u6587\uff1a http://m.weibo.cn/"), text.toString().indexOf("http://m.weibo.cn/client/version"))
         if (index != -1) {
             val length = index + 2
-            spannableString = SpannableString(text.toString().substring(0, length))
+            text = text.substring(0, index) + "\u5168\u6587"
+            spannableString = SpannableString(text)
             val span = ForegroundColorSpan(Color.BLUE)
             spannableString.setSpan(span, index, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         } else {
