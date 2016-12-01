@@ -12,6 +12,7 @@ import android.widget.TextView
 
 import com.bumptech.glide.Glide
 import com.jaeger.ninegridimageview.NineGridImageView
+import com.varunest.sparkbutton.SparkButton
 
 import java.util.Arrays
 import java.util.HashSet
@@ -22,10 +23,14 @@ import moe.tlaster.openween.activity.UserActivity
 import moe.tlaster.openween.adapter.WeiboImageAdapter
 import moe.tlaster.openween.common.controls.WeiboTextBlock
 import moe.tlaster.openween.common.entities.PostWeiboType
+import moe.tlaster.openween.core.api.attitudes.Attitudes
+import moe.tlaster.openween.core.api.favorites.Favorites
 import moe.tlaster.openween.core.model.BaseModel
 import moe.tlaster.openween.core.model.attitude.AttitudeModel
 import moe.tlaster.openween.core.model.comment.CommentModel
+import moe.tlaster.openween.core.model.favor.FavorModel
 import moe.tlaster.openween.core.model.status.MessageModel
+import okhttp3.Call
 
 /**
  * Created by Asahi on 2016/10/27.
@@ -68,12 +73,40 @@ internal object WeiboCardHelper {
                 i.putExtra(context.getString(R.string.post_weibo_id_name), baseModel.id)
                 context.startActivity(i)
             }
+            (weiboAction.findViewById(R.id.favor_spark_button) as SparkButton).setChecked(baseModel.isFavorited)
+            (weiboAction.findViewById(R.id.like_spark_button) as SparkButton).setEventListener { imageView, b ->
+                if (b) {
+                    Attitudes.like(id = baseModel.id, callback = object : JsonCallback<String>() {
+                        override fun onResponse(response: String?, id: Int) { }
+                        override fun onError(call: Call?, e: Exception?, id: Int) { }
+                    })
+                } else {
+                    Attitudes.unLike(id = baseModel.id, callback = object : JsonCallback<String>() {
+                        override fun onResponse(response: String?, id: Int) { }
+                        override fun onError(call: Call?, e: Exception?, id: Int) { }
+                    })
+                }
+            }
+            (weiboAction.findViewById(R.id.favor_spark_button) as SparkButton).setEventListener { imageView, b ->
+                if (b) {
+                    Favorites.addFavor(baseModel.id, callback = object : JsonCallback<FavorModel>() {
+                        override fun onResponse(response: FavorModel?, id: Int) { }
+                        override fun onError(call: Call?, e: Exception?, id: Int) { }
+                    })
+                } else {
+                    Favorites.removeFavor(baseModel.id, callback = object : JsonCallback<FavorModel>() {
+                        override fun onResponse(response: FavorModel?, id: Int) { }
+                        override fun onError(call: Call?, e: Exception?, id: Int) { }
+                    })
+                }
+            }
         } else if (baseModel is CommentModel) {
             baseView.findViewById(R.id.comment).visibility = View.VISIBLE
             baseView.findViewById(R.id.weibo_action).visibility = View.GONE
             if (isEnableRepost) {
                 weiboRepostLinear.visibility = View.VISIBLE
-                setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), baseModel.status as MessageModel, false, context)
+                if (baseModel.status != null)
+                    setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), baseModel.status!!, false, context)
             } else {
                 weiboRepostLinear.visibility = View.GONE
             }
@@ -83,7 +116,8 @@ internal object WeiboCardHelper {
             baseView.findViewById(R.id.weibo_action).visibility = View.GONE
             if (isEnableRepost) {
                 weiboRepostLinear.visibility = View.VISIBLE
-                setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), baseModel.status as MessageModel, enableImage = false, context = context)
+                if (baseModel.status != null)
+                    setWeiboContent(baseView.findViewById(R.id.weibo_repost_container), baseModel.status!!, enableImage = false, context = context)
             } else {
                 weiboRepostLinear.visibility = View.GONE
             }

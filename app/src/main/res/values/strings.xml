@@ -18,6 +18,9 @@
     <string name="post_weibo_id_name">post_weibo_id</string>
     <string name="post_weibo_cid_name">post_weibo_cid</string>
     <string name="weibo_list_user_id_name">weibo_list_user_id</string>
+    <string name="weibo_list_type_name">weibo_list_type</string>
+    <string name="weibo_list_type_status_name">weibo_list_type_status</string>
+    <string name="weibo_list_type_favor_name">weibo_list_type_favor</string>
     <string name="user_list_type_name">user_list_type</string>
 
     <string name="user_page_username_name">user_page_username</string>

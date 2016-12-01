@@ -17,12 +17,16 @@
         android:layout_height="wrap_content"
         app:layout_row="0"
         app:layout_column="0">
-        <com.mikepenz.iconics.view.IconicsImageView
+        <com.varunest.sparkbutton.SparkButton
             android:layout_marginEnd="8dp"
+            android:id="@+id/like_spark_button"
             android:layout_width="@dimen/message_button"
             android:layout_height="@dimen/message_button"
-            app:iiv_icon="@string/gmd_thumb_up"
-            app:iiv_color="@android:color/darker_gray"/>
+            app:sparkbutton_activeImage="@drawable/ic_thumb_up_red_24dp"
+            app:sparkbutton_inActiveImage="@drawable/ic_thumb_up_gray_24dp"
+            app:sparkbutton_iconSize="@dimen/message_button"
+            app:sparkbutton_primaryColor="@color/md_red_400"
+            app:sparkbutton_secondaryColor="@color/md_red_600" />
         <TextView
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -89,10 +93,14 @@
         android:layout_height="wrap_content"
         app:layout_row="0"
         app:layout_column="3">
-        <com.mikepenz.iconics.view.IconicsImageView
+        <com.varunest.sparkbutton.SparkButton
+            android:id="@+id/favor_spark_button"
             android:layout_width="@dimen/message_button"
             android:layout_height="@dimen/message_button"
-            app:iiv_icon="@string/gmd_favorite"
-            app:iiv_color="@android:color/darker_gray"/>
+            app:sparkbutton_activeImage="@drawable/ic_star_yellow_24dp"
+            app:sparkbutton_inActiveImage="@drawable/ic_star_gray_24dp"
+            app:sparkbutton_iconSize="@dimen/message_button"
+            app:sparkbutton_primaryColor="@color/md_yellow_600"
+            app:sparkbutton_secondaryColor="@color/md_yellow_800" />
     </LinearLayout>
 </android.support.v7.widget.GridLayout>

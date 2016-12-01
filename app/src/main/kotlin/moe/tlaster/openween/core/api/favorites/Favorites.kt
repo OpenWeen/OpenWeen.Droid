@@ -14,7 +14,7 @@ import moe.tlaster.openween.common.helpers.JsonCallback
  * Created by Tlaster on 2016/9/6.
  */
 object Favorites {
-    fun getFavorList(count: Int, page: Int, callback: JsonCallback<FavorListModel>) {
+    fun getFavorList(count: Int = 20, page: Int = 1, callback: JsonCallback<FavorListModel>) {
         val param = HashMap<String, String>()
         param.put("count", count.toString())
         param.put("page", page.toString())

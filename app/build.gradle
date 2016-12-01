@@ -9,8 +9,8 @@ android {
         applicationId "moe.tlaster.openween"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
-        versionName "misaka.10032.1"
+        versionCode 4
+        versionName "misaka.10032.2"
         resValue "string", "tray__authority", "${applicationId}.tray"
         manifestPlaceholders = [HOCKEYAPP_APP_ID: properties.getProperty("HOCKEYAPP_APP_ID")]
 
@@ -64,6 +64,7 @@ dependencies {
     compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     compile 'com.github.piasy:BigImageViewer:1.2.2'
     compile 'com.github.piasy:GlideImageLoader:1.2.2'
+    compile 'com.github.varunest:sparkbutton:1.0.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

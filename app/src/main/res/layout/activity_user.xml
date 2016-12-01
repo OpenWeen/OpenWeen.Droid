@@ -14,12 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:paddingBottom="@dimen/dp_10"
             android:orientation="vertical"
             android:id="@+id/user_information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <include android:visibility="gone" layout="@layout/user_stats_card" android:id="@+id/user_stats_card"/>
             <include android:visibility="gone" layout="@layout/user_weibo_card" android:id="@+id/user_weibo_card"/>
+            <include android:visibility="gone" layout="@layout/user_like_card" android:id="@+id/user_like_card"/>
+            <include android:visibility="gone" layout="@layout/user_favor_card" android:id="@+id/user_favor_card"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

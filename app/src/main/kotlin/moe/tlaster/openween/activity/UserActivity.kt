@@ -45,9 +45,11 @@ import moe.tlaster.openween.common.bindView
 import moe.tlaster.openween.common.helpers.JsonCallback
 import moe.tlaster.openween.common.helpers.WeiboCardHelper
 import moe.tlaster.openween.core.api.blocks.Blocks
+import moe.tlaster.openween.core.api.favorites.Favorites
 import moe.tlaster.openween.core.api.friendships.Friends
 import moe.tlaster.openween.core.api.statuses.UserTimeline
 import moe.tlaster.openween.core.api.user.User
+import moe.tlaster.openween.core.model.favor.FavorListModel
 import moe.tlaster.openween.core.model.status.MessageListModel
 import moe.tlaster.openween.core.model.status.MessageModel
 import moe.tlaster.openween.core.model.user.UserListModel
@@ -63,6 +65,8 @@ class UserActivity : SlidingActivity() {
     private var mCircleImageView: CircleImageView? = null
     val mStatsCard: View by bindView(R.id.user_stats_card)
     val mWeiboCard: View by bindView(R.id.user_weibo_card)
+    val mLikeCard: View by bindView(R.id.user_like_card)
+    val mFavorCard: View by bindView(R.id.user_favor_card)
     val mProgressBar: ProgressBar by bindView(R.id.user_progressbar)
     val mLinearLayout: LinearLayout by bindView(R.id.user_information)
     private var mMenu: Menu? = null
@@ -79,8 +83,10 @@ class UserActivity : SlidingActivity() {
                 .sizeDp(24))
         setHeaderContent(headerView)
         val userName = intent.extras.getString(getString(R.string.user_page_username_name))
-        mWeiboCard.findViewById(R.id.user_weibo_all).setOnClickListener { this.goAllWeiboList(it) }
-        mWeiboCard.findViewById(R.id.user_weibo_all_bottom).setOnClickListener{ this.goAllWeiboList(it) }
+        mWeiboCard.findViewById(R.id.user_weibo_all).setOnClickListener { this.goAllWeiboList(getString(R.string.weibo_list_type_status_name)) }
+        mWeiboCard.findViewById(R.id.user_weibo_all_bottom).setOnClickListener{ this.goAllWeiboList(getString(R.string.weibo_list_type_status_name)) }
+        mFavorCard.findViewById(R.id.user_favor_weibo_all).setOnClickListener { goAllWeiboList(getString(R.string.weibo_list_type_favor_name)) }
+        mFavorCard.findViewById(R.id.user_favor_weibo_all_bottom).setOnClickListener { goAllWeiboList(getString(R.string.weibo_list_type_favor_name)) }
         User.getUser(userName, object : JsonCallback<UserModel>() {
             override fun onError(call: Call, e: Exception, id: Int) {
                 Toast.makeText(this@UserActivity, "载入失败", Toast.LENGTH_SHORT).show()
@@ -96,8 +102,38 @@ class UserActivity : SlidingActivity() {
                 initMenu()
                 initUser()
                 initWeibo()
+                if (mUser?.id!! == StaticResource.uid) {
+                    initFavor()
+                }
                 mProgressBar.visibility = View.GONE
             }
+        })
+    }
+
+    private fun initFavor() {
+        Favorites.getFavorList(count = 3, callback = object : JsonCallback<FavorListModel>() {
+            override fun onResponse(response: FavorListModel, id: Int) {
+                if (isDestroyed) return
+                if (response.favorites!!.isNotEmpty()){
+                    WeiboCardHelper.setData(mFavorCard.findViewById(R.id.user_favor_weibo_1), response.favorites!![0].status!!, this@UserActivity, true)
+                    TransitionManager.beginDelayedTransition(mLinearLayout, Slide(Gravity.BOTTOM))
+                    mFavorCard.visibility = View.VISIBLE
+                } else
+                    mFavorCard.visibility = View.GONE
+                if (response.favorites!!.size > 1)
+                    WeiboCardHelper.setData(mFavorCard.findViewById(R.id.user_favor_weibo_2), response.favorites!![1].status!!, this@UserActivity, true)
+                else
+                    mFavorCard.findViewById(R.id.user_favor_weibo_2).visibility = View.GONE
+                if (response.favorites!!.size > 2)
+                    WeiboCardHelper.setData(mFavorCard.findViewById(R.id.user_favor_weibo_3), response.favorites!![2].status!!, this@UserActivity, true)
+                else
+                    mFavorCard.findViewById(R.id.user_favor_weibo_3).visibility = View.GONE
+            }
+
+            override fun onError(call: Call?, e: Exception?, id: Int) {
+
+            }
+
         })
     }
 
@@ -115,9 +151,10 @@ class UserActivity : SlidingActivity() {
         }
     }
 
-    private fun goAllWeiboList(view: View) {
+    private fun goAllWeiboList(type: String) {
         val intent = Intent(this, WeiboListActivity::class.java)
         intent.putExtra(getString(R.string.weibo_list_user_id_name), mUser!!.id)
+        intent.putExtra(getString(R.string.weibo_list_type_name), type)
         startActivity(intent)
     }
 
@@ -130,6 +167,15 @@ class UserActivity : SlidingActivity() {
             override fun onResponse(response: MessageListModel, id: Int) {
                 if (isDestroyed) return
                 if (response.statuses!!.isNotEmpty()) {
+                    val like = response.statuses?.filter { it.user?.id!! != mUser?.id!! }?.firstOrNull()
+                    if (like != null) {
+                        TransitionManager.beginDelayedTransition(mLinearLayout, Slide(Gravity.BOTTOM))
+                        WeiboCardHelper.setData(mLikeCard.findViewById(R.id.user_like_weibo_1), like, this@UserActivity)
+                        mLikeCard.visibility = View.VISIBLE
+                        response.statuses = response.statuses!! - like
+                    }
+                }
+                if (response.statuses!!.isNotEmpty()){
                     WeiboCardHelper.setData(mWeiboCard.findViewById(R.id.user_weibo_1), response.statuses!![0], this@UserActivity, true)
                     TransitionManager.beginDelayedTransition(mLinearLayout, Slide(Gravity.BOTTOM))
                     mWeiboCard.visibility = View.VISIBLE

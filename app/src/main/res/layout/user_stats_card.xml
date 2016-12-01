@@ -43,8 +43,7 @@
                 android:id="@+id/user_stats_user_des"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_black_1000"
-                android:text="Well, I make Android apps and go to school."/>
+                android:textColor="@color/md_black_1000"/>
             <LinearLayout
                 android:id="@+id/user_stats_location_box"
                 android:padding="@dimen/dp_10"
